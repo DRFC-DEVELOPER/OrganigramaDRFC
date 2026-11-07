@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263b4b">
+  <link rel="icon" href="assets/img/logos/%C3%8Dcono%20DRFC%20(15).png" type="image/png">
+  <title>Organigrama de DRFC</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f2f5f6;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fa;
+      --text: #203342;
+      --muted: #5b6d79;
+      --line: #c7d2d8;
+      --border: #dce4e8;
+      --accent: #176f91;
+      --accent-soft: #e5f1f5;
+      --brand-navy: #263b4b;
+      --brand-lime: #c8f05a;
+      --shadow: 0 8px 26px rgba(27, 45, 70, .08);
+      --card-shadow: 0 4px 14px rgba(27, 45, 70, .09);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--text);
+      background: var(--page);
+      font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body.dark {
+      color-scheme: dark;
+      --page: #14232d;
+      --surface: #1c303c;
+      --surface-soft: #223946;
+      --text: #edf4f6;
+      --muted: #bdcbd1;
+      --line: #425662;
+      --border: #354b58;
+      --accent: #84c6d6;
+      --accent-soft: #244552;
+      --shadow: 0 8px 26px rgba(0, 0, 0, .22);
+      --card-shadow: 0 4px 14px rgba(0, 0, 0, .2);
+    }
+
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    .topbar {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 86px;
+      padding: 8px 24px;
+      color: #fff;
+      background: var(--brand-navy);
+      border-bottom: 4px solid var(--brand-lime);
+      box-shadow: 0 3px 14px rgba(15, 23, 42, .16);
+    }
+    .brand { display: flex; align-items: center; gap: 19px; min-width: 215px; }
+    .brand-logo {
+      display: block;
+      width: 184px;
+      height: 66px;
+      object-fit: cover;
+      object-position: center;
+    }
+    h1 { margin: 0; color: #fff; font-size: 21px; letter-spacing: -.025em; white-space: nowrap; }
+    .subtitle { margin-top: 3px; color: #d1dce1; font-size: 12px; }
+    .eyebrow { margin-bottom: 2px; color: var(--brand-lime); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
+    .control, .icon-control, .search-box, .filter-box {
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface);
+    }
+    .control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease, transform .16s ease;
+      white-space: nowrap;
+    }
+    .control:hover, .icon-control:hover { background: var(--surface-soft); border-color: #9fb1c5; }
+    .topbar .control, .topbar .icon-control, .topbar .search-box, .topbar .filter-box {
+      color: #f5f8f9;
+      border-color: rgba(255, 255, 255, .22);
+      background: rgba(255, 255, 255, .08);
+    }
+    .topbar .control:hover, .topbar .icon-control:hover { border-color: rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .15); }
+    .topbar .control:focus-visible, .topbar .icon-control:focus-visible, .topbar input:focus-visible, .topbar select:focus-visible {
+      outline: 2px solid var(--brand-lime);
+      outline-offset: 2px;
+    }
+    .topbar .search-box svg, .topbar .filter-box { color: #d1dce1; }
+    .topbar .search-box input, .topbar .filter-box select { color: #fff; }
+    .topbar .search-box input::placeholder { color: #cfdae0; opacity: 1; }
+    .topbar .filter-box option { color: #203342; background: #fff; }
+    .control:active, .icon-control:active { transform: translateY(1px); }
+    .control.primary { color: #fff; background: #176b87; border-color: #176b87; }
+    .control.primary:hover { background: #125970; }
+    .control svg, .icon-control svg { width: 16px; height: 16px; }
+    .search-box { display: flex; align-items: center; gap: 8px; padding: 0 10px; }
+    .search-box svg { width: 17px; height: 17px; color: var(--muted); flex: 0 0 auto; }
+    .search-box input { width: 180px; border: 0; outline: 0; color: var(--text); background: transparent; }
+    .filter-box { padding: 0 8px; color: var(--muted); }
+    .filter-box select { max-width: 175px; min-height: 36px; border: 0; outline: 0; color: var(--text); background: transparent; }
+    .icon-control {
+      display: inline-grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      cursor: pointer;
+    }
+    .file-input { display: none; }
+
+    .workspace { display: flex; flex-direction: column; height: calc(100vh - 130px); min-height: 430px; }
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 48px;
+      padding: 7px 22px;
+      color: var(--muted);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    #status { font-size: 12px; }
+    .legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 7px;
+    max-width: 78%;
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; padding: 3px 7px; color: var(--muted); border: 1px solid var(--border); border-radius: 99px; background: var(--surface-soft); white-space: nowrap; font-size: 10px; }
+    .legend-dot { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; }
+    .viewport {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      touch-action: none;
+      cursor: grab;
+      background-color: var(--page);
+      background-image: radial-gradient(rgba(111, 133, 146, .18) .6px, transparent .6px);
+      background-position: 8px 8px;
+      background-size: 24px 24px;
+    }
+    .viewport.dragging { cursor: grabbing; }
+    .world {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: max-content;
+      min-width: max-content;
+      padding: 38px 52px 70px;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+    .chart { position: relative; display: inline-block; min-width: 100%; }
+    .chart svg.connections { position: absolute; inset: 0; z-index: 0; overflow: visible; pointer-events: none; }
+    .connection { fill: none; stroke: var(--line); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+    .tree-root { position: relative; z-index: 1; display: flex; justify-content: center; }
+    .person-node { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .person-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 232px;
+      min-height: 97px;
+      padding: 12px 13px;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--area-color, #64748b);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: opacity .18s ease, box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+    }
+    .person-card:hover { z-index: 2; transform: translateY(-2px); box-shadow: var(--shadow); }
+    .avatar {
+      position: relative;
+      display: grid;
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+      color: var(--area-color, #176b87);
+      background: color-mix(in srgb, var(--area-color, #176b87) 13%, var(--surface));
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .02em;
+    }
+    .avatar-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .avatar-initials { position: relative; z-index: 1; }
+    .avatar.has-photo .avatar-initials { visibility: hidden; }
+    .person-copy { min-width: 0; }
+    .person-title { display: -webkit-box; overflow: hidden; color: var(--text); font-size: 10px; font-weight: 750; line-height: 1.25; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+    .person-name { display: -webkit-box; overflow: hidden; margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 500; line-height: 1.3; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+    .person-node[data-depth="1"] > .person-card {
+      width: 254px;
+      min-height: 102px;
+      color: #fff;
+      border: 1px solid rgba(200, 240, 90, .72);
+      background: var(--brand-navy);
+      box-shadow: 0 8px 22px rgba(22, 43, 57, .2);
+    }
+    .person-node[data-depth="1"] > .person-card .person-title { color: var(--brand-lime); }
+    .person-node[data-depth="1"] > .person-card .person-name { color: #fff; }
+    .person-node[data-depth="2"] > .person-card { border-top: 3px solid var(--area-color); }
+    .person-card:focus-visible { outline: 3px solid var(--brand-lime); outline-offset: 3px; }
+    .branch-toggle {
+      position: absolute;
+      z-index: 3;
+      bottom: -14px;
+      left: 50%;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 27px;
+      padding: 3px 8px;
+      color: #fff;
+      border: 2px solid var(--surface);
+      border-radius: 99px;
+      background: var(--brand-lime);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, .16);
+      font-size: 10px;
+      font-weight: 750;
+      cursor: pointer;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .branch-toggle:hover { filter: brightness(1.08); }
+    .branch-toggle .toggle-sign { font-size: 15px; line-height: 12px; }
+    .children {
+      display: grid;
+      grid-template-columns: repeat(var(--child-columns, 1), max-content);
+      justify-items: center;
+      align-items: start;
+      gap: 34px 18px;
+      width: max-content;
+      max-width: none;
+      margin-top: 31px;
+      overflow: hidden;
+      opacity: 1;
+      transition: max-height .35s ease, opacity .22s ease, margin .35s ease;
+    }
+    .children.compact { grid-template-columns: repeat(var(--child-columns, 1), max-content); }
+    .children.collapsed { width: 0; max-height: 0 !important; margin-top: 0; opacity: 0; pointer-events: none; }
+    .children > .person-node { min-width: 232px; }
+    .children .person-node > .children { margin-top: 31px; }
+    .role-group > .role-group-card {
+      justify-content: center;
+      min-height: 46px;
+      color: var(--text);
+      border-top: 3px solid var(--area-color);
+      cursor: default;
+      pointer-events: none;
+      text-align: center;
+    }
+    .role-group > .children { margin-top: 18px; }
+    .aggregate-note {
+      box-sizing: border-box;
+      padding: 10px 13px;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--surface) 88%, var(--area-color));
+      font-size: 11px;
+      font-weight: 650;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .role-group > .aggregate-note { align-self: center; width: min(320px, 84vw); margin-top: 12px; }
+    .children > .aggregate-note { grid-column: 1 / -1; justify-self: center; width: min(660px, 84vw); }
+    .match .person-card { outline: 3px solid #e8ad39; outline-offset: 2px; }
+    .dimmed > .person-card { opacity: .24; }
+    .area-match .person-card { box-shadow: 0 0 0 2px var(--area-color), var(--card-shadow); }
+    .no-results { padding: 12px 18px; color: var(--muted); border-radius: 9px; background: var(--surface); }
+    .zoom-controls {
+      position: absolute;
+      z-index: 3;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .zoom-controls .icon-control { border: 0; }
+    .zoom-label { min-width: 38px; color: var(--muted); text-align: center; font-size: 10px; }
+    .print-brand { display: none; }
+    .error-banner {
+      display: none;
+      margin: 12px 20px 0;
+      padding: 10px 13px;
+      color: #9f2d25;
+      border: 1px solid #f2b8b2;
+      border-radius: 9px;
+      background: #fff3f1;
+    }
+    body.dark .error-banner { color: #ffb4aa; background: #482d31; border-color: #74434a; }
+
+    .panel-backdrop { position: fixed; z-index: 8; inset: 0; visibility: hidden; background: rgba(15, 23, 42, .3); opacity: 0; transition: opacity .2s ease, visibility .2s ease; }
+    .side-panel {
+      position: fixed;
+      z-index: 9;
+      top: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      width: min(410px, 92vw);
+      height: 100vh;
+      padding: 23px;
+      background: var(--surface);
+      box-shadow: -10px 0 35px rgba(15, 23, 42, .16);
+      transform: translateX(103%);
+      transition: transform .26s ease;
+    }
+    .panel-open .panel-backdrop { visibility: visible; opacity: 1; }
+    .panel-open .side-panel { transform: translateX(0); }
+    .panel-heading { display: flex; justify-content: space-between; align-items: center; }
+    .panel-heading h2 { margin: 0; font-size: 16px; }
+    .panel-profile { padding: 25px 0 19px; text-align: center; border-bottom: 1px solid var(--border); }
+    .panel-avatar {
+      position: relative;
+      display: grid;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 13px;
+      place-items: center;
+      overflow: hidden;
+      color: var(--area-color);
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--area-color) 14%, var(--surface));
+      font-size: 21px;
+      font-weight: 800;
+    }
+    .panel-avatar .avatar-photo { object-position: center top; }
+    .panel-avatar.has-photo .avatar-initials { visibility: hidden; }
+    .panel-profile h3 { margin: 0; font-size: 19px; }
+    .panel-profile p { margin: 6px 0 0; color: var(--muted); }
+    .panel-details { display: grid; gap: 15px; padding: 19px 0; border-bottom: 1px solid var(--border); }
+    .detail-label { display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+    .detail-value { font-weight: 600; }
+    .detail-value.link-value { color: var(--accent); cursor: pointer; }
+    .reports-heading { margin: 19px 0 10px; font-size: 13px; }
+    .report-list { display: grid; gap: 6px; overflow-y: auto; }
+    .report-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface-soft);
+      cursor: pointer;
+    }
+    .report-link:hover { border-color: var(--accent); }
+    .report-link small { color: var(--muted); }
+    .panel-empty { color: var(--muted); font-size: 12px; }
+
+    .horizontal .tree-root { justify-content: flex-start; }
+    .horizontal .person-node { flex-direction: row; align-items: flex-start; }
+    .horizontal .children {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      max-width: none;
+      margin-top: 0;
+      margin-left: 47px;
+      gap: 20px;
+      overflow: hidden;
+    }
+    .horizontal .children.collapsed { margin-left: 0; }
+    .horizontal .children.collapsed { width: 0; }
+    .horizontal .branch-toggle { top: 50%; right: -14px; bottom: auto; left: auto; transform: translateY(-50%); }
+    .horizontal .person-node > .children { margin-top: 0; margin-left: 47px; }
+    .horizontal .children .person-node > .children { margin-top: 0; margin-left: 47px; }
+
+    @media (max-width: 950px) {
+      .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding: 13px 16px; }
+      .brand { min-width: 0; }
+      .toolbar { justify-content: flex-start; width: 100%; }
+      .workspace { height: calc(100vh - 194px); min-height: 430px; }
+      .legend { justify-content: flex-start; max-width: 100%; }
+      .search-box input { width: 132px; }
+    }
+    @media (max-width: 570px) {
+      .status-row { align-items: flex-start; flex-direction: column; gap: 5px; padding: 7px 12px; }
+      .legend { justify-content: flex-start; max-width: 100%; width: 100%; }
+      .toolbar { gap: 6px; }
+      .brand { gap: 10px; }
+      .brand-logo { width: 126px; height: 54px; }
+      h1 { font-size: 18px; white-space: normal; }
+      .control { min-height: 35px; padding: 7px 9px; font-size: 12px; }
+      .search-box { min-height: 35px; }
+      .search-box input { width: min(36vw, 150px); }
+      .filter-box { min-height: 35px; }
+      .filter-box select { min-height: 33px; max-width: 125px; font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+    @media print {
+      @page { size: landscape; margin: 9mm; }
+      body { color: #182436 !important; background: #fff !important; }
+      .topbar, .status-row, .zoom-controls, .side-panel, .panel-backdrop, .branch-toggle, .error-banner { display: none !important; }
+      .print-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; color: #263b4b; font-size: 18px; font-weight: 750; }
+      .print-brand img { width: 96px; height: 42px; object-fit: cover; object-position: center; }
+      .workspace, .viewport { display: block; width: 100%; height: auto; min-height: 0; overflow: visible; background: #fff !important; }
+      .world { position: relative; inset: auto; width: max-content; min-width: 0; padding: 0; transform: none !important; }
+      .children, .children.collapsed { max-height: none !important; margin-top: 31px; overflow: visible; opacity: 1; }
+      .children.collapsed { margin-top: 31px; }
+      .person-card { break-inside: avoid; box-shadow: none; }
+      .person-node[data-depth="1"] > .person-card { color: #203342; background: #fff; border: 1px solid #263b4b; }
+      .person-node[data-depth="1"] > .person-card .person-title { color: #203342; }
+      .person-node[data-depth="1"] > .person-card .person-name { color: #5b6d79; }
+      .dimmed { opacity: 1 !important; }
+      .connection { stroke: #9aa8b7; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="assets/img/logos/Logo%20DRFC%20Blanco%20Fondo%20Transparente.png" alt="DRFC Ingeniería S.A. de C.V.">
+      <div>
+        <div class="eyebrow">Estructura organizacional</div>
+        <h1>Organigrama de DRFC</h1>
+        <div class="subtitle">Soluciones Integrales de Telecomunicaciones</div>
+      </div>
+    </div>
+    <div class="toolbar" aria-label="Controles del organigrama">
+      <label class="control" for="csv-file" title="Reemplaza la información actual con un CSV local">
+        <span aria-hidden="true">⇧</span> Cargar CSV
+      </label>
+      <input class="file-input" id="csv-file" type="file" accept=".csv,text/csv">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        <input id="search-input" type="search" placeholder="Nombre o cargo" aria-label="Buscar por nombre o cargo">
+      </div>
+      <label class="filter-box" title="Filtrar por área">
+        <select id="area-filter" aria-label="Filtrar por área">
+          <option value="">Todas las áreas</option>
+        </select>
+      </label>
+      <button class="control" id="expand-all" type="button">Expandir todo</button>
+      <button class="control" id="collapse-levels" type="button">Colapsar a 3 niveles</button>
+      <button class="control" id="orientation-toggle" type="button" aria-pressed="false">Vista horizontal</button>
+      <button class="control" id="center-view" type="button">Centrar vista</button>
+      <button class="icon-control" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar modo claro/oscuro">◐</button>
+      <button class="icon-control" id="print-view" type="button" aria-label="Imprimir o exportar PDF" title="Imprimir o guardar como PDF">⎙</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <div class="print-brand">
+      <img src="assets/img/logos/Logo%20DRFC%20Color%20Fondo%20Transparente.png" alt="DRFC Ingeniería S.A. de C.V.">
+      <span>Organigrama de DRFC</span>
+    </div>
+    <div id="error-banner" class="error-banner" role="alert"></div>
+    <div class="status-row">
+      <div id="status" aria-live="polite"></div>
+      <div id="legend" class="legend" aria-label="Leyenda de jefaturas"></div>
+    </div>
+    <section id="viewport" class="viewport" aria-label="Organigrama. Arrastra para desplazarte y usa la rueda para acercar o alejar.">
+      <div id="world" class="world">
+        <div id="chart" class="chart"></div>
+      </div>
+      <div class="zoom-controls" aria-label="Controles de zoom">
+        <button class="icon-control" id="zoom-in" type="button" aria-label="Acercar">+</button>
+        <div id="zoom-label" class="zoom-label">100%</div>
+        <button class="icon-control" id="zoom-out" type="button" aria-label="Alejar">−</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="panel-backdrop" class="panel-backdrop"></div>
+  <aside id="side-panel" class="side-panel" aria-label="Detalle de persona" aria-hidden="true">
+    <div class="panel-heading">
+      <h2>Detalle de persona</h2>
+      <button id="close-panel" class="icon-control" type="button" aria-label="Cerrar panel">×</button>
+    </div>
+    <div id="panel-content"></div>
+  </aside>
+
+  <script src="datos_organigrama.js"></script>
+  <script>
+    /* ============================== Datos ============================== */
+    let personasActivas = Array.isArray(personas) ? personas.slice() : [];
+    let raiz = null;
+    let porId = new Map();
+    let coloresPorPersona = new Map();
+    let jefaturasColor = [];
+    let expandidos = new Set();
+    let coincidencias = new Set();
+    let busquedaActiva = false;
+    let filtroArea = "";
+    let escala = 1;
+    let desplazamiento = { x: 0, y: 0 };
+    let orientacionHorizontal = false;
+    let arrastre = null;
+    const cacheFotos = new Map();
+    const carpetasFotoPorPersona = new Map([
+      ["Elena Abigail Alanis Reyes", "assets/img/ingenería digital"],
+      ["Hugo Martínez Cruz", "assets/img/ingenería digital"],
+      ["Yajaira Mariana Estrada Estrada", "assets/img/ingenería digital"],
+      ["Adrían Ortiz Martínez", "assets/img/construcción"],
+      ["Ana Lilia Arias Robles", "assets/img/construcción"],
+      ["Ana Patricia Pérez Guerrero", "assets/img/construcción"],
+      ["Anna Jocabet Nazario Alvarez", "assets/img/construcción"],
+      ["César Arturo Chávez", "assets/img/construcción"],
+      ["Elvia Domínguez Flores", "assets/img/construcción"],
+      ["Evelyn Lizbet Mendoza Salgado", "assets/img/construcción"],
+      ["Imanol González García", "assets/img/construcción"],
+      ["Agustin Reyes Barba", "assets/img/construcción"],
+      ["Raúl Roque García", "assets/img/construcción"],
+      ["Juan Carlos Pascual Martin", "assets/img/construcción"],
+      ["Krisna Lizeth Bravo Mendoza", "assets/img/construcción"],
+      ["Saúl Maximiliano Rodríguez Caballero", "assets/img/construcción"],
+      ["Hegidio Armando Santos López", "assets/img/recursos humanos"],
+      ["Beatriz Adriana Rodríguez Ortega", "assets/img/recursos humanos"],
+      ["Brenda Karen Jacobo Ocampo", "assets/img/recursos humanos"],
+      ["Carlos Cuahuey García", "assets/img/recursos humanos"],
+      ["Laura Berenice García Ramos", "assets/img/recursos humanos"],
+      ["Adrián Carrasco Abarca", "assets/img/mantenimiento"],
+      ["Asael Ríos Piña", "assets/img/mantenimiento"],
+      ["Brenda Yedid Moysen Martínez", "assets/img/mantenimiento"],
+      ["Carla Liliana García Estrada", "assets/img/mantenimiento"],
+      ["Clara Sofía Barolo Bahena", "assets/img/mantenimiento"],
+      ["Diego Armando Fernández López", "assets/img/mantenimiento"],
+      ["Fabiola Ocampo Rosales", "assets/img/mantenimiento"],
+      ["Jared Iván Contreras Manzano", "assets/img/mantenimiento"],
+      ["Juan Andrés Ruiz Arteaga", "assets/img/mantenimiento"],
+      ["Karla Yasmin Jaimez Vázquez", "assets/img/mantenimiento"],
+      ["Luis Carlos Mateo Calvillo", "assets/img/mantenimiento"],
+      ["Luis Fernando Fernández López", "assets/img/mantenimiento"],
+      ["María Fernanda Martínez Torres", "assets/img/mantenimiento"],
+      ["Neydi Montzerrath May Dominguez", "assets/img/mantenimiento"],
+      ["Paola Lizeth Mendoza Arriaga", "assets/img/mantenimiento"],
+      ["Raúl Osorio Vargas", "assets/img/mantenimiento"],
+      ["Rolando Palacios Ramírez", "assets/img/mantenimiento"],
+      ["Samuel Ferrel Silva", "assets/img/mantenimiento"],
+      ["Emilio Reyes Santamaria", "assets/img/administracion y finanzas"],
+      ["Erika Yanet Porras Reyes", "assets/img/administracion y finanzas"],
+      ["Ibán de Jesús Reyes Rodríguez", "assets/img/administracion y finanzas"],
+      ["Karla Ivonne Blas González", "assets/img/administracion y finanzas"],
+      ["Luis Alberto Martínez Cruz", "assets/img/administracion y finanzas"],
+      ["Diego Alberto Dionicio Morales", "assets/img/presupuestos"],
+      ["Ricardo Salgado Blass", "assets/img/presupuestos"],
+      ["Dariani Kareli García Rosas", "assets/img/gestión y control de materiales"],
+      ["Diana Leydi Trujillo Albarrán", "assets/img/gestión y control de materiales"],
+      ["Alfredo Rangel Rosales Rosales", "assets/img/ingeniería de proyectos"],
+      ["Juan Luis Gómez Gaspar", "assets/img/ingeniería de proyectos"],
+      ["Nicolás Martínez Hernández", "assets/img/ingeniería de proyectos"],
+      ["Juan Fernando Pérez González", "assets/img/ingeniería de proyectos"],
+      ["Alberto Robles Espinoza", "assets/img/ingeniería de proyectos"],
+      ["Angélica Mariela Franco Sánchez", "assets/img/ingeniería de proyectos"],
+      ["Catherine Izquierdo Loeza", "assets/img/ingeniería de proyectos"],
+      ["Cristian Jonathan Martínez Francisco", "assets/img/ingeniería de proyectos"],
+      ["Edgar Daniel Salgado Osorio", "assets/img/ingeniería de proyectos"],
+      ["Eduardo Javier Galván Ramirez", "assets/img/ingeniería de proyectos"],
+      ["Elizabeth Guadarrama Jaimes", "assets/img/ingeniería de proyectos"],
+      ["Jesús Alberto Juárez Dominguez", "assets/img/ingeniería de proyectos"],
+      ["Jesús Uriel Rosales Ramírez", "assets/img/ingeniería de proyectos"],
+      ["Jorge Armando García Castañeda", "assets/img/ingeniería de proyectos"],
+      ["Jorge Arturo Maldonado Muñoz", "assets/img/ingeniería de proyectos"],
+      ["Juan Daniel Silviano Florencia", "assets/img/ingeniería de proyectos"],
+      ["Luis Enrique Martínez Francisco", "assets/img/ingeniería de proyectos"],
+      ["Yair Rodríguez Vidal", "assets/img/ingeniería de proyectos"],
+      ["Yamely Zaldivar Barrios", "assets/img/ingeniería de proyectos"]
+    ]);
+    const nombresArchivoFoto = new Map([
+      ["Ana Patricia Pérez Guerrero", "Ana Patricia Pérez GuerreroEstrada"],
+      ["Luis Alberto Martínez Cruz", "Luis Alberto Martínez CruzReyes Santamaria"],
+      ["Jesús Alberto Juárez Dominguez", "Jesús Alberto Juárez DominguezGuadarrama Jaimes"]
+    ]);
+    const palette = ["#176b87", "#7866a8", "#3c8b70", "#c47b39", "#bf6574", "#5579b8", "#8a8f3d", "#468b9b", "#9b6b43", "#6d7f9e", "#aa5b91", "#5a8b55"];
+    const ordenAreas = [
+      "Desarrollo de Negocios", "Proyectos de Gobierno",
+      "Ingeniería de Proyectos", "Ingeniería Digital e Infraestructura", "Diseño de Red", "Digitalización", "Control de Proyectos",
+      "Infraestructura Crítica", "Gestión y Control de Materiales", "Acometidas", "Construcción", "Construcción Monterrey", "Mantenimiento de red",
+      "Administración y finanzas", "Tesorería", "Presupuestos", "Recursos Humanos", "Administración", "Administración General", "Dirección Operativa"
+    ];
+    const posicionArea = new Map(ordenAreas.map((area, indice) => [area, indice]));
+
+    /* ============================ Utilidades =========================== */
+    const el = (id) => document.getElementById(id);
+    const html = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[char]);
+    const idKey = (id) => String(id);
+
+    function puestoYArea(persona) {
+      const cargo = String(persona.cargo || "").trim();
+      const area = String(persona.area || "").trim();
+      const normalizar = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase("es").replace(/\badministrador(a)?\b/g, "administracion")
+        .replace(/\bdirector(a)?\b/g, "direccion").replace(/\bgerente\b/g, "gerencia")
+        .replace(/\boperativo\b/g, "operativa").replace(/\s+/g, " ").trim();
+      if (!area || normalizar(cargo).includes(normalizar(area))) return cargo;
+      if (/^(jefatura|gerencia|gerente|director|directora|jefe|jefa)$/i.test(cargo)) {
+        return `${cargo} de ${area}`;
+      }
+      return `${cargo} · ${area}`;
+    }
+
+    function normalizarPuesto(cargo) {
+      return String(cargo || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase("es").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+    }
+
+    function familiaPuesto(cargo) {
+      const titulo = normalizarPuesto(cargo);
+      if (/^(jefatura|jefe|jefa)\b/.test(titulo)) return "jefatura";
+      if (/^(supervisor|supervisora|supervision)\b/.test(titulo)) return "supervision";
+      if (/^(tecnico|tecnica)\b/.test(titulo)) return "tecnico";
+      if (/^(gerente|gerencia)\b/.test(titulo)) return "gerencia";
+      if (/^disenador(a)?\b/.test(titulo)) return "diseno";
+      return titulo;
+    }
+
+    function columnasParaHijos(nodo) {
+      const grupos = gruposDePuestos(nodo);
+      if (grupos) return grupos.length;
+      const familias = new Map();
+      nodo.hijos.forEach((hijo) => {
+        const familia = familiaPuesto(hijo.cargo);
+        familias.set(familia, (familias.get(familia) || 0) + 1);
+      });
+      const hayPuestosSimilares = [...familias.values()].some((cantidad) => cantidad > 1);
+      const columnasSimilares = Math.min(4, Math.ceil(Math.sqrt(nodo.hijos.length)));
+      const columnasAmplias = Math.min(
+        nodo.nombre === "Miguel Angel Lamadrid Torres" ? 4 : 3,
+        Math.ceil(Math.sqrt(nodo.hijos.length))
+      );
+      if (nodo.nombre === "Elvia Domínguez Flores") return 2;
+      if (nodo.hijos.length > 15) return columnasAmplias;
+      if (nodo.hijos.length >= 5 && hayPuestosSimilares) return columnasSimilares;
+      return nodo.hijos.length;
+    }
+
+    function gruposDePuestos(nodo) {
+      if (nodo.nombre === "Giovanna Martínez Hernández") {
+        const auxiliares = nodo.hijos.filter((hijo) => /^auxiliar administrativo\b/.test(familiaPuesto(hijo.cargo)));
+        const almacenistas = nodo.hijos.filter((hijo) => /^almacenista\b/.test(familiaPuesto(hijo.cargo)));
+        const otros = nodo.hijos.filter((hijo) => !auxiliares.includes(hijo) && !almacenistas.includes(hijo));
+        const grupos = [
+          { titulo: "Auxiliares Administrativos", hijos: auxiliares },
+          { titulo: "Almacenistas", hijos: almacenistas }
+        ].filter((grupo) => grupo.hijos.length);
+        if (otros.length) grupos.push({ titulo: "Otros puestos", hijos: otros });
+        return grupos;
+      }
+
+      if (nodo.nombre !== "Josué Ferrel Silva") return null;
+      const seleccionar = (filtro) => nodo.hijos.filter((hijo) => filtro.test(normalizarPuesto(hijo.cargo)));
+      const auxiliares = seleccionar(/^auxiliar administrativo\b/);
+      const levantamiento = seleccionar(/^supervisor de levantamiento\b/);
+      const digitalizacion = seleccionar(/^supervisor de digitalizacion\b/);
+      const diseno = seleccionar(/^supervisor de diseno de red\b/);
+      const usados = new Set([...auxiliares, ...levantamiento, ...digitalizacion, ...diseno]);
+      const grupos = [
+        { titulo: "Auxiliar Administrativo", hijos: auxiliares },
+        {
+          titulo: "Supervisores de Levantamiento",
+          hijos: levantamiento,
+          columnas: Math.min(3, levantamiento.length),
+          agregado: "13 Técnicos Encuestadores · asignación por supervisor pendiente"
+        },
+        {
+          titulo: "Supervisores de Digitalización",
+          hijos: digitalizacion,
+          columnas: Math.min(2, digitalizacion.length),
+          agregado: "18 Digitalizadores · asignación entre supervisores pendiente"
+        },
+        {
+          titulo: "Supervisión de Diseño de Red",
+          hijos: diseno,
+          columnas: 1
+        }
+      ].filter((grupo) => grupo.hijos.length);
+      const otros = nodo.hijos.filter((hijo) => !usados.has(hijo));
+      if (otros.length) grupos.push({ titulo: "Otros puestos", hijos: otros });
+      return grupos;
+    }
+
+    function agregadoParaPersona(nodo) {
+      if (nodo.nombre !== "Nicolás Martínez Hernández") return "";
+      const totalIndicado = 21;
+      const registrados = nodo.hijos.filter((hijo) => familiaPuesto(hijo.cargo) === "diseno").length;
+      const faltantes = Math.max(0, totalIndicado - registrados);
+      return faltantes
+        ? `${faltantes} diseñadores por registrar · ${totalIndicado} indicados; ${registrados} incluidos en los datos`
+        : "";
+    }
+
+    function compararAreas(personaA, personaB) {
+      const posicionA = posicionArea.get(personaA.area) ?? Number.MAX_SAFE_INTEGER;
+      const posicionB = posicionArea.get(personaB.area) ?? Number.MAX_SAFE_INTEGER;
+      const ordenArea = posicionA - posicionB || String(personaA.area).localeCompare(String(personaB.area), "es");
+      if (ordenArea !== 0 || personaA.area !== "Mantenimiento de red" || personaB.area !== "Mantenimiento de red") {
+        return ordenArea;
+      }
+      const prioridadCargo = (persona) => /jefatura|supervisor|supervisi[oó]n/i.test(persona.cargo) ? 0 : 1;
+      return prioridadCargo(personaA) - prioridadCargo(personaB) ||
+        String(personaA.nombre).localeCompare(String(personaB.nombre), "es");
+    }
+
+    function iniciales(nombre) {
+      const partes = String(nombre || "").trim().split(/\s+/).filter(Boolean);
+      return partes.slice(0, 2).map((parte) => Array.from(parte)[0] || "").join("").toLocaleUpperCase("es");
+    }
+
+    function personaTieneFoto(persona) {
+      return persona.profundidad <= 3 || carpetasFotoPorPersona.has(persona.nombre);
+    }
+
+    function cargarFoto(imgElemento, nombre) {
+      if (!imgElemento || !nombre) return;
+      const resultadoGuardado = cacheFotos.get(nombre);
+      if (resultadoGuardado === "sin foto") return;
+      if (typeof resultadoGuardado === "string") {
+        mostrarFoto(imgElemento, nombre, resultadoGuardado);
+        return;
+      }
+      if (resultadoGuardado) {
+        resultadoGuardado.then((ruta) => {
+          if (ruta) mostrarFoto(imgElemento, nombre, ruta);
+        });
+        return;
+      }
+
+      const nombreArchivo = nombresArchivoFoto.get(nombre) || nombre;
+      const nombres = [...new Set([nombreArchivo.normalize("NFC"), nombreArchivo.normalize("NFD")])];
+      const extensiones = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".PNG"];
+      const carpeta = carpetasFotoPorPersona.get(nombre) || "assets/img/Líderes";
+      const rutas = nombres.flatMap((nombreNormalizado) => extensiones.map((extension) =>
+        encodeURI(`${carpeta}/${nombreNormalizado}${extension}`)
+      ));
+      let resolver;
+      const pendiente = new Promise((resolve) => { resolver = resolve; });
+      cacheFotos.set(nombre, pendiente);
+      let indice = 0;
+
+      const probarSiguiente = () => {
+        if (indice >= rutas.length) {
+          cacheFotos.set(nombre, "sin foto");
+          resolver(null);
+          imgElemento.remove();
+          return;
+        }
+        const ruta = rutas[indice];
+        imgElemento.onerror = () => {
+          indice += 1;
+          probarSiguiente();
+        };
+        imgElemento.onload = () => {
+          cacheFotos.set(nombre, ruta);
+          resolver(ruta);
+          imgElemento.closest(".avatar, .panel-avatar")?.classList.add("has-photo");
+        };
+        imgElemento.src = ruta;
+      };
+      probarSiguiente();
+    }
+
+    function mostrarFoto(imgElemento, nombre, ruta) {
+      imgElemento.onerror = () => {
+        cacheFotos.set(nombre, "sin foto");
+        imgElemento.closest(".avatar, .panel-avatar")?.classList.remove("has-photo");
+        imgElemento.remove();
+      };
+      imgElemento.onload = () => {
+        imgElemento.closest(".avatar, .panel-avatar")?.classList.add("has-photo");
+      };
+      imgElemento.src = ruta;
+    }
+
+    function colorArea(area) {
+      let hash = 0;
+      for (const caracter of String(area || "")) hash = (hash * 31 + caracter.codePointAt(0)) | 0;
+      return palette[Math.abs(hash) % palette.length];
+    }
+
+    function colorPersona(persona) {
+      return coloresPorPersona.get(idKey(persona.id)) || colorArea(persona.area);
+    }
+
+    function mostrarError(mensaje) {
+      const banner = el("error-banner");
+      banner.textContent = mensaje;
+      banner.style.display = "block";
+    }
+
+    function ocultarError() {
+      el("error-banner").style.display = "none";
+      el("error-banner").textContent = "";
+    }
+
+    function prepararArbol(lista) {
+      if (!Array.isArray(lista) || lista.length === 0) throw new Error("El archivo no contiene personas.");
+      const mapa = new Map();
+      lista.forEach((persona, indice) => {
+        if (!persona || persona.id === undefined || persona.id === null || String(persona.id).trim() === "") {
+          throw new Error(`Falta el id de la persona en la fila ${indice + 2}.`);
+        }
+        const key = idKey(persona.id);
+        if (mapa.has(key)) throw new Error(`El id "${key}" está duplicado.`);
+        if (!String(persona.nombre || "").trim() || !String(persona.cargo || "").trim() || !String(persona.area || "").trim()) {
+          throw new Error(`La persona con id "${key}" debe tener nombre, cargo y área.`);
+        }
+        mapa.set(key, { ...persona, hijos: [] });
+      });
+
+      const raices = [];
+      for (const persona of mapa.values()) {
+        if (persona.jefeId === null || persona.jefeId === undefined || String(persona.jefeId).trim() === "") {
+          raices.push(persona);
+          continue;
+        }
+        const jefe = mapa.get(idKey(persona.jefeId));
+        if (!jefe) throw new Error(`No se encontró al jefe "${persona.jefeId}" de "${persona.nombre}".`);
+        jefe.hijos.push(persona);
+      }
+      mapa.forEach((persona) => persona.hijos.sort(compararAreas));
+      if (raices.length !== 1) throw new Error(`Se esperaba una sola persona sin jefe; se encontraron ${raices.length}.`);
+
+      const visitados = new Set();
+      function medir(nodo, nivel, ancestros) {
+        const key = idKey(nodo.id);
+        if (ancestros.has(key)) throw new Error(`Se detectó un ciclo en la jerarquía de "${nodo.nombre}".`);
+        if (visitados.has(key)) return;
+        visitados.add(key);
+        nodo.profundidad = nivel;
+        const siguiente = new Set(ancestros);
+        siguiente.add(key);
+        nodo.hijos.forEach((hijo) => medir(hijo, nivel + 1, siguiente));
+      }
+      medir(raices[0], 1, new Set());
+      if (visitados.size !== mapa.size) throw new Error("Hay personas que no pertenecen a la jerarquía principal (posible ciclo).");
+      const direccion = raices[0].hijos.find((persona) => normalizarPuesto(persona.cargo).startsWith("director")) ||
+        raices[0].hijos[0];
+      const lideres = direccion?.hijos || [];
+      const colores = new Map();
+      const asignados = [];
+      const colorExtra = (indice) => `hsl(${Math.round((indice * 137.508) % 360)} 52% 40%)`;
+      const asignarRama = (nodo, color) => {
+        colores.set(idKey(nodo.id), color);
+        nodo.hijos.forEach((hijo) => asignarRama(hijo, color));
+      };
+      lideres.forEach((lider, indice) => {
+        const color = palette[indice] || colorExtra(indice);
+        asignados.push({ id: idKey(lider.id), nombre: lider.nombre, area: lider.area, color });
+        asignarRama(lider, color);
+      });
+      return { raiz: raices[0], mapa, coloresPorPersona: colores, jefaturasColor: asignados };
+    }
+
+    function csvALista(texto) {
+      const filas = [];
+      let fila = [];
+      let campo = "";
+      let entreComillas = false;
+      const contenido = texto.replace(/^\uFEFF/, "");
+      for (let i = 0; i < contenido.length; i += 1) {
+        const caracter = contenido[i];
+        if (entreComillas) {
+          if (caracter === '"' && contenido[i + 1] === '"') { campo += '"'; i += 1; }
+          else if (caracter === '"') entreComillas = false;
+          else campo += caracter;
+        } else if (caracter === '"') entreComillas = true;
+        else if (caracter === ",") { fila.push(campo); campo = ""; }
+        else if (caracter === "\n" || caracter === "\r") {
+          if (caracter === "\r" && contenido[i + 1] === "\n") i += 1;
+          fila.push(campo);
+          if (fila.some((valor) => valor.trim() !== "")) filas.push(fila);
+          fila = [];
+          campo = "";
+        } else campo += caracter;
+      }
+      if (entreComillas) throw new Error("El CSV contiene una celda con comillas sin cerrar.");
+      fila.push(campo);
+      if (fila.some((valor) => valor.trim() !== "")) filas.push(fila);
+      if (filas.length < 2) throw new Error("El CSV debe incluir encabezados y al menos una persona.");
+
+      const encabezados = filas[0].map((valor) => valor.trim().replace(/^\uFEFF/, ""));
+      const requeridos = ["id", "nombre", "cargo", "area", "jefeId", "nivel"];
+      const indices = {};
+      requeridos.forEach((nombre) => {
+        const indice = encabezados.indexOf(nombre);
+        if (indice < 0) throw new Error(`Falta la columna "${nombre}" en el CSV.`);
+        indices[nombre] = indice;
+      });
+      return filas.slice(1).map((valores) => {
+        const leer = (nombre) => (valores[indices[nombre]] || "").trim();
+        const jefe = leer("jefeId");
+        return {
+          id: leer("id"),
+          nombre: leer("nombre"),
+          cargo: leer("cargo"),
+          area: leer("area"),
+          jefeId: !jefe || jefe.toLocaleLowerCase("es") === "null" ? null : jefe,
+          nivel: leer("nivel")
+        };
+      });
+    }
+
+    function nodoDebeVerse(nodo) {
+      return nodo.profundidad < 3 || expandidos.has(idKey(nodo.id));
+    }
+
+    function renderNode(nodo) {
+      const key = idKey(nodo.id);
+      const abierto = nodo.hijos.length > 0 && nodoDebeVerse(nodo);
+      const hit = coincidencias.has(key);
+      const enCamino = busquedaActiva && nodo.hijos.some((hijo) => caminoDeCoincidencia(hijo));
+      const areaHit = filtroArea && nodo.area === filtroArea;
+      const atenuarBusqueda = busquedaActiva && !hit && !enCamino;
+      const atenuarArea = filtroArea && !areaHit;
+      const classes = ["person-node"];
+      if (hit) classes.push("match");
+      if ((atenuarBusqueda && !areaHit) || (atenuarArea && !hit)) classes.push("dimmed");
+      if (areaHit) classes.push("area-match");
+      const estilo = `--area-color:${colorPersona(nodo)}`;
+      const avatar = personaTieneFoto(nodo)
+        ? `<img class="avatar-photo" data-photo-name="${html(nodo.nombre)}" alt="" aria-hidden="true">`
+        : "";
+      const tarjeta = `<button type="button" class="person-card" data-open-person="${html(key)}" style="${estilo}" aria-label="Ver detalle de ${html(nodo.nombre)}">
+        <span class="avatar" aria-hidden="true">${avatar}<span class="avatar-initials">${html(iniciales(nodo.nombre))}</span></span>
+        <span class="person-copy"><span class="person-title">${html(puestoYArea(nodo))}</span><span class="person-name">${html(nodo.nombre)}</span></span>
+      </button>`;
+      let toggle = "";
+      let hijos = "";
+      if (nodo.hijos.length) {
+        toggle = `<button type="button" class="branch-toggle" data-toggle-node="${html(key)}" aria-expanded="${abierto}" aria-label="${abierto ? "Colapsar" : "Expandir"} ${html(nodo.nombre)}; ${nodo.hijos.length} subordinados"><span class="toggle-sign">${abierto ? "−" : "+"}</span><span>${nodo.hijos.length}</span></button>`;
+        const columns = columnasParaHijos(nodo);
+        const altura = abierto ? "100000px" : "0";
+        const grupos = gruposDePuestos(nodo);
+        const contenido = grupos
+          ? grupos.map((grupo) => `<div class="person-node role-group" data-depth="${nodo.profundidad + 1}">
+              <div class="person-card role-group-card" style="${estilo}">${html(grupo.titulo)} (${grupo.hijos.length})</div>
+              <div class="children" style="--child-columns:${grupo.columnas || 1};max-height:100000px">${grupo.hijos.map(renderNode).join("")}</div>
+              ${grupo.agregado ? `<div class="aggregate-note">${html(grupo.agregado)}</div>` : ""}
+            </div>`).join("")
+          : nodo.hijos.map(renderNode).join("") +
+            (agregadoParaPersona(nodo) ? `<div class="aggregate-note" style="--area-color:${colorPersona(nodo)}">${html(agregadoParaPersona(nodo))}</div>` : "");
+        const cantidadColumnas = grupos ? grupos.length : columns;
+        hijos = `<div class="children${cantidadColumnas < (grupos ? grupos.length : nodo.hijos.length) ? " compact" : ""}${abierto ? "" : " collapsed"}" style="--child-columns:${cantidadColumnas};max-height:${altura}">${contenido}</div>`;
+      }
+      return `<div class="${classes.join(" ")}" data-node-id="${html(key)}" data-depth="${nodo.profundidad}">${tarjeta}${toggle}${hijos}</div>`;
+    }
+
+    function caminoDeCoincidencia(nodo) {
+      if (coincidencias.has(idKey(nodo.id))) return true;
+      return nodo.hijos.some(caminoDeCoincidencia);
+    }
+
+    function actualizarLeyenda() {
+      const areas = [...new Set(personasActivas.map((persona) => String(persona.area || "").trim()).filter(Boolean))]
+        .sort((a, b) => compararAreas({ area: a }, { area: b }));
+      el("area-filter").innerHTML = '<option value="">Todas las áreas</option>' +
+        areas.map((area) => `<option value="${html(area)}">${html(area)}</option>`).join("");
+      el("area-filter").value = filtroArea;
+      el("legend").setAttribute("aria-label", "Leyenda de jefaturas");
+      el("legend").innerHTML = jefaturasColor.map((jefatura) =>
+        `<span class="legend-item" title="${html(jefatura.area)}"><span class="legend-dot" style="background:${jefatura.color}"></span>${html(jefatura.nombre)}</span>`
+      ).join("");
+    }
+
+    function actualizarEstado() {
+      const profundidadMax = raiz ? maxProfundidadVisible(raiz) : 0;
+      const total = personasActivas.length;
+      const textoFiltro = filtroArea ? ` · Área: ${filtroArea}` : "";
+      const textoBusqueda = busquedaActiva ? ` · ${coincidencias.size} coincidencias` : "";
+      el("status").textContent = `${total} personas · ${profundidadMax} niveles visibles${textoFiltro}${textoBusqueda}`;
+      el("zoom-label").textContent = `${Math.round(escala * 100)}%`;
+    }
+
+    function maxProfundidadVisible(nodo) {
+      if (!nodoDebeVerse(nodo) || !nodo.hijos.length) return nodo.profundidad;
+      return Math.max(nodo.profundidad, ...nodo.hijos.map(maxProfundidadVisible));
+    }
+
+    function renderizar() {
+      if (!raiz) return;
+      el("chart").classList.toggle("horizontal", orientacionHorizontal);
+      el("chart").innerHTML = '<svg class="connections" aria-hidden="true"></svg><div class="tree-root">' + renderNode(raiz) + "</div>";
+      el("chart").querySelectorAll(".avatar-photo").forEach((img) => cargarFoto(img, img.dataset.photoName));
+      actualizarLeyenda();
+      actualizarEstado();
+      requestAnimationFrame(() => {
+        dibujarConectores();
+        aplicarTransformacion();
+      });
+    }
+
+    function dibujarConectores() {
+      const chart = el("chart");
+      const svg = chart.querySelector(".connections");
+      if (!svg) return;
+      const rect = chart.getBoundingClientRect();
+      const factor = escala || 1;
+      const ancho = Math.max(1, rect.width / factor);
+      const alto = Math.max(1, rect.height / factor);
+      svg.setAttribute("viewBox", `0 0 ${ancho} ${alto}`);
+      svg.setAttribute("width", String(ancho));
+      svg.setAttribute("height", String(alto));
+      const caminos = [];
+      chart.querySelectorAll(".person-node").forEach((padre) => {
+        if (padre.closest(".children.collapsed")) return;
+        const tarjetaPadre = padre.querySelector(":scope > .person-card");
+        const contenedorHijos = padre.querySelector(":scope > .children");
+        if (!tarjetaPadre || !contenedorHijos || contenedorHijos.classList.contains("collapsed")) return;
+        const p = tarjetaPadre.getBoundingClientRect();
+        const hijos = [...contenedorHijos.children].map((hijo) => hijo.querySelector(":scope > .person-card")).filter(Boolean);
+        hijos.forEach((tarjetaHijo) => {
+          const h = tarjetaHijo.getBoundingClientRect();
+          let d;
+          if (orientacionHorizontal) {
+            const x1 = (p.right - rect.left) / factor;
+            const y1 = (p.top + p.height / 2 - rect.top) / factor;
+            const x2 = (h.left - rect.left) / factor;
+            const y2 = (h.top + h.height / 2 - rect.top) / factor;
+            const mitad = (x1 + x2) / 2;
+            d = `M ${x1} ${y1} C ${mitad} ${y1}, ${mitad} ${y2}, ${x2} ${y2}`;
+          } else {
+            const x1 = (p.left + p.width / 2 - rect.left) / factor;
+            const y1 = (p.bottom - rect.top) / factor;
+            const filas = new Map();
+            hijos.forEach((tarjeta) => {
+              const cuadro = tarjeta.getBoundingClientRect();
+              const x = (cuadro.left + cuadro.width / 2 - rect.left) / factor;
+              const y = (cuadro.top - rect.top) / factor;
+              const clave = Math.round(y);
+              if (!filas.has(clave)) filas.set(clave, { arriba: y, personas: [] });
+              filas.get(clave).personas.push({ x, y });
+            });
+            const filasOrdenadas = [...filas.values()].sort((a, b) => a.arriba - b.arriba);
+            const minX = Math.min(...filasOrdenadas.flatMap((fila) => fila.personas.map((persona) => persona.x)));
+            const spineX = minX - 14;
+            const inicioY = y1 + 12;
+            const ultimaY = filasOrdenadas[filasOrdenadas.length - 1].arriba - 8;
+            caminos.push(`<path class="connection" d="M ${x1} ${y1} L ${x1} ${inicioY} L ${spineX} ${inicioY} L ${spineX} ${ultimaY}"/>`);
+            filasOrdenadas.forEach((fila) => {
+              const busY = fila.arriba - 8;
+              const maxX = Math.max(...fila.personas.map((persona) => persona.x));
+              caminos.push(`<path class="connection" d="M ${spineX} ${busY} H ${maxX}"/>`);
+              fila.personas.forEach((persona) => {
+                caminos.push(`<path class="connection" d="M ${persona.x} ${busY} V ${persona.y}"/>`);
+              });
+            });
+            return;
+          }
+          caminos.push(`<path class="connection" d="${d}"/>`);
+        });
+      });
+      svg.innerHTML = caminos.join("");
+    }
+
+    function aplicarTransformacion() {
+      el("world").style.transform = `translate(${desplazamiento.x}px, ${desplazamiento.y}px) scale(${escala})`;
+      actualizarEstado();
+      requestAnimationFrame(dibujarConectores);
+    }
+
+    function zoomEn(nuevaEscala, clienteX, clienteY) {
+      const viewport = el("viewport").getBoundingClientRect();
+      const puntoX = clienteX ?? viewport.left + viewport.width / 2;
+      const puntoY = clienteY ?? viewport.top + viewport.height / 2;
+      const localX = puntoX - viewport.left;
+      const localY = puntoY - viewport.top;
+      const mundoX = (localX - desplazamiento.x) / escala;
+      const mundoY = (localY - desplazamiento.y) / escala;
+      escala = Math.min(2, Math.max(.25, nuevaEscala));
+      desplazamiento.x = localX - mundoX * escala;
+      desplazamiento.y = localY - mundoY * escala;
+      aplicarTransformacion();
+    }
+
+    function centrarVista() {
+      const viewport = el("viewport").getBoundingClientRect();
+      const chart = el("chart");
+      const ancho = chart.offsetWidth;
+      const alto = chart.offsetHeight;
+      const escalaAjustada = Math.min(1, (viewport.width - 48) / ancho, (viewport.height - 48) / alto);
+      escala = Math.max(.25, escalaAjustada);
+      desplazamiento.x = (viewport.width - ancho * escala) / 2 - chart.offsetLeft * escala;
+      desplazamiento.y = (orientacionHorizontal ? (viewport.height - alto * escala) / 2 : 24) - chart.offsetTop * escala;
+      aplicarTransformacion();
+    }
+
+    function ancestrosDe(persona) {
+      const resultado = [];
+      let actual = persona;
+      while (actual && actual.jefeId !== null && actual.jefeId !== undefined && String(actual.jefeId).trim() !== "") {
+        actual = porId.get(idKey(actual.jefeId));
+        if (actual) resultado.push(actual);
+      }
+      return resultado;
+    }
+
+    function actualizarBusqueda(valor) {
+      const termino = valor.trim().toLocaleLowerCase("es");
+      coincidencias = new Set();
+      busquedaActiva = Boolean(termino);
+      if (termino) {
+        personasActivas.forEach((persona) => {
+          if (`${persona.nombre} ${persona.cargo}`.toLocaleLowerCase("es").includes(termino)) {
+            coincidencias.add(idKey(persona.id));
+            ancestrosDe(persona).forEach((jefe) => expandidos.add(idKey(jefe.id)));
+          }
+        });
+      }
+      renderizar();
+    }
+
+    function abrirPanel(id) {
+      const persona = porId.get(idKey(id));
+      if (!persona) return;
+      const jefe = persona.jefeId === null || persona.jefeId === undefined ? null : porId.get(idKey(persona.jefeId));
+      const hijos = persona.hijos || [];
+      const estilo = `--area-color:${colorPersona(persona)}`;
+      const avatar = personaTieneFoto(persona)
+        ? `<img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="" aria-hidden="true">`
+        : "";
+      el("panel-content").innerHTML = `
+        <div class="panel-profile" style="${estilo}">
+          <div class="panel-avatar">${avatar}<span class="avatar-initials">${html(iniciales(persona.nombre))}</span></div>
+          <h3>${html(persona.nombre)}</h3>
+          <p>${html(persona.cargo)}</p>
+        </div>
+        <div class="panel-details">
+          <div><span class="detail-label">Área</span><span class="detail-value">${html(persona.area)}</span></div>
+          <div><span class="detail-label">Jefe directo</span>${jefe
+            ? `<span class="detail-value link-value" data-open-person="${html(idKey(jefe.id))}">${html(jefe.nombre)}</span>`
+            : '<span class="detail-value">Sin jefe directo</span>'}</div>
+        </div>
+        <h4 class="reports-heading">Personas a su cargo (${hijos.length})</h4>
+        <div class="report-list">${hijos.length ? hijos.map((hijo) =>
+          `<button type="button" class="report-link" data-open-person="${html(idKey(hijo.id))}"><span>${html(hijo.nombre)}<br><small>${html(hijo.cargo)}</small></span><span aria-hidden="true">›</span></button>`
+        ).join("") : '<div class="panel-empty">No tiene personas a su cargo directo.</div>'}</div>`;
+      el("panel-content").querySelectorAll(".avatar-photo").forEach((img) => cargarFoto(img, img.dataset.photoName));
+      document.body.classList.add("panel-open");
+      el("side-panel").setAttribute("aria-hidden", "false");
+    }
+
+    function cerrarPanel() {
+      document.body.classList.remove("panel-open");
+      el("side-panel").setAttribute("aria-hidden", "true");
+    }
+
+    function aceptarDatos(lista) {
+      const arbol = prepararArbol(lista);
+      personasActivas = lista.map(({ hijos, profundidad, ...persona }) => ({ ...persona }));
+      raiz = arbol.raiz;
+      porId = arbol.mapa;
+      coloresPorPersona = arbol.coloresPorPersona;
+      jefaturasColor = arbol.jefaturasColor;
+      expandidos = new Set();
+      const inicializarAbiertos = (nodo) => {
+        if (nodo.profundidad < 3) expandidos.add(idKey(nodo.id));
+        nodo.hijos.forEach(inicializarAbiertos);
+      };
+      inicializarAbiertos(raiz);
+      coincidencias.clear();
+      busquedaActiva = false;
+      filtroArea = "";
+      el("search-input").value = "";
+      escala = 1;
+      desplazamiento = { x: 0, y: 0 };
+      renderizar();
+      requestAnimationFrame(() => requestAnimationFrame(centrarVista));
+    }
+
+    /* ============================== Eventos ============================ */
+    el("expand-all").addEventListener("click", () => {
+      expandidos = new Set(personasActivas.filter((persona) => (porId.get(idKey(persona.id))?.hijos.length || 0) > 0).map((persona) => idKey(persona.id)));
+      renderizar();
+    });
+
+    el("collapse-levels").addEventListener("click", () => {
+      expandidos = new Set();
+      const marcar = (nodo) => {
+        if (nodo.profundidad < 3) expandidos.add(idKey(nodo.id));
+        nodo.hijos.forEach(marcar);
+      };
+      marcar(raiz);
+      renderizar();
+    });
+
+    el("orientation-toggle").addEventListener("click", (evento) => {
+      orientacionHorizontal = !orientacionHorizontal;
+      evento.currentTarget.textContent = orientacionHorizontal ? "Vista vertical" : "Vista horizontal";
+      evento.currentTarget.setAttribute("aria-pressed", String(orientacionHorizontal));
+      renderizar();
+      requestAnimationFrame(() => requestAnimationFrame(centrarVista));
+    });
+
+    el("center-view").addEventListener("click", centrarVista);
+    el("zoom-in").addEventListener("click", () => zoomEn(escala * 1.2));
+    el("zoom-out").addEventListener("click", () => zoomEn(escala / 1.2));
+    el("print-view").addEventListener("click", () => window.print());
+    el("theme-toggle").addEventListener("click", () => {
+      const oscuro = document.body.classList.toggle("dark");
+      el("theme-toggle").setAttribute("aria-label", oscuro ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+      document.querySelector('meta[name="theme-color"]').content = "#263b4b";
+      requestAnimationFrame(dibujarConectores);
+    });
+
+    el("search-input").addEventListener("input", (evento) => actualizarBusqueda(evento.target.value));
+    el("area-filter").addEventListener("change", (evento) => {
+      filtroArea = evento.target.value;
+      if (filtroArea) {
+        personasActivas.filter((persona) => persona.area === filtroArea).forEach((persona) => {
+          ancestrosDe(persona).forEach((jefe) => expandidos.add(idKey(jefe.id)));
+        });
+      }
+      renderizar();
+    });
+
+    el("chart").addEventListener("click", (evento) => {
+      const toggle = evento.target.closest("[data-toggle-node]");
+      if (toggle) {
+        const key = toggle.dataset.toggleNode;
+        const contenedor = toggle.parentElement.querySelector(":scope > .children");
+        const abierto = expandidos.has(key);
+        if (abierto) {
+          expandidos.delete(key);
+          contenedor.style.maxHeight = `${contenedor.scrollHeight}px`;
+          requestAnimationFrame(() => {
+            contenedor.classList.add("collapsed");
+            contenedor.style.maxHeight = "0";
+          });
+        } else {
+          expandidos.add(key);
+          contenedor.classList.remove("collapsed");
+          contenedor.style.maxHeight = "100000px";
+        }
+        toggle.setAttribute("aria-expanded", String(!abierto));
+        toggle.setAttribute("aria-label", `${abierto ? "Expandir" : "Colapsar"} ${porId.get(key).nombre}; ${porId.get(key).hijos.length} subordinados`);
+        toggle.querySelector(".toggle-sign").textContent = abierto ? "+" : "−";
+        actualizarEstado();
+        window.setTimeout(dibujarConectores, 380);
+        return;
+      }
+      const detalle = evento.target.closest("[data-open-person]");
+      if (detalle) abrirPanel(detalle.dataset.openPerson);
+    });
+
+    el("panel-content").addEventListener("click", (evento) => {
+      const detalle = evento.target.closest("[data-open-person]");
+      if (detalle) abrirPanel(detalle.dataset.openPerson);
+    });
+    el("close-panel").addEventListener("click", cerrarPanel);
+    el("panel-backdrop").addEventListener("click", cerrarPanel);
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape") cerrarPanel();
+    });
+
+    el("csv-file").addEventListener("change", async (evento) => {
+      const archivo = evento.target.files && evento.target.files[0];
+      if (!archivo) return;
+      try {
+        const datos = csvALista(await archivo.text());
+        aceptarDatos(datos);
+        ocultarError();
+      } catch (error) {
+        mostrarError(`No se pudo cargar el CSV: ${error.message}`);
+      } finally {
+        evento.target.value = "";
+      }
+    });
+
+    const viewport = el("viewport");
+    viewport.addEventListener("wheel", (evento) => {
+      evento.preventDefault();
+      zoomEn(escala * (evento.deltaY < 0 ? 1.1 : 1 / 1.1), evento.clientX, evento.clientY);
+    }, { passive: false });
+    viewport.addEventListener("pointerdown", (evento) => {
+      if (evento.target.closest("button, select, input, label")) return;
+      arrastre = { x: evento.clientX, y: evento.clientY, panX: desplazamiento.x, panY: desplazamiento.y, id: evento.pointerId };
+      viewport.setPointerCapture(evento.pointerId);
+      viewport.classList.add("dragging");
+    });
+    viewport.addEventListener("pointermove", (evento) => {
+      if (!arrastre || arrastre.id !== evento.pointerId) return;
+      desplazamiento.x = arrastre.panX + evento.clientX - arrastre.x;
+      desplazamiento.y = arrastre.panY + evento.clientY - arrastre.y;
+      aplicarTransformacion();
+    });
+    const finalizarArrastre = (evento) => {
+      if (!arrastre || (evento && evento.pointerId !== arrastre.id)) return;
+      arrastre = null;
+      viewport.classList.remove("dragging");
+    };
+    viewport.addEventListener("pointerup", finalizarArrastre);
+    viewport.addEventListener("pointercancel", finalizarArrastre);
+    viewport.addEventListener("lostpointercapture", finalizarArrastre);
+    window.addEventListener("resize", () => requestAnimationFrame(dibujarConectores));
+
+    /* ================================ Inicio =========================== */
+    try {
+      aceptarDatos(personasActivas);
+    } catch (error) {
+      mostrarError(`No se pudo construir el organigrama: ${error.message}`);
+    }
+  </script>
+</body>
+</html>
