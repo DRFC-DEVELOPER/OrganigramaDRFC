@@ -465,13 +465,14 @@
     .badge-preview-scale { transform: scale(var(--badge-preview-zoom, 1)); transform-origin: center top; }
     .badge-card {
       --badge-accent: var(--badge-blue);
-      position: relative; display: grid; grid-template-rows: auto .4mm 38mm auto auto auto .4mm; align-content: space-between;
+      position: relative; display: grid; grid-template-rows: auto .4mm 38mm auto auto auto auto auto .4mm; align-content: space-between;
       gap: .55mm; overflow: hidden; width: 54mm; height: 85.6mm; padding: 1.5mm 3mm;
       color: var(--badge-black); border: .15mm solid #d4d7da; border-radius: 3mm; background: #fff;
       box-shadow: none; font-family: Arial, Helvetica, sans-serif; print-color-adjust: exact; -webkit-print-color-adjust: exact;
     }
     .badge-brand { display: grid; place-items: center; min-height: 0; }
     .badge-logo { display: block; width: 44mm; height: auto; max-height: 100%; object-fit: contain; }
+    .badge-card:not(.badge-back):not(.badge-style-band) .badge-logo { width: 30mm; }
     .badge-logo-fallback { display: none; color: var(--badge-black); font-size: 8pt; font-weight: 700; text-align: center; }
     .badge-brand.logo-missing .badge-logo-fallback { display: block; }
     .badge-brand.logo-missing .badge-logo { display: none; }
@@ -496,6 +497,7 @@
     .badge-frame-guides[hidden] { display: none; }
     .badge-name { align-self: center; max-width: 100%; max-height: 2.35em; overflow: hidden; color: var(--badge-black); font-size: 11pt; font-weight: 700; line-height: 1.08; text-align: center; text-transform: uppercase; }
     .badge-job { align-self: center; max-width: 100%; overflow: hidden; color: #444; font-size: 7pt; line-height: 1.05; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+    .badge-validity { font-size: 6.5pt; }
     .badge-field { display: grid; justify-items: center; align-content: center; min-width: 0; line-height: 1.05; text-align: center; }
     .badge-field-label { color: var(--badge-accent); font-size: 6pt; line-height: 1; }
     .badge-id { color: var(--badge-black); font-size: 9pt; font-weight: 700; overflow-wrap: anywhere; }
@@ -503,16 +505,23 @@
     .badge-style-savings { --badge-accent: var(--badge-black); }
     .badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
     .badge-style-savings .badge-photo img { filter: grayscale(1); }
-    .badge-style-band { grid-template-rows: .4mm 38mm auto auto auto .4mm; align-content: space-between; gap: .45mm; padding-top: 15mm; }
+    .badge-style-band { grid-template-rows: .4mm 38mm auto auto auto auto auto .4mm; align-content: space-between; gap: .45mm; padding-top: 15mm; }
     .badge-style-band .badge-brand { position: absolute; inset: 0 0 auto; display: grid; height: 14mm; background: var(--badge-blue); }
     .badge-style-band .badge-logo { width: auto; height: 12mm; max-width: 44mm; max-height: 12mm; object-fit: contain; filter: brightness(0) invert(1); }
     .badge-style-band .badge-divider-top { visibility: hidden; }
     .badge-style-band.logo-missing .badge-brand { background: #fff; }
     .badge-style-band.logo-missing .badge-logo-fallback { color: var(--badge-black); }
     .badge-style-savings .badge-brand, .badge-style-savings .badge-job { color: #444; }
-    .badge-back { grid-template-rows: auto .4mm auto 1fr auto .4mm; align-content: space-between; gap: 2mm; text-align: center; }
-    .badge-back-content { font-size: 8pt; }
-    .badge-legal-space { min-height: 10mm; border-top: .2mm solid #d4d7da; }
+    .badge-back { display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 1.2mm; text-align: center; }
+    .badge-back-content { display: grid; gap: .7mm; font-size: 7pt; line-height: 1.1; overflow-wrap: anywhere; }
+    .badge-back-details { display: grid; gap: 1.5mm; text-align: left; }
+    .badge-back-field { display: grid; gap: .4mm; font-size: 6.5pt; line-height: 1.1; overflow-wrap: anywhere; }
+    .badge-back-field-label { color: var(--badge-accent); font-size: 5pt; font-weight: 700; }
+    .badge-signatures { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4mm; min-height: 17mm; }
+    .badge-signature { display: grid; gap: .7mm; font-size: 5.5pt; }
+    .badge-signature-line { height: 9mm; border-bottom: .2mm solid var(--badge-black); }
+    .badge-company-address { font-size: 6pt; font-style: normal; line-height: 1.1; }
+    .badge-legal { font-size: 5pt; }
     .badge-missing-notes { display: grid; justify-items: center; gap: 3px; color: #5b5350; font-size: 11px; }
     .badge-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
     .badge-picker select, .badge-picker input { min-height: 36px; width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); background: var(--surface); }
@@ -777,7 +786,6 @@
   <script src="datos_organigrama.js"></script>
   <script>
     /* ============================== Datos ============================== */
-    const MOSTRAR_PUESTO = false;
     const ENCUADRE_POR_DEFECTO = { zoom: 1.15, x: 50, y: 15 };
     const claveEncuadresGafete = "drfc_gafete_encuadres_v1";
     let estiloGafete = "estandar";
@@ -799,7 +807,7 @@
     let arrastreEncuadre = null;
     let fotosFicha = new Map();
     let encuadresGafete = {};
-    const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso"];
+    const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
     const claveAlmacenamiento = "drfc_rrhh_cambios_v1";
     const camposSinDato = "Pendiente de captura";
     const plantillaFelicitacion = "¡Felicidades {nombre} por tus {anios} años en DRFC! Gracias por formar parte de nuestro equipo y contribuir a nuestro crecimiento.";
@@ -1357,10 +1365,14 @@
         if (indice < 0) throw new Error(`Falta la columna "${nombre}" en el CSV.`);
         indices[nombre] = indice;
       });
+      ["vigencia", "numeroSeguroSocial", "contactoEmergencia"].forEach((nombre) => {
+        const indice = encabezados.indexOf(nombre);
+        if (indice >= 0) indices[nombre] = indice;
+      });
       return filas.slice(1).map((valores) => {
         const leer = (nombre) => (valores[indices[nombre]] || "").trim();
         const jefe = leer("jefeId");
-        return {
+        const persona = {
           id: leer("id"),
           nombre: leer("nombre"),
           cargo: leer("cargo"),
@@ -1373,6 +1385,10 @@
           formacion: leer("formacion"),
           fechaIngreso: leer("fechaIngreso")
         };
+        ["vigencia", "numeroSeguroSocial", "contactoEmergencia"].forEach((nombre) => {
+          if (Object.prototype.hasOwnProperty.call(indices, nombre)) persona[nombre] = leer(nombre);
+        });
+        return persona;
       });
     }
 
@@ -1580,7 +1596,7 @@
     }
 
     function exportarPersonas(lista, nombre = "datos_rrhh_drfc.csv") {
-      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "fechaIngreso"];
+      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
       descargarCsv(nombre, columnas, lista.map((persona) => columnas.map((campo) => persona[campo] ?? "")));
     }
 
@@ -1604,7 +1620,12 @@
         if (fila.fechaIngreso && !fechaValida(fila.fechaIngreso)) {
           throw new Error(`La fecha de ingreso de "${fila.nombre}" debe tener formato AAAA-MM-DD.`);
         }
-        nuevosCambios[id] = Object.fromEntries(camposCapturables.map((campo) => [campo, fila[campo] || ""]));
+        nuevosCambios[id] = Object.fromEntries(camposCapturables.map((campo) => [
+          campo,
+          Object.prototype.hasOwnProperty.call(fila, campo)
+            ? fila[campo]
+            : (nuevosCambios[id]?.[campo] ?? base[campo] ?? "")
+        ]));
       });
       try {
         localStorage.setItem(claveAlmacenamiento, JSON.stringify(nuevosCambios));
@@ -1700,6 +1721,9 @@
           <div class="wide"><span class="detail-label">PREPARACIÓN ACADÉMICA</span><span class="detail-value">${html(valorCapturado(persona.formacion))}</span></div>
           <div><span class="detail-label">FECHA DE INGRESO</span><span class="detail-value">${html(formatoFecha(persona.fechaIngreso))}</span></div>
           <div><span class="detail-label">ANTIGÜEDAD</span><span class="detail-value">${html(antiguedad(persona.fechaIngreso))}</span></div>
+          <div><span class="detail-label">Vigencia del gafete</span><span class="detail-value">${html(valorCapturado(persona.vigencia))}</span></div>
+          <div><span class="detail-label">Número de seguridad social</span><span class="detail-value">${html(valorCapturado(persona.numeroSeguroSocial))}</span></div>
+          <div class="wide"><span class="detail-label">Contacto de emergencia</span><span class="detail-value">${html(valorCapturado(persona.contactoEmergencia))}</span></div>
           ${aniversario ? `<div class="wide"><span class="detail-label">Próximo aniversario</span><span class="detail-value">${aniversario.esHoy ? `🎉 Hoy · ${aniversario.anios} años` : `En ${aniversario.faltan} días · ${aniversario.anios} años`}</span></div>` : ""}
         </div>
         <form class="panel-form" id="employee-edit-form" hidden>
@@ -1708,6 +1732,9 @@
           <label>Correo electrónico<input name="email" type="email" value="${html(persona.email || "")}" placeholder="Pendiente de captura"></label>
           <label>Preparación académica<textarea name="formacion" placeholder="Pendiente de captura">${html(persona.formacion || "")}</textarea></label>
           <label>Fecha de ingreso<input name="fechaIngreso" type="date" value="${fechaValida(persona.fechaIngreso) ? html(persona.fechaIngreso) : ""}"></label>
+          <label>Vigencia del gafete<input name="vigencia" value="${html(persona.vigencia || "")}" placeholder="Pendiente de captura"></label>
+          <label>Número de seguridad social<input name="numeroSeguroSocial" value="${html(persona.numeroSeguroSocial || "")}" placeholder="Pendiente de captura"></label>
+          <label>Contacto de emergencia<input name="contactoEmergencia" value="${html(persona.contactoEmergencia || "")}" placeholder="Nombre y teléfono"></label>
           <div class="form-actions"><button class="control primary" type="submit">Guardar datos</button><button class="control" type="button" data-cancel-edit>Cancelar</button></div>
         </form>
         <h4 class="reports-heading">Personas a su cargo (${hijos.length})</h4>
@@ -1835,8 +1862,17 @@
       if (lado === "reverso") {
         return `<article class="badge-card badge-back ${claseEstilo}">
           ${marca}<div class="badge-divider badge-divider-top"></div>
-          <div class="badge-back-content"><strong>${html(persona.nombre)}</strong><br>${html(String(persona.email || "").trim() || "—")}</div>
-          <div class="badge-legal-space"></div><small>Este gafete es personal e intransferible.</small>
+          <div class="badge-back-content"><strong>${html(persona.nombre)}</strong><span>${html(String(persona.email || "").trim() || "—")}</span></div>
+          <div class="badge-back-details">
+            <div class="badge-back-field"><span class="badge-back-field-label">NÚMERO DE SEGURIDAD SOCIAL</span><strong>${html(valorCapturado(persona.numeroSeguroSocial))}</strong></div>
+            <div class="badge-back-field"><span class="badge-back-field-label">CONTACTO DE EMERGENCIA</span><strong>${html(valorCapturado(persona.contactoEmergencia))}</strong></div>
+          </div>
+          <div class="badge-signatures">
+            <div class="badge-signature"><span class="badge-signature-line"></span><span>Firma del empleado</span></div>
+            <div class="badge-signature"><span class="badge-signature-line"></span><span>Firma de la dirección</span></div>
+          </div>
+          <address class="badge-company-address">Camino a Ocotepec, SN<br>Col. Ocotepec, Cuernavaca, Morelos<br>C.P. 62220</address>
+          <small class="badge-legal">Este gafete es personal e intransferible.</small>
           <div class="badge-divider"></div>
         </article>`;
       }
@@ -1848,7 +1884,7 @@
           ? `${html(correo.slice(0, indiceArroba))}@<wbr>${html(correo.slice(indiceArroba + 1))}`
           : html(correo))
         : "—";
-      const puesto = MOSTRAR_PUESTO && String(persona.cargo || "").trim()
+      const puesto = String(persona.cargo || "").trim()
         ? `<div class="badge-job">${html(persona.cargo)}</div>` : "";
       return `<article class="badge-card ${claseEstilo}">
         ${marca}
@@ -1858,6 +1894,7 @@
         ${puesto}
         <div class="badge-field"><span class="badge-field-label">ID de empleado</span><strong class="badge-id">${html(valorCapturado(persona.idEmpleado))}</strong></div>
         <div class="badge-field"><span class="badge-field-label">Correo</span><span class="badge-email">${correoHtml}</span></div>
+        <div class="badge-field badge-validity"><span class="badge-field-label">VIGENCIA</span><strong>${html(valorCapturado(persona.vigencia))}</strong></div>
         <div class="badge-divider"></div>
       </article>`;
     }
