@@ -260,15 +260,15 @@
     .person-node[data-depth="2"] > .person-card { border-top: 3px solid var(--area-color); }
     .person-card:focus-visible { outline: 3px solid var(--brand-lime); outline-offset: 3px; }
     .branch-toggle {
-      position: absolute;
+      position: relative;
       z-index: 3;
-      bottom: -14px;
-      left: 50%;
+      align-self: center;
       display: inline-flex;
       align-items: center;
       gap: 5px;
       min-height: 27px;
       padding: 3px 8px;
+      margin: -14px 0;
       color: #fff;
       border: 2px solid var(--surface);
       border-radius: 99px;
@@ -277,7 +277,6 @@
       font-size: 10px;
       font-weight: 750;
       cursor: pointer;
-      transform: translateX(-50%);
       white-space: nowrap;
     }
     .branch-toggle:hover { filter: brightness(1.08); }
@@ -428,6 +427,47 @@
     }
     .report-link:hover { border-color: var(--accent); }
     .report-link small { color: var(--muted); }
+    .crew-person-match { outline: 3px solid #e8ad39; outline-offset: 1px; }
+    .crew-panel-tools { margin: 12px 0; }
+    .crew-category-heading { margin: 18px 0 7px; font-size: 13px; }
+    .crew-view-toggle { gap: 7px; white-space: nowrap; }
+    .crew-view-toggle input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); }
+    .crew-view-warning { padding: 5px 9px; color: #704b00; border-radius: 7px; background: #fff2ca; font-size: 11px; }
+    .crew-view-warning[hidden] { display: none; }
+    .crew-summary-card {
+      display: grid;
+      align-content: center;
+      justify-items: stretch;
+      gap: 7px;
+      width: 270px;
+      min-height: 0;
+      padding: 12px;
+      border-left: 4px solid var(--area-color, #64748b);
+      text-align: left;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .crew-summary-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .crew-summary-title { color: var(--text); font-size: 14px; font-weight: 800; }
+    .crew-summary-total { color: var(--muted); font-size: 11px; }
+    .crew-summary-bar { display: flex; height: 9px; overflow: hidden; border-radius: 99px; background: var(--border); }
+    .crew-summary-bar span { min-width: 2px; }
+    .crew-summary-list { display: grid; gap: 2px; color: var(--text); font-size: 10px; line-height: 1.3; }
+    .crew-summary-match { padding-top: 4px; color: #805700; font-size: 10px; font-weight: 750; }
+    .crew-summary-empty { color: var(--muted); font-size: 11px; }
+    .crew-rank-group > .role-group-card { min-width: 210px; font-size: 12px; }
+    @media print {
+      .crew-summary-card { width: 270px; min-height: 0; color: #111 !important; background: #fff !important; border: 1px solid #333 !important; border-left: 4px solid #333 !important; }
+      .crew-summary-title, .crew-summary-list, .crew-summary-total { color: #111 !important; }
+      .crew-summary-bar span { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .children:has(.crew-summary-node), .children.collapsed:has(.crew-summary-node) {
+        width: max-content !important; max-height: none !important; margin-top: 31px !important;
+        opacity: 1 !important; overflow: visible !important; pointer-events: auto !important;
+      }
+      .horizontal .children:has(.crew-summary-node), .horizontal .children.collapsed:has(.crew-summary-node) {
+        margin-top: 0 !important; margin-left: 47px !important;
+      }
+    }
     .panel-empty { color: var(--muted); font-size: 12px; }
 
     .anniversary-dialog, .badge-dialog, .lightbox {
@@ -550,7 +590,7 @@
     }
     .horizontal .children.collapsed { margin-left: 0; }
     .horizontal .children.collapsed { width: 0; }
-    .horizontal .branch-toggle { top: 50%; right: -14px; bottom: auto; left: auto; transform: translateY(-50%); }
+    .horizontal .branch-toggle { position: absolute; top: 50%; right: -14px; bottom: auto; left: auto; margin: 0; transform: translateY(-50%); }
     .horizontal .person-node > .children { margin-top: 0; margin-left: 47px; }
     .horizontal .children .person-node > .children { margin-top: 0; margin-left: 47px; }
 
@@ -661,6 +701,9 @@
           <option value="Administrativa">Administrativa</option>
         </select>
       </label>
+      <label class="control crew-view-toggle" title="Muestra como tarjetas individuales a todas las personas agrupadas">
+        <input id="show-full-crews" type="checkbox"> Mostrar cuadrillas completas
+      </label>
       <button class="control" id="anniversary-button" type="button" aria-expanded="false">🎉 Aniversarios <span id="anniversary-count">0</span></button>
       <button class="control" id="view-toggle" type="button" aria-pressed="false">Tabla</button>
       <button class="control" id="expand-all" type="button">Expandir todo</button>
@@ -680,6 +723,7 @@
     <div id="error-banner" class="error-banner" role="alert"></div>
     <div class="status-row">
       <div id="status" aria-live="polite"></div>
+      <div id="crew-view-warning" class="crew-view-warning" role="status" hidden>La vista completa de cuadrillas puede ser muy extensa.</div>
       <div class="type-legend" aria-label="Leyenda de tipos">
         <span><i class="operative-dot"></i>Operativa</span>
         <span><i class="administrative-dot"></i>Administrativa</span>
@@ -708,7 +752,7 @@
   <div id="panel-backdrop" class="panel-backdrop"></div>
   <aside id="side-panel" class="side-panel" aria-label="Detalle de persona" aria-hidden="true">
     <div class="panel-heading">
-      <h2>Detalle de persona</h2>
+      <h2 id="panel-title">Detalle de persona</h2>
       <button id="close-panel" class="icon-control" type="button" aria-label="Cerrar panel">×</button>
     </div>
     <div id="panel-content"></div>
@@ -800,6 +844,7 @@
     let busquedaActiva = false;
     let filtroArea = "";
     let filtroTipo = "";
+    let mostrarCuadrillasCompletas = false;
     let vistaTabla = false;
     let ordenTabla = { clave: "nombre", direccion: 1 };
     let personaGafeteId = null;
@@ -810,6 +855,13 @@
     const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
     const claveAlmacenamiento = "drfc_rrhh_cambios_v1";
     const camposSinDato = "Pendiente de captura";
+    const rangosCuadrilla = [
+      { valor: 1, nombre: "Supervisor", tono: "#174f70" },
+      { valor: 2, nombre: "Jefe de Cuadrilla", tono: "#236b8d" },
+      { valor: 3, nombre: "Técnico A", tono: "#3984a2" },
+      { valor: 4, nombre: "Técnico B", tono: "#5b9ab2" },
+      { valor: 5, nombre: "Ayudante General", tono: "#83b4c6" }
+    ];
     const plantillaFelicitacion = "¡Felicidades {nombre} por tus {anios} años en DRFC! Gracias por formar parte de nuestro equipo y contribuir a nuestro crecimiento.";
     const textoFelicitacion = (persona, anios) =>
       plantillaFelicitacion.replace("{nombre}", persona.nombre).replace("{anios}", String(anios));
@@ -1090,6 +1142,79 @@
 
     function personaOTDescendientePasaFiltros(nodo) {
       return personaPasaFiltros(nodo) || nodo.hijos.some(personaOTDescendientePasaFiltros);
+    }
+
+    function rangoCuadrillaDe(persona) {
+      return rangosCuadrilla.find((rango) => rango.valor === Number(persona.rangoCuadrilla)) || null;
+    }
+
+    function ordenarPersonasCuadrilla(personas) {
+      return personas.slice().sort((a, b) =>
+        (rangoCuadrillaDe(a)?.valor ?? Number.MAX_SAFE_INTEGER) -
+          (rangoCuadrillaDe(b)?.valor ?? Number.MAX_SAFE_INTEGER) ||
+        String(a.nombre).localeCompare(String(b.nombre), "es", { sensitivity: "base" })
+      );
+    }
+
+    function personasAgrupadasDe(jefe) {
+      return (jefe?.hijos || []).filter((persona) => persona.agrupado === true);
+    }
+
+    function hijosQuePasanFiltros(nodo) {
+      return nodo.hijos.filter(personaOTDescendientePasaFiltros);
+    }
+
+    function cantidadHijosRepresentados(nodo) {
+      const hijos = hijosQuePasanFiltros(nodo);
+      const agrupados = hijos.filter((persona) => persona.agrupado === true);
+      const individuales = hijos.length - agrupados.length;
+      return individuales + (mostrarCuadrillasCompletas ? agrupados.length : (agrupados.length ? 1 : 0));
+    }
+
+    function resumenCuadrillaHtml(jefe, personas) {
+      const conteos = rangosCuadrilla.map((rango) => ({
+        ...rango,
+        cantidad: personas.filter((persona) => Number(persona.rangoCuadrilla) === rango.valor).length
+      })).filter((rango) => rango.cantidad);
+      const sinCategoria = personas.filter((persona) => !rangoCuadrillaDe(persona)).length;
+      if (sinCategoria) conteos.push({ nombre: "Sin categoría", cantidad: sinCategoria, tono: "#a7adb3" });
+      const coincidenciasGrupo = personas.filter((persona) => coincidencias.has(idKey(persona.id)));
+      const nombresCoincidentes = coincidenciasGrupo.slice(0, 3).map((persona) => html(persona.nombre));
+      const personasMostradas = nombresCoincidentes.join(", ") +
+        (coincidenciasGrupo.length > nombresCoincidentes.length ? ` y ${coincidenciasGrupo.length - nombresCoincidentes.length} más` : "");
+      const segmentos = conteos.map((rango) =>
+        `<span style="width:${rango.cantidad / personas.length * 100}%;background:${rango.tono}" title="${html(rango.nombre)}: ${rango.cantidad}"></span>`
+      ).join("");
+      return `<div class="person-node crew-summary-node${coincidenciasGrupo.length ? " match" : ""}" data-depth="${jefe.profundidad + 1}">
+        <button type="button" class="person-card crew-summary-card ${claseTipo(jefe)}" data-open-crews="${html(idKey(jefe.id))}" style="--area-color:${colorPersona(jefe)}" aria-label="Ver cuadrillas de ${html(jefe.nombre)}; ${personas.length} personas">
+          <span class="crew-summary-heading"><span class="crew-summary-title">Cuadrillas</span><span class="person-type ${claseTipo(jefe)}">${html(tipoPersona(jefe) || camposSinDato)}</span></span>
+          <span class="crew-summary-total">${personas.length} ${personas.length === 1 ? "persona" : "personas"}</span>
+          <span class="crew-summary-bar" aria-hidden="true">${segmentos}</span>
+          <span class="crew-summary-list">${conteos.map((rango) => `<span>${html(rango.nombre)}: ${rango.cantidad}</span>`).join("")}</span>
+          ${coincidenciasGrupo.length ? `<span class="crew-summary-match">Coincidencia: ${personasMostradas}</span>` : ""}
+        </button>
+      </div>`;
+    }
+
+    function gruposCuadrillaHtml(jefe, personas) {
+      const grupos = rangosCuadrilla.map((rango) => {
+        const miembros = ordenarPersonasCuadrilla(personas.filter((persona) =>
+          Number(persona.rangoCuadrilla) === rango.valor
+        ));
+        if (!miembros.length) return "";
+        return `<div class="person-node role-group crew-rank-group" data-depth="${jefe.profundidad + 1}">
+          <div class="person-card role-group-card" style="--area-color:${colorPersona(jefe)}">${html(rango.nombre)} (${miembros.length})</div>
+          <div class="children" style="--child-columns:${Math.min(4, Math.ceil(Math.sqrt(miembros.length)))};max-height:100000px">${miembros.map(renderNode).join("")}</div>
+        </div>`;
+      });
+      const sinCategoria = ordenarPersonasCuadrilla(personas.filter((persona) => !rangoCuadrillaDe(persona)));
+      if (sinCategoria.length) {
+        grupos.push(`<div class="person-node role-group crew-rank-group" data-depth="${jefe.profundidad + 1}">
+          <div class="person-card role-group-card" style="--area-color:${colorPersona(jefe)}">Sin categoría (${sinCategoria.length})</div>
+          <div class="children" style="--child-columns:${Math.min(4, Math.ceil(Math.sqrt(sinCategoria.length)))};max-height:100000px">${sinCategoria.map(renderNode).join("")}</div>
+        </div>`);
+      }
+      return grupos.join("");
     }
 
     function fechaValida(fecha) {
@@ -1398,9 +1523,11 @@
     }
 
     function renderNode(nodo) {
+      if (nodo.agrupado === true && !mostrarCuadrillasCompletas) return "";
       if (!personaOTDescendientePasaFiltros(nodo)) return "";
       const key = idKey(nodo.id);
-      const abierto = nodo.hijos.length > 0 && nodoDebeVerse(nodo);
+      const cantidadHijos = cantidadHijosRepresentados(nodo);
+      const abierto = cantidadHijos > 0 && nodoDebeVerse(nodo);
       const hit = coincidencias.has(key);
       const enCamino = busquedaActiva && nodo.hijos.some((hijo) => caminoDeCoincidencia(hijo));
       const areaHit = filtroArea && nodo.area === filtroArea;
@@ -1424,21 +1551,33 @@
       </button>`;
       let toggle = "";
       let hijos = "";
-      if (nodo.hijos.length) {
-        toggle = `<button type="button" class="branch-toggle" data-toggle-node="${html(key)}" aria-expanded="${abierto}" aria-label="${abierto ? "Colapsar" : "Expandir"} ${html(nodo.nombre)}; ${nodo.hijos.length} subordinados"><span class="toggle-sign">${abierto ? "−" : "+"}</span><span>${nodo.hijos.length}</span></button>`;
-        const columns = columnasParaHijos(nodo);
+      if (cantidadHijos) {
+        toggle = `<button type="button" class="branch-toggle" data-toggle-node="${html(key)}" data-child-count="${cantidadHijos}" aria-expanded="${abierto}" aria-label="${abierto ? "Colapsar" : "Expandir"} ${html(nodo.nombre)}; ${cantidadHijos} tarjetas"><span class="toggle-sign">${abierto ? "−" : "+"}</span><span>${cantidadHijos}</span></button>`;
+        const hijosVisibles = hijosQuePasanFiltros(nodo);
+        const miembrosCuadrilla = hijosVisibles.filter((hijo) => hijo.agrupado === true);
+        const hijosDibujables = hijosVisibles.filter((hijo) => mostrarCuadrillasCompletas || hijo.agrupado !== true);
+        const proxy = { ...nodo, hijos: hijosDibujables };
+        const columns = columnasParaHijos(proxy);
         const altura = abierto ? "100000px" : "0";
-        const grupos = gruposDePuestos(nodo);
-        const contenido = grupos
+        const grupos = hijosDibujables.length ? gruposDePuestos(proxy) : null;
+        const contenidoBase = grupos
           ? grupos.map((grupo) => `<div class="person-node role-group" data-depth="${nodo.profundidad + 1}">
               <div class="person-card role-group-card" style="${estilo}">${html(grupo.titulo)} (${grupo.hijos.length})</div>
               <div class="children" style="--child-columns:${grupo.columnas || 1};max-height:100000px">${grupo.hijos.map(renderNode).join("")}</div>
               ${grupo.agregado ? `<div class="aggregate-note">${html(grupo.agregado)}</div>` : ""}
             </div>`).join("")
-          : nodo.hijos.map(renderNode).join("") +
+          : hijosDibujables.map(renderNode).join("") +
             (agregadoParaPersona(nodo) ? `<div class="aggregate-note" style="--area-color:${colorPersona(nodo)}">${html(agregadoParaPersona(nodo))}</div>` : "");
-        const cantidadColumnas = grupos ? grupos.length : columns;
-        hijos = `<div class="children${cantidadColumnas < (grupos ? grupos.length : nodo.hijos.length) ? " compact" : ""}${abierto ? "" : " collapsed"}" style="--child-columns:${cantidadColumnas};max-height:${altura}">${contenido}</div>`;
+        const resumenCuadrilla = !mostrarCuadrillasCompletas && miembrosCuadrilla.length
+          ? resumenCuadrillaHtml(nodo, miembrosCuadrilla) : "";
+        const seccionesCuadrilla = mostrarCuadrillasCompletas && miembrosCuadrilla.length
+          ? gruposCuadrillaHtml(nodo, miembrosCuadrilla) : "";
+        const numeroSeccionesCuadrilla = mostrarCuadrillasCompletas
+          ? new Set(miembrosCuadrilla.map((persona) => rangoCuadrillaDe(persona)?.valor ?? "sin-categoria")).size
+          : (resumenCuadrilla ? 1 : 0);
+        const cantidadColumnas = (grupos ? grupos.length : columns) + numeroSeccionesCuadrilla;
+        const elementosDirectos = (grupos ? grupos.length : hijosDibujables.length) + numeroSeccionesCuadrilla;
+        hijos = `<div class="children${cantidadColumnas < elementosDirectos ? " compact" : ""}${abierto ? "" : " collapsed"}" style="--child-columns:${cantidadColumnas};max-height:${altura}">${contenidoBase}${resumenCuadrilla}${seccionesCuadrilla}</div>`;
       }
       return `<div class="${classes.join(" ")}" data-node-id="${html(key)}" data-depth="${nodo.profundidad}">${tarjeta}${toggle}${hijos}</div>`;
     }
@@ -1596,7 +1735,7 @@
     }
 
     function exportarPersonas(lista, nombre = "datos_rrhh_drfc.csv") {
-      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
+      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia", "rangoCuadrilla", "agrupado"];
       descargarCsv(nombre, columnas, lista.map((persona) => columnas.map((campo) => persona[campo] ?? "")));
     }
 
@@ -1694,6 +1833,8 @@
     function abrirPanel(id) {
       const persona = porId.get(idKey(id));
       if (!persona) return;
+      el("panel-title").textContent = "Detalle de persona";
+      el("side-panel").setAttribute("aria-label", "Detalle de persona");
       const jefe = persona.jefeId === null || persona.jefeId === undefined ? null : porId.get(idKey(persona.jefeId));
       const hijos = persona.hijos || [];
       const estilo = `--area-color:${colorPersona(persona)}`;
@@ -1744,6 +1885,40 @@
       el("panel-content").querySelectorAll(".avatar-photo").forEach((img) => cargarFoto(img, img.dataset.photoName));
       document.body.classList.add("panel-open");
       el("side-panel").setAttribute("aria-hidden", "false");
+    }
+
+    function abrirPanelCuadrillas(jefeId) {
+      const jefe = porId.get(idKey(jefeId));
+      if (!jefe) return;
+      const miembros = ordenarPersonasCuadrilla(personasAgrupadasDe(jefe));
+      if (!miembros.length) return;
+      const nombreArchivo = `cuadrillas_${normalizarTexto(jefe.nombre).replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}.csv`;
+      el("panel-title").textContent = `Cuadrillas de ${jefe.nombre}`;
+      el("side-panel").setAttribute("aria-label", `Cuadrillas de ${jefe.nombre}`);
+      const secciones = rangosCuadrilla.map((rango) => {
+        const grupo = miembros.filter((persona) => Number(persona.rangoCuadrilla) === rango.valor);
+        if (!grupo.length) return "";
+        return `<section><h3 class="crew-category-heading">${html(rango.nombre)} (${grupo.length})</h3>
+          <div class="report-list">${grupo.map((persona) =>
+            `<button type="button" class="report-link${coincidencias.has(idKey(persona.id)) ? " crew-person-match" : ""}" id="crew-person-${html(idKey(persona.id))}" data-open-person="${html(idKey(persona.id))}">
+              <span>${html(persona.nombre)}<br><small>${html(persona.cargo)} · ${html(persona.area)}</small></span><span aria-hidden="true">›</span>
+            </button>`
+          ).join("")}</div></section>`;
+      }).join("");
+      const sinCategoria = miembros.filter((persona) => !rangoCuadrillaDe(persona));
+      el("panel-content").innerHTML = `
+        <p class="notice">Responsable: ${html(jefe.nombre)} · ${miembros.length} personas en sus cuadrillas.</p>
+        <button class="control crew-panel-tools" type="button" data-export-crews="${html(idKey(jefe.id))}" data-export-name="${html(nombreArchivo)}">Exportar lista a CSV</button>
+        ${secciones}
+        ${sinCategoria.length ? `<section><h3 class="crew-category-heading">Sin categoría (${sinCategoria.length})</h3><div class="report-list">${sinCategoria.map((persona) =>
+          `<button type="button" class="report-link${coincidencias.has(idKey(persona.id)) ? " crew-person-match" : ""}" id="crew-person-${html(idKey(persona.id))}" data-open-person="${html(idKey(persona.id))}">
+            <span>${html(persona.nombre)}<br><small>${html(persona.cargo)} · ${html(persona.area)}</small></span><span aria-hidden="true">›</span>
+          </button>`
+        ).join("")}</div></section>` : ""}`;
+      document.body.classList.add("panel-open");
+      el("side-panel").setAttribute("aria-hidden", "false");
+      const coincidencia = miembros.find((persona) => coincidencias.has(idKey(persona.id)));
+      if (coincidencia) el(`crew-person-${idKey(coincidencia.id)}`).scrollIntoView({ block: "center" });
     }
 
     /* ============================ Aniversarios ========================== */
@@ -2115,6 +2290,8 @@
     function cerrarPanel() {
       document.body.classList.remove("panel-open");
       el("side-panel").setAttribute("aria-hidden", "true");
+      el("panel-title").textContent = "Detalle de persona";
+      el("side-panel").setAttribute("aria-label", "Detalle de persona");
     }
 
     function aceptarDatos(lista) {
@@ -2145,7 +2322,10 @@
 
     /* ============================== Eventos ============================ */
     el("expand-all").addEventListener("click", () => {
-      expandidos = new Set(personasActivas.filter((persona) => (porId.get(idKey(persona.id))?.hijos.length || 0) > 0).map((persona) => idKey(persona.id)));
+      expandidos = new Set(personasActivas.filter((persona) => {
+        const nodo = porId.get(idKey(persona.id));
+        return nodo && cantidadHijosRepresentados(nodo) > 0;
+      }).map((persona) => idKey(persona.id)));
       renderizar();
     });
 
@@ -2179,6 +2359,11 @@
     });
 
     el("search-input").addEventListener("input", (evento) => actualizarBusqueda(evento.target.value));
+    el("show-full-crews").addEventListener("change", (evento) => {
+      mostrarCuadrillasCompletas = evento.currentTarget.checked;
+      el("crew-view-warning").hidden = !mostrarCuadrillasCompletas;
+      renderizar();
+    });
     el("area-filter").addEventListener("change", (evento) => {
       filtroArea = evento.target.value;
       if (filtroArea) {
@@ -2238,10 +2423,15 @@
           contenedor.style.maxHeight = "100000px";
         }
         toggle.setAttribute("aria-expanded", String(!abierto));
-        toggle.setAttribute("aria-label", `${abierto ? "Expandir" : "Colapsar"} ${porId.get(key).nombre}; ${porId.get(key).hijos.length} subordinados`);
+        toggle.setAttribute("aria-label", `${abierto ? "Expandir" : "Colapsar"} ${porId.get(key).nombre}; ${toggle.dataset.childCount} tarjetas`);
         toggle.querySelector(".toggle-sign").textContent = abierto ? "+" : "−";
         actualizarEstado();
         window.setTimeout(dibujarConectores, 380);
+        return;
+      }
+      const verCuadrillas = evento.target.closest("[data-open-crews]");
+      if (verCuadrillas) {
+        abrirPanelCuadrillas(verCuadrillas.dataset.openCrews);
         return;
       }
       const detalle = evento.target.closest("[data-open-person]");
@@ -2249,6 +2439,12 @@
     });
 
     el("panel-content").addEventListener("click", (evento) => {
+      const exportarCuadrillas = evento.target.closest("[data-export-crews]");
+      if (exportarCuadrillas) {
+        const jefe = porId.get(exportarCuadrillas.dataset.exportCrews);
+        if (jefe) exportarPersonas(ordenarPersonasCuadrilla(personasAgrupadasDe(jefe)), exportarCuadrillas.dataset.exportName);
+        return;
+      }
       const activarEdicion = evento.target.closest("[data-edit-person]");
       if (activarEdicion) {
         el("employee-edit-form").hidden = false;
