@@ -869,7 +869,7 @@
   </section>
   <div id="badge-print-area" hidden></div>
 
-  <script src="datos_organigrama.js?v=20261111-2"></script>
+  <script src="datos_organigrama.js?v=20261112-1"></script>
   <script>
     /* ============================== Datos ============================== */
     const ENCUADRE_POR_DEFECTO = { zoom: 1.15, x: 50, y: 15 };
@@ -892,7 +892,7 @@
             formacion: persona["Preparación académica"] ?? "",
             fechaIngreso: persona["Fecha de ingreso"] ?? "",
             vigencia: "",
-            numeroSeguroSocial: "",
+            numeroSeguroSocial: persona["ID Empleado (BD)"] ?? "",
             contactoEmergencia: "",
             rangoCuadrilla: persona["Orden en cuadrilla"] ?? null,
             agrupado: ["sí", "si", "yes"].includes(String(persona["Agrupado en cuadrilla"] ?? "No").trim().toLowerCase())
@@ -917,6 +917,9 @@
     let encuadresGafete = {};
     const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
     const claveAlmacenamiento = "drfc_rrhh_cambios_v1";
+    const claveVersionDatosBase = "drfc_rrhh_version_datos_base";
+    // Incrementa esta versión cuando cambien los correos o fechas de ingreso del JavaScript.
+    const versionDatosBase = "20261112-1";
     const camposSinDato = "Pendiente de captura";
     const rangosCuadrilla = [
       { valor: 1, nombre: "Supervisor", tono: "#174f70" },
@@ -1019,6 +1022,7 @@
 
     /* ============================ Utilidades =========================== */
     const el = (id) => document.getElementById(id);
+    sincronizarDatosBase();
     const html = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     })[char]);
@@ -1176,6 +1180,36 @@
 
     function personaConDatos(persona) {
       return { ...persona, ...(cambiosGuardados[idKey(persona.id)] || {}) };
+    }
+
+    function sincronizarDatosBase() {
+      let cambiosActualizados;
+      try {
+        if (localStorage.getItem(claveVersionDatosBase) === versionDatosBase) return;
+        cambiosActualizados = {};
+        const datosBasePorId = new Map(organigrama.map((persona) => [
+          String(persona["ID"]),
+          { email: persona["Correo"], fechaIngreso: persona["Fecha de ingreso"] }
+        ]));
+        Object.entries(cambiosGuardados).forEach(([id, cambios]) => {
+          if (!cambios || typeof cambios !== "object" || Array.isArray(cambios)) {
+            cambiosActualizados[id] = cambios;
+            return;
+          }
+          const datos = { ...cambios };
+          const datosBase = datosBasePorId.get(id);
+          if (datosBase?.email) delete datos.email;
+          if (datosBase?.fechaIngreso) delete datos.fechaIngreso;
+          if (Object.keys(datos).length) cambiosActualizados[id] = datos;
+        });
+        localStorage.setItem(claveAlmacenamiento, JSON.stringify(cambiosActualizados));
+        localStorage.setItem(claveVersionDatosBase, versionDatosBase);
+      } catch (error) {
+        mostrarError(`No se pudieron sincronizar el correo y la fecha de ingreso con el JavaScript actualizado: ${error.message}`);
+        return;
+      }
+      Object.keys(cambiosGuardados).forEach((id) => delete cambiosGuardados[id]);
+      Object.assign(cambiosGuardados, cambiosActualizados);
     }
 
     function valorCapturado(valor) {

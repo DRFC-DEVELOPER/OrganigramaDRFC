@@ -1,6 +1,6 @@
 // Generado desde Organigrama_datos_4_completo.xlsx
 // Fechas en formato ISO (aaaa-mm-dd). Valores de fórmulas ya calculados.
-var organigrama = [
+const organigrama = [
   {
     "ID": 1,
     "Nombre": "Juan Carlos Rosales Ocampo",
@@ -868,7 +868,7 @@ var organigrama = [
   {
     "ID": 49,
     "Nombre": "Evelyn Lizbet Mendoza Salgado",
-    "Puesto": "Auxiliar Administrativo",
+    "Puesto": "Especialista Administrativo",
     "Área": "Construcción",
     "Jefe directo": "Elvia Domínguez Flores",
     "ID Jefe": 42,
@@ -922,7 +922,7 @@ var organigrama = [
   {
     "ID": 52,
     "Nombre": "Krisna Lizeth Bravo Mendoza",
-    "Puesto": "Auxiliar Administrativo",
+    "Puesto": "Especialista Administrativo",
     "Área": "Construcción",
     "Jefe directo": "Elvia Domínguez Flores",
     "ID Jefe": 42,
@@ -3855,7 +3855,7 @@ var organigrama = [
   }
 ];
 
-var areas = [
+const areas = [
   {
     "Área": "Acometidas",
     "Tipo": "Operativa"
@@ -3942,29 +3942,4 @@ var areas = [
   }
 ];
 
-var personas = organigrama.map((persona) => ({
-
-  id: persona["ID"],
-  nombre: persona["Nombre"],
-  cargo: persona["Puesto"],
-  area: persona["Área"],
-  tipo: persona["Tipo de área"] || null,
-  jefeId: objetoOValor(persona["ID Jefe"]),
-  nivel: persona["Nivel"] ?? null,
-  idEmpleado: persona["ID Empleado (BD)"] ?? null,
-  email: persona["Correo"] ?? "",
-  formacion: persona["Preparación académica"] ?? "",
-  fechaIngreso: persona["Fecha de ingreso"] ?? "",
-  vigencia: "",
-  numeroSeguroSocial: "",
-  contactoEmergencia: "",
-  rangoCuadrilla: persona["Orden en cuadrilla"] ?? null,
-  agrupado: String(persona["Agrupado en cuadrilla"] ?? "No").trim().toLowerCase() === "sí" ||
-    String(persona["Agrupado en cuadrilla"] ?? "No").trim().toLowerCase() === "si"
-}));
-
-function objetoOValor(valor) {
-  return valor === undefined || valor === null || String(valor).trim() === "" ? null : valor;
-}
-
-if (typeof module !== "undefined") module.exports = { organigrama, areas, personas };
+if (typeof module !== "undefined") module.exports = { organigrama, areas };
