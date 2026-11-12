@@ -16,6 +16,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -34,12 +36,14 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
   {
     "ID": 3,
-    "Nombre": "Armando Alarcón Barrea",
+    "Nombre": "Armando Alarcón Barrera",
     "Puesto": "Jefatura",
     "Área": "Acometidas",
     "Jefe directo": "José Antonio Alvarado Rodríguez",
@@ -52,6 +56,8 @@ const organigrama = [
     "Correo": "armando.alarcon@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -70,6 +76,8 @@ const organigrama = [
     "Correo": "sergio.giles@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2010-01-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -88,6 +96,8 @@ const organigrama = [
     "Correo": "caleb.ferrel@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-03-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -106,6 +116,8 @@ const organigrama = [
     "Correo": "emilio.reyes@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-26",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -124,6 +136,8 @@ const organigrama = [
     "Correo": "kikashuri@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-01-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -142,6 +156,8 @@ const organigrama = [
     "Correo": "iban.reyes@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -160,6 +176,8 @@ const organigrama = [
     "Correo": "karlablas40@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-06-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -178,6 +196,8 @@ const organigrama = [
     "Correo": "manuelrosalesocampo5@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-06-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -196,6 +216,8 @@ const organigrama = [
     "Correo": "yoshebet.ballastra@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2020-05-12",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -214,6 +236,8 @@ const organigrama = [
     "Correo": "luis.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2013-12-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -232,6 +256,8 @@ const organigrama = [
     "Correo": "alberto.rodriguez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2014-10-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -250,6 +276,8 @@ const organigrama = [
     "Correo": "agustin.reyes@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2019-12-26",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -268,6 +296,8 @@ const organigrama = [
     "Correo": "alexis.hernandez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-10-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -286,6 +316,8 @@ const organigrama = [
     "Correo": "angelbenitezparras@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-07-25",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -304,6 +336,8 @@ const organigrama = [
     "Correo": "danniel.alor.rmz@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -322,6 +356,8 @@ const organigrama = [
     "Correo": "eduardo.hernandez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -340,6 +376,8 @@ const organigrama = [
     "Correo": "moises.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -358,6 +396,8 @@ const organigrama = [
     "Correo": "dc.gabo7509@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -376,6 +416,8 @@ const organigrama = [
     "Correo": "giovanni.romero@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-11-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -394,6 +436,8 @@ const organigrama = [
     "Correo": "deathmarch22101997@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-08-31",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -412,6 +456,8 @@ const organigrama = [
     "Correo": "jesussanchezfuentes46@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -430,6 +476,8 @@ const organigrama = [
     "Correo": "jonathan.alarcon@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-03-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 1,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -448,6 +496,8 @@ const organigrama = [
     "Correo": "kevin.espindola@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-25",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -466,6 +516,8 @@ const organigrama = [
     "Correo": "uriel.nolasco@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-05-14",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -484,6 +536,8 @@ const organigrama = [
     "Correo": "alexislurias16@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-21",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -502,6 +556,8 @@ const organigrama = [
     "Correo": "a.guilar.039125@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-14",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -520,6 +576,8 @@ const organigrama = [
     "Correo": "raul.roque@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -538,6 +596,8 @@ const organigrama = [
     "Correo": "geovanni.fiscal@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2017-03-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 1,
     "Agrupado en cuadrilla": "No"
   },
@@ -556,6 +616,8 @@ const organigrama = [
     "Correo": "mariopolito_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-10-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -574,6 +636,8 @@ const organigrama = [
     "Correo": "paulinoricardo_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-11-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -592,6 +656,8 @@ const organigrama = [
     "Correo": "cesarcarron_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -610,6 +676,8 @@ const organigrama = [
     "Correo": "fredypolito_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-14",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -628,6 +696,8 @@ const organigrama = [
     "Correo": "jose.sf151@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -646,6 +716,8 @@ const organigrama = [
     "Correo": "josecruz_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-11-24",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -664,6 +736,8 @@ const organigrama = [
     "Correo": "josepaxtian_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-06-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -682,6 +756,8 @@ const organigrama = [
     "Correo": "juanmora_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-03-18",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -700,6 +776,8 @@ const organigrama = [
     "Correo": "luisrosas_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -718,6 +796,8 @@ const organigrama = [
     "Correo": "misael31hdz@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -736,6 +816,8 @@ const organigrama = [
     "Correo": "sergio.amador@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-10-18",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -747,13 +829,15 @@ const organigrama = [
     "Jefe directo": "José Alberto Rodríguez Mena",
     "ID Jefe": 13,
     "Nivel": 4,
-    "Personas a cargo": 12,
+    "Personas a cargo": 11,
     "Observaciones": "Puesto genérico: si tiene un cargo específico, conviene indicarlo.",
     "ID Empleado (BD)": 2168459788,
     "Tipo de área": "Operativa",
     "Correo": "elvia.dominguez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2019-07-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -772,6 +856,8 @@ const organigrama = [
     "Correo": "adrian.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -790,6 +876,8 @@ const organigrama = [
     "Correo": "ana.arias@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -808,24 +896,8 @@ const organigrama = [
     "Correo": "ana.perez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-12",
-    "Orden en cuadrilla": null,
-    "Agrupado en cuadrilla": "No"
-  },
-  {
-    "ID": 46,
-    "Nombre": "Angelica Marquez Aldaco",
-    "Puesto": "Auxiliar Administrativo",
-    "Área": "Construcción",
-    "Jefe directo": "Elvia Domínguez Flores",
-    "ID Jefe": 42,
-    "Nivel": 5,
-    "Personas a cargo": 0,
-    "Observaciones": null,
-    "ID Empleado (BD)": 40927401063,
-    "Tipo de área": "Operativa",
-    "Correo": "marquez.aldaco@gmail.com",
-    "Preparación académica": null,
-    "Fecha de ingreso": "2026-07-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -844,6 +916,8 @@ const organigrama = [
     "Correo": "jocabet.nazario@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -862,6 +936,8 @@ const organigrama = [
     "Correo": "cesar.chavez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -880,6 +956,8 @@ const organigrama = [
     "Correo": "evelyn.mendoza@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-08-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -898,6 +976,8 @@ const organigrama = [
     "Correo": "imanol.gonzalez.drfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -916,6 +996,8 @@ const organigrama = [
     "Correo": "pascual0110@icloud.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -934,6 +1016,8 @@ const organigrama = [
     "Correo": "krisnha.bravo@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-03-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -952,6 +1036,8 @@ const organigrama = [
     "Correo": "pabloseverianodrfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -970,6 +1056,8 @@ const organigrama = [
     "Correo": "maxirod26@outlook.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -988,6 +1076,8 @@ const organigrama = [
     "Correo": "gerardo.quintero@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1006,6 +1096,8 @@ const organigrama = [
     "Correo": "giovanna.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2018-07-30",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1024,6 +1116,8 @@ const organigrama = [
     "Correo": "dary.ros.250502@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-10-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1042,6 +1136,8 @@ const organigrama = [
     "Correo": "dianaalbarran61@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-10-20",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1060,6 +1156,8 @@ const organigrama = [
     "Correo": "santana.lopez.diego.1602@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1078,6 +1176,8 @@ const organigrama = [
     "Correo": "erickricardo_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1096,6 +1196,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1114,6 +1216,8 @@ const organigrama = [
     "Correo": "jaimecampero_drfc@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-10-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1132,6 +1236,8 @@ const organigrama = [
     "Correo": "raul.ortiz@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-09-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1150,6 +1256,8 @@ const organigrama = [
     "Correo": "gerardo.aragon@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1168,6 +1276,8 @@ const organigrama = [
     "Correo": "gerardo.ramirez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-11-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1186,6 +1296,8 @@ const organigrama = [
     "Correo": "elena.alanis@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-11-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1204,6 +1316,8 @@ const organigrama = [
     "Correo": "hugo.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-23",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1222,6 +1336,8 @@ const organigrama = [
     "Correo": "mariana.estrada@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1240,6 +1356,8 @@ const organigrama = [
     "Correo": "josue.ferrel@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2010-06-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1258,6 +1376,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1276,6 +1396,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1294,6 +1416,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1312,6 +1436,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1330,6 +1456,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1348,6 +1476,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1366,6 +1496,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1384,6 +1516,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1402,6 +1536,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1420,6 +1556,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1438,6 +1576,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1456,6 +1596,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1474,6 +1616,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1492,6 +1636,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1510,6 +1656,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1528,6 +1676,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1546,6 +1696,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1564,6 +1716,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1582,6 +1736,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1600,6 +1756,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1618,6 +1776,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1636,6 +1796,8 @@ const organigrama = [
     "Correo": "fernando.gonzalez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-06-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1654,6 +1816,8 @@ const organigrama = [
     "Correo": "miguel.lamadrid@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2018-08-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1672,6 +1836,8 @@ const organigrama = [
     "Correo": "adrian.carrasco@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-05-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1690,6 +1856,8 @@ const organigrama = [
     "Correo": "mateosanchez88943@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-03-05",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1708,6 +1876,8 @@ const organigrama = [
     "Correo": "charlysalazar0115@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-04-26",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1726,6 +1896,8 @@ const organigrama = [
     "Correo": "polisalgado3@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-20",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1744,6 +1916,8 @@ const organigrama = [
     "Correo": "ivangenarogr90@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-09-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1762,6 +1936,8 @@ const organigrama = [
     "Correo": "joseal.castro25@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-11-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1780,6 +1956,8 @@ const organigrama = [
     "Correo": "josecayetano.castro1982@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-04-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1798,6 +1976,8 @@ const organigrama = [
     "Correo": "pm4106935@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-05-30",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1816,6 +1996,8 @@ const organigrama = [
     "Correo": "joserhm14@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-12-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1834,6 +2016,8 @@ const organigrama = [
     "Correo": "marcomartinezascencio85@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-06-09",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1852,6 +2036,8 @@ const organigrama = [
     "Correo": "marioflores1493@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-02-21",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1870,6 +2056,8 @@ const organigrama = [
     "Correo": "linobahena55@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1888,6 +2076,8 @@ const organigrama = [
     "Correo": "msaulmartinezpina53@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -1906,6 +2096,8 @@ const organigrama = [
     "Correo": "alanreyesr30@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-20",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1924,6 +2116,8 @@ const organigrama = [
     "Correo": "asael.rios@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1942,6 +2136,8 @@ const organigrama = [
     "Correo": "bukowski1418@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1960,6 +2156,8 @@ const organigrama = [
     "Correo": "carla.li.garcia.e@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1978,6 +2176,8 @@ const organigrama = [
     "Correo": "sofia.bartolo@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-07-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -1996,6 +2196,8 @@ const organigrama = [
     "Correo": "diego.armandofernandez@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2014,6 +2216,8 @@ const organigrama = [
     "Correo": "fabiola.ocampo@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2032,6 +2236,8 @@ const organigrama = [
     "Correo": "jaredivan2301@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-25",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2050,6 +2256,8 @@ const organigrama = [
     "Correo": "jorge.bustos@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-05-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2068,6 +2276,8 @@ const organigrama = [
     "Correo": "j.andresruiz15@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2086,6 +2296,8 @@ const organigrama = [
     "Correo": "karla.jaimez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-08-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2104,6 +2316,8 @@ const organigrama = [
     "Correo": "luiscmateoc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2122,6 +2336,8 @@ const organigrama = [
     "Correo": "paola.mendoza@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-07-11",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2140,6 +2356,8 @@ const organigrama = [
     "Correo": "luis.fernandez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2158,6 +2376,8 @@ const organigrama = [
     "Correo": "fernanda.martinez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2176,6 +2396,8 @@ const organigrama = [
     "Correo": "oficinadrfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-07-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2194,6 +2416,8 @@ const organigrama = [
     "Correo": "pedrofederico.mendez@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-10-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2212,6 +2436,8 @@ const organigrama = [
     "Correo": "rafael.mendoza@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-10-05",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2230,6 +2456,8 @@ const organigrama = [
     "Correo": "cristoferalcants@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 1,
     "Agrupado en cuadrilla": "No"
   },
@@ -2248,6 +2476,8 @@ const organigrama = [
     "Correo": "luisgarcia_tec@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-04-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2266,6 +2496,8 @@ const organigrama = [
     "Correo": "gums_930524@outlook.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2284,6 +2516,8 @@ const organigrama = [
     "Correo": "ruloov.rov@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-18",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2302,6 +2536,8 @@ const organigrama = [
     "Correo": "palaciosrolando59@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-14",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2320,6 +2556,8 @@ const organigrama = [
     "Correo": "samuel.ferrel@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2020-10-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -2338,6 +2576,8 @@ const organigrama = [
     "Correo": "adanbahenagil@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-10-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2356,6 +2596,8 @@ const organigrama = [
     "Correo": "adolfoangelsm145@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2374,6 +2616,8 @@ const organigrama = [
     "Correo": "alangarciafitz123@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2392,6 +2636,8 @@ const organigrama = [
     "Correo": "alanjosuecamachogomez84@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-26",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2410,6 +2656,8 @@ const organigrama = [
     "Correo": "kendra0876waldo@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-19",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2428,6 +2676,8 @@ const organigrama = [
     "Correo": "zolelorencesapatiga@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2446,6 +2696,8 @@ const organigrama = [
     "Correo": "grosalesdrfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-10-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2464,6 +2716,8 @@ const organigrama = [
     "Correo": "pequitasbeibi@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-03-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2482,6 +2736,8 @@ const organigrama = [
     "Correo": "aarriaga.drfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2500,6 +2756,8 @@ const organigrama = [
     "Correo": "lorences.antonio@icloud.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2518,6 +2776,8 @@ const organigrama = [
     "Correo": "aureliojosuex@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-08-05",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2536,6 +2796,8 @@ const organigrama = [
     "Correo": "aviroman_1@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-02-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2554,6 +2816,8 @@ const organigrama = [
     "Correo": "bautistabryanjesus@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2572,6 +2836,8 @@ const organigrama = [
     "Correo": "cr3998855@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2590,6 +2856,8 @@ const organigrama = [
     "Correo": "damiandownhill2002@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-19",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2608,6 +2876,8 @@ const organigrama = [
     "Correo": "mordan1006@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-10-08",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2626,6 +2896,8 @@ const organigrama = [
     "Correo": "davidbecerradiaz10@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2644,6 +2916,8 @@ const organigrama = [
     "Correo": "dv451168@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-11-09",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2662,6 +2936,8 @@ const organigrama = [
     "Correo": "giodzan@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-09-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2680,6 +2956,8 @@ const organigrama = [
     "Correo": "ed6013334@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2698,6 +2976,8 @@ const organigrama = [
     "Correo": "ernesto45estrada29@outlook.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2716,6 +2996,8 @@ const organigrama = [
     "Correo": "mezachato452@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-17",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2734,6 +3016,8 @@ const organigrama = [
     "Correo": "gaelhdzgarcia@icloud.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2752,6 +3036,8 @@ const organigrama = [
     "Correo": "wero.camacho2811@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2770,6 +3056,8 @@ const organigrama = [
     "Correo": "fernandomateo2345@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2788,6 +3076,8 @@ const organigrama = [
     "Correo": "filemonocampomolina@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-23",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2806,6 +3096,8 @@ const organigrama = [
     "Correo": "pitherpan69@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-06-26",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2824,6 +3116,8 @@ const organigrama = [
     "Correo": "gilbertobv1103@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2842,6 +3136,8 @@ const organigrama = [
     "Correo": "gustavomezarojas05@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-17",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2860,6 +3156,8 @@ const organigrama = [
     "Correo": "raullopezayala29@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2878,6 +3176,8 @@ const organigrama = [
     "Correo": "hsalgado.drfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-06-21",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2896,6 +3196,8 @@ const organigrama = [
     "Correo": "gomezhoronato582@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2914,6 +3216,8 @@ const organigrama = [
     "Correo": "segurairving52@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-11",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2932,6 +3236,8 @@ const organigrama = [
     "Correo": "isra.reza8684@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-24",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2950,6 +3256,8 @@ const organigrama = [
     "Correo": "martinezjared920@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-09-01",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2968,6 +3276,8 @@ const organigrama = [
     "Correo": "jersonmanuel026@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-06-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -2986,6 +3296,8 @@ const organigrama = [
     "Correo": "avilaramires0@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-08-22",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3004,6 +3316,8 @@ const organigrama = [
     "Correo": "jv5414132@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3022,6 +3336,8 @@ const organigrama = [
     "Correo": "jg0772024@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-12-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3040,6 +3356,8 @@ const organigrama = [
     "Correo": "jhoalefloavi@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-25",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3058,6 +3376,8 @@ const organigrama = [
     "Correo": "jperez.drfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-04-11",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3076,6 +3396,8 @@ const organigrama = [
     "Correo": "je5296421@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-06-23",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3094,6 +3416,8 @@ const organigrama = [
     "Correo": "angelpantojacam098@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-09-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3112,6 +3436,8 @@ const organigrama = [
     "Correo": "jmarbanbarrera@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-07-17",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3130,6 +3456,8 @@ const organigrama = [
     "Correo": "ppludin@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-10-31",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3148,6 +3476,8 @@ const organigrama = [
     "Correo": "josefer74aguilar@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-08-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3166,6 +3496,8 @@ const organigrama = [
     "Correo": "hejr850217@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-09",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3184,6 +3516,8 @@ const organigrama = [
     "Correo": "salgadodiazjovanny@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-01-30",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3202,6 +3536,8 @@ const organigrama = [
     "Correo": "juanmanuelpintorpadilla571@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3220,6 +3556,8 @@ const organigrama = [
     "Correo": "kevincazares031@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-24",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3238,6 +3576,8 @@ const organigrama = [
     "Correo": "aflores.drfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-06-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3256,6 +3596,8 @@ const organigrama = [
     "Correo": "luisenriquechinovillalba40@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3274,6 +3616,8 @@ const organigrama = [
     "Correo": "luisguadarrama476@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-05-09",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3292,6 +3636,8 @@ const organigrama = [
     "Correo": "mariojoel488@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-02-05",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3310,6 +3656,8 @@ const organigrama = [
     "Correo": "ba355994@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-03",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3328,6 +3676,8 @@ const organigrama = [
     "Correo": "mxr6a79@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-06-25",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3346,6 +3696,8 @@ const organigrama = [
     "Correo": "m.angelgr6@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-05-23",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3364,6 +3716,8 @@ const organigrama = [
     "Correo": "rodriguez_99_m@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-08-17",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3382,6 +3736,8 @@ const organigrama = [
     "Correo": "miguel_6287@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-08-18",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3400,6 +3756,8 @@ const organigrama = [
     "Correo": "morandrfc@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-06-28",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3418,6 +3776,8 @@ const organigrama = [
     "Correo": "drfcconstructora80@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-09-21",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3436,6 +3796,8 @@ const organigrama = [
     "Correo": "ocano1749@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2022-06-27",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 2,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3454,6 +3816,8 @@ const organigrama = [
     "Correo": "orlandosantamaria0101@hotmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-23",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3472,6 +3836,8 @@ const organigrama = [
     "Correo": "oscarantoniolinaresjuarez@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-05",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3490,6 +3856,8 @@ const organigrama = [
     "Correo": "pedro.salgado@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2015-07-14",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 1,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3508,6 +3876,8 @@ const organigrama = [
     "Correo": "kay31416@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3526,6 +3896,8 @@ const organigrama = [
     "Correo": "bautistaraul72@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2021-10-30",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3544,6 +3916,8 @@ const organigrama = [
     "Correo": "enerzaid8@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-04-15",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 4,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3562,6 +3936,8 @@ const organigrama = [
     "Correo": "rik.glez13@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-08-04",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3580,6 +3956,8 @@ const organigrama = [
     "Correo": "ricardoivanarandaosorio@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-19",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 3,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3598,6 +3976,8 @@ const organigrama = [
     "Correo": "trujillo080104@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-11-10",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3616,6 +3996,8 @@ const organigrama = [
     "Correo": "ramireztapiaromanalejandro@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-06-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3634,6 +4016,8 @@ const organigrama = [
     "Correo": "urielmondragon117@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-01-29",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3652,6 +4036,8 @@ const organigrama = [
     "Correo": "escobarwuilver8@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-20",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": 5,
     "Agrupado en cuadrilla": "Sí"
   },
@@ -3670,6 +4056,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3688,6 +4076,8 @@ const organigrama = [
     "Correo": "sara.enciso@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-06-16",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3706,6 +4096,8 @@ const organigrama = [
     "Correo": "diego.dionicio@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-09-02",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3724,6 +4116,8 @@ const organigrama = [
     "Correo": "ricardo.salgado@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-21",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3742,6 +4136,8 @@ const organigrama = [
     "Correo": null,
     "Preparación académica": null,
     "Fecha de ingreso": null,
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3760,6 +4156,8 @@ const organigrama = [
     "Correo": "tanya.perez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2020-12-07",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3778,6 +4176,8 @@ const organigrama = [
     "Correo": "carlos.cuahuey@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-02-13",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3796,6 +4196,8 @@ const organigrama = [
     "Correo": "santosarmando588@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2023-11-06",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3814,6 +4216,8 @@ const organigrama = [
     "Correo": "adriana.rodriguez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2024-06-11",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3832,6 +4236,8 @@ const organigrama = [
     "Correo": "jacoocampo.90@gmail.com",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-04-24",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   },
@@ -3850,6 +4256,8 @@ const organigrama = [
     "Correo": "berenice.garcia@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2025-01-18",
+    "Fecha de nacimiento": null,
+    "Tipo de sangre": null,
     "Orden en cuadrilla": null,
     "Agrupado en cuadrilla": "No"
   }

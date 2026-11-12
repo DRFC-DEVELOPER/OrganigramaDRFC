@@ -25,8 +25,8 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 ### 3. Consultar fichas individuales
 
 - Abre una ficha con la fotografía disponible, nombre, cargo, área, tipo de área, ID de empleado y correo.
-- Presenta información de jefe directo, preparación académica, fecha de ingreso y antigüedad cuando está capturada.
-- Muestra el próximo aniversario laboral cuando hay fecha de ingreso registrada.
+- Presenta información de jefe directo, preparación académica, fecha de ingreso, fecha de nacimiento, tipo de sangre y antigüedad cuando está capturada.
+- Muestra el próximo aniversario laboral y cumpleaños cuando las fechas están registradas.
 - Permite actualizar los campos de Recursos Humanos disponibles desde **Editar datos**.
 - Desde la ficha se puede generar el gafete de la persona.
 
@@ -53,17 +53,17 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 - Los cambios hechos en las fichas se conservan en el almacenamiento local del navegador.
 - La exportación CSV sirve como respaldo y como medio para trasladar los datos a otro navegador o equipo. Importar el archivo vuelve a cargar los cambios.
 
-### 7. Revisar aniversarios laborales
+### 7. Revisar aniversarios laborales y cumpleaños
 
-- Agrupa los aniversarios de hoy, los próximos siete días y el mes actual.
+- Agrupa los aniversarios laborales y los cumpleaños de hoy, los próximos siete días y el mes actual.
 - Permite exportar a CSV las personas cuyo aniversario laboral corresponde al mes.
-- Si la persona tiene correo capturado, **Enviar felicitación** prepara un mensaje en la aplicación de correo predeterminada; no envía el correo automáticamente.
+- Si la persona tiene correo capturado, **Enviar felicitación** prepara un mensaje apropiado para el aniversario o cumpleaños en la aplicación de correo predeterminada; no envía el correo automáticamente.
 
 ### 8. Preparar e imprimir gafetes
 
 - Genera una vista previa individual con frente y reverso.
-- El frente muestra fotografía, nombre, puesto, ID, correo y vigencia.
-- El reverso incluye número de seguridad social, contacto de emergencia, espacios de firma y dirección de la empresa.
+- El frente muestra fotografía, nombre completo, puesto, área, ID de empleado, vigencia, logo y nombre de la empresa; no muestra el correo.
+- El reverso incluye tipo de sangre, contacto de emergencia, espacios de firma, dirección de la empresa y la leyenda de que el gafete es personal e intransferible.
 - Permite elegir un estilo estándar, de ahorro de tinta o con banda azul.
 - Incluye herramientas para ajustar el encuadre de la fotografía y para imprimir varios gafetes en hojas tamaño carta.
 
