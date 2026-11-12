@@ -1053,7 +1053,7 @@ const organigrama = [
     "Observaciones": null,
     "ID Empleado (BD)": 44190174860,
     "Tipo de área": "Operativa",
-    "Correo": "maxirod26@outlook.com",
+    "Correo": "saul.rodriguez@drfc.com.mx",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-07-28",
     "Fecha de nacimiento": null,
