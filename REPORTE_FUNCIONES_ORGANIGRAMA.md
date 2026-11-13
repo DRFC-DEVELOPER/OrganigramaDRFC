@@ -50,12 +50,15 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 
 - Permite importar un archivo CSV para actualizar datos de personas existentes.
 - Permite exportar todos los datos a CSV, incluidos los campos de agrupación de cuadrillas.
+- El panel **Puestos y vacantes** permite agregar y editar puestos, asignar un responsable, cerrar o reabrir vacantes y exportar el listado a JSON.
 - Los cambios hechos en las fichas se conservan en el almacenamiento local del navegador.
+- Los puestos y vacantes también se guardan en el navegador; todavía no se comparten entre equipos hasta conectar una API o base central autorizada.
 - La exportación CSV sirve como respaldo y como medio para trasladar los datos a otro navegador o equipo. Importar el archivo vuelve a cargar los cambios.
 
 ### 7. Revisar aniversarios laborales y cumpleaños
 
 - Agrupa los aniversarios laborales y los cumpleaños de hoy, los próximos siete días y el mes actual.
+- El botón **Cumpleaños** muestra todas las fechas de nacimiento capturadas, ordenadas por su próxima fecha, con acceso al borrador de felicitación por correo.
 - Permite exportar a CSV las personas cuyo aniversario laboral corresponde al mes.
 - Si la persona tiene correo capturado, **Enviar felicitación** prepara un mensaje apropiado para el aniversario o cumpleaños en la aplicación de correo predeterminada; no envía el correo automáticamente.
 
@@ -65,6 +68,7 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 - El frente muestra fotografía, nombre completo, puesto, área, ID de empleado, vigencia, logo y nombre de la empresa; no muestra el correo.
 - El reverso incluye tipo de sangre, contacto de emergencia, espacios de firma, dirección de la empresa y la leyenda de que el gafete es personal e intransferible.
 - Permite elegir un estilo estándar, de ahorro de tinta o con banda azul.
+- Permite descargar el frente y el reverso como imágenes PNG, además de conservar la descarga editable en HTML.
 - Incluye herramientas para ajustar el encuadre de la fotografía y para imprimir varios gafetes en hojas tamaño carta.
 
 ### 9. Imprimir o guardar el organigrama

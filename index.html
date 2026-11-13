@@ -58,9 +58,10 @@
       position: relative;
       z-index: 4;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 12px;
       min-height: 86px;
       padding: 8px 24px;
       color: #fff;
@@ -79,7 +80,7 @@
     h1 { margin: 0; color: #fff; font-size: 21px; letter-spacing: -.025em; white-space: nowrap; }
     .subtitle { margin-top: 3px; color: #d1dce1; font-size: 12px; }
     .eyebrow { margin-bottom: 2px; color: var(--brand-lime); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; width: 100%; gap: 8px; }
     .control, .icon-control, .search-box, .filter-box {
       min-height: 38px;
       border: 1px solid var(--border);
@@ -524,6 +525,7 @@
       position: relative; z-index: 1; margin-top: 10px;
       background: linear-gradient(135deg, rgba(255, 214, 10, .18), rgba(255, 255, 255, .85));
     }
+    .anniversary-dialog #export-anniversaries[hidden] { display: none; }
     .lightbox { z-index: 30; cursor: zoom-out; }
     .lightbox img { max-width: min(92vw, 900px); max-height: 92vh; object-fit: contain; border-radius: 12px; box-shadow: var(--shadow); }
     .table-view { display: none; flex: 1; min-height: 0; overflow: auto; padding: 16px; background: var(--page); }
@@ -606,6 +608,15 @@
     .badge-legal { font-size: 5pt; }
     .badge-missing-notes { display: grid; justify-items: center; gap: 3px; color: #5b5350; font-size: 11px; }
     .badge-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
+    .vacancy-list { display: grid; gap: 8px; max-height: 55vh; overflow-y: auto; margin: 14px 0; }
+    .vacancy-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-soft); }
+    .vacancy-details { min-width: 0; }
+    .vacancy-details strong, .vacancy-details small { display: block; overflow-wrap: anywhere; }
+    .vacancy-details small { margin-top: 3px; color: var(--muted); }
+    .vacancy-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 6px; }
+    .vacancy-status { display: inline-block; padding: 2px 7px; margin-top: 6px; border-radius: 99px; color: #145a3b; background: #d9f1e4; font-size: 10px; font-weight: 750; }
+    .vacancy-status.closed { color: var(--muted); background: var(--border); }
+    .vacancy-dialog-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .badge-picker select, .badge-picker input { min-height: 36px; width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); background: var(--surface); }
     .badge-picker-list { max-height: 45vh; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
     .badge-picker-list label { display: flex; gap: 8px; padding: 7px 9px; border-bottom: 1px solid var(--border); }
@@ -639,9 +650,8 @@
     .horizontal .children .person-node > .children { margin-top: 0; margin-left: 47px; }
 
     @media (max-width: 950px) {
-      .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding: 13px 16px; }
+      .topbar { padding: 13px 16px; }
       .brand { min-width: 0; }
-      .toolbar { justify-content: flex-start; width: 100%; }
       .workspace { flex: 1; height: auto; min-height: 430px; }
       .legend { justify-content: flex-start; max-width: 100%; }
       .search-box input { width: 132px; }
@@ -664,6 +674,7 @@
       .panel-details .wide { grid-column: auto; }
       .badge-picker { grid-template-columns: 1fr; }
       .badge-preview-stage { padding: 2mm; }
+      .vacancy-row { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -758,7 +769,9 @@
       <label class="control crew-view-toggle" title="Muestra como tarjetas individuales a todas las personas agrupadas">
         <input id="show-full-crews" type="checkbox"> Mostrar cuadrillas completas
       </label>
-      <button class="control" id="anniversary-button" type="button" aria-expanded="false">🎉 Celebraciones <span id="anniversary-count">0</span></button>
+      <button class="control" id="manage-vacancies" type="button" aria-expanded="false" aria-controls="vacancy-dialog">Puestos y vacantes</button>
+      <button class="control" id="birthday-button" type="button" aria-expanded="false" aria-controls="anniversary-dialog">🎂 Cumpleaños</button>
+      <button class="control" id="anniversary-button" type="button" aria-expanded="false" aria-controls="anniversary-dialog">🎉 Celebraciones <span id="anniversary-count">0</span></button>
       <button class="control" id="view-toggle" type="button" aria-pressed="false">Tabla</button>
       <button class="control" id="expand-all" type="button">Expandir todo</button>
       <button class="control" id="collapse-levels" type="button">Colapsar a 3 niveles</button>
@@ -816,7 +829,7 @@
     <div class="dialog-card">
       <div class="dialog-heading"><h2 id="anniversary-title">Aniversarios y cumpleaños</h2><button class="icon-control" id="close-anniversaries" type="button" aria-label="Cerrar">×</button></div>
       <div id="anniversary-content"></div>
-      <button class="control" id="export-anniversaries" type="button">Exportar aniversarios laborales del mes (CSV)</button>
+      <button class="control" id="export-anniversaries" type="button" hidden>Exportar aniversarios laborales del mes (CSV)</button>
     </div>
   </section>
   <section id="badge-dialog" class="badge-dialog" role="dialog" aria-modal="true" aria-labelledby="badge-title">
@@ -859,6 +872,7 @@
         <button class="control" id="badge-side-toggle" type="button">Ver reverso</button>
         <button class="control primary" id="print-badge" type="button">Imprimir ambos lados</button>
         <button class="control" id="download-badge" type="button">Descargar gafete editable (HTML)</button>
+        <button class="control" id="download-badge-png" type="button">Descargar PNG (frente y reverso)</button>
         <button class="control" id="open-multi-badge" type="button">Imprimir varios (hoja carta)</button>
       </div>
       <div id="badge-preview-notes" class="badge-missing-notes" aria-live="polite"></div>
@@ -885,8 +899,32 @@
     </div>
   </section>
   <div id="badge-print-area" hidden></div>
+  <section id="vacancy-dialog" class="badge-dialog" role="dialog" aria-modal="true" aria-labelledby="vacancy-title">
+    <div class="dialog-card">
+      <div class="dialog-heading"><h2 id="vacancy-title">Puestos y vacantes</h2><button class="icon-control" id="close-vacancies" type="button" aria-label="Cerrar">×</button></div>
+      <p class="notice">Los cambios se guardan en este navegador. Exporta el JSON para respaldarlos o migrarlos cuando se conecte la base compartida.</p>
+      <div class="vacancy-dialog-actions">
+        <button class="control primary" id="add-vacancy" type="button">Agregar puesto</button>
+        <button class="control" id="export-vacancies" type="button">Exportar puestos (JSON)</button>
+      </div>
+      <form id="vacancy-form" class="panel-form" hidden>
+        <input name="id" type="hidden">
+        <label>Puesto<input name="puesto" maxlength="120" required></label>
+        <label>Área<input name="area" maxlength="120" required></label>
+        <label>Reporta a
+          <select name="jefeId"><option value="">Sin asignar</option></select>
+        </label>
+        <label>Notas<textarea name="notas" maxlength="500"></textarea></label>
+        <div class="form-actions">
+          <button class="control primary" type="submit">Guardar puesto</button>
+          <button class="control" id="cancel-vacancy" type="button">Cancelar</button>
+        </div>
+      </form>
+      <div id="vacancy-list" class="vacancy-list" aria-live="polite"></div>
+    </div>
+  </section>
 
-  <script src="datos_organigrama.js?v=20261112-2"></script>
+  <script src="datos_organigrama.js?v=20261113-1"></script>
   <script>
     /* ============================== Datos ============================== */
     const ENCUADRE_POR_DEFECTO = { zoom: 1.15, x: 50, y: 15 };
@@ -937,9 +975,12 @@
     let encuadresGafete = {};
     const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso", "fechaNacimiento", "tipoSangre", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
     const claveAlmacenamiento = "drfc_rrhh_cambios_v1";
+    const claveAlmacenamientoVacantes = "drfc_puestos_v1";
     const claveVersionDatosBase = "drfc_rrhh_version_datos_base";
+    let puestosGuardados = [];
+    let errorCargaPuestos = null;
     // Incrementa esta versión cuando cambien datos personales en el JavaScript.
-    const versionDatosBase = "20261112-2";
+    const versionDatosBase = "20261113-1";
     const camposSinDato = "Pendiente de captura";
     const rangosCuadrilla = [
       { valor: 1, nombre: "Supervisor", tono: "#174f70" },
@@ -1027,6 +1068,7 @@
       ["Yamely Zaldivar Barrios", "assets/img/ingeniería de proyectos"]
     ]);
     const nombresArchivoFoto = new Map([
+      ["Armando Alarcón Barrera", "Armando Alarcón Barrera "],
       ["Ana Patricia Pérez Guerrero", "Ana Patricia Pérez GuerreroEstrada"],
       ["Luis Alberto Martínez Cruz", "Luis Alberto Martínez CruzReyes Santamaria"],
       ["Jesús Alberto Juárez Dominguez", "Jesús Alberto Juárez DominguezGuadarrama Jaimes"]
@@ -2091,9 +2133,10 @@
       el("anniversary-count").textContent = String(hoy);
     }
 
-    function renderizarAniversarios() {
+    function renderizarAniversarios(soloCumpleanos = false) {
       const datos = listaAniversarios();
       const cumpleanos = listaCumpleanos();
+      el("anniversary-title").textContent = soloCumpleanos ? "Cumpleaños" : "Aniversarios y cumpleaños";
       const grupos = [
         ["Aniversarios laborales de hoy", datos.filter((dato) => dato.fecha.esHoy), false],
         ["Aniversarios laborales de esta semana", datos.filter((dato) => dato.fecha.semana), false],
@@ -2117,7 +2160,7 @@
               ${correo ? `<a class="control" href="${mailto}">Enviar felicitación</a>` : '<button class="control" type="button" disabled title="Captura el correo para habilitar">Sin correo</button>'}</div>`;
           }).join("") : '<div class="panel-empty">Sin aniversarios en este periodo.</div>'}
         </section>`).join("");
-      const contenidoCumpleanos = gruposCumpleanos.map(([titulo, lista]) => `
+      const renderizarGrupoCumpleanos = (titulo, lista) => `
         <section class="anniversary-group"><h3>${html(titulo)} (${lista.length})</h3>
           ${lista.length ? lista.map(({ persona, fecha }) => {
             const fechaCumpleanos = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "long" }).format(fecha.fecha);
@@ -2128,8 +2171,14 @@
             return `<div class="anniversary-row"><div><strong>${html(persona.nombre)}</strong><small>Cumpleaños: ${html(fechaCumpleanos)} · ${html(correo || "Sin correo")}</small></div>
               ${correo ? `<a class="control" href="${mailto}">Enviar felicitación</a>` : '<button class="control" type="button" disabled title="Captura el correo para habilitar">Sin correo</button>'}</div>`;
           }).join("") : '<div class="panel-empty">Sin cumpleaños en este periodo.</div>'}
-        </section>`).join("");
-      el("anniversary-content").innerHTML = contenidoAniversarios + contenidoCumpleanos;
+        </section>`;
+      const contenidoCumpleanos = gruposCumpleanos
+        .map(([titulo, lista]) => renderizarGrupoCumpleanos(titulo, lista)).join("");
+      const contenidoTodosCumpleanos = renderizarGrupoCumpleanos("Próximos cumpleaños", cumpleanos);
+      el("anniversary-content").innerHTML = soloCumpleanos
+        ? contenidoTodosCumpleanos
+        : contenidoAniversarios + contenidoCumpleanos;
+      el("export-anniversaries").hidden = soloCumpleanos;
     }
 
     function exportarAniversariosDelMes() {
@@ -2482,6 +2531,210 @@
       }
     }
 
+    function pintarGafeteEnCanvas(gafete) {
+      const escala = 3;
+      const rectangulo = gafete.getBoundingClientRect();
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(rectangulo.width * escala);
+      canvas.height = Math.ceil(rectangulo.height * escala);
+      const contexto = canvas.getContext("2d");
+      if (!contexto) throw new Error("El navegador no pudo crear el lienzo de imagen.");
+      contexto.scale(escala, escala);
+      const elementos = [gafete, ...gafete.querySelectorAll("*")];
+      const caja = (elemento) => {
+        const rect = elemento.getBoundingClientRect();
+        return {
+          x: rect.left - rectangulo.left,
+          y: rect.top - rectangulo.top,
+          width: rect.width,
+          height: rect.height
+        };
+      };
+      const redondear = (x, y, width, height, radio) => {
+        const r = Math.min(radio, width / 2, height / 2);
+        contexto.beginPath();
+        contexto.moveTo(x + r, y);
+        contexto.arcTo(x + width, y, x + width, y + height, r);
+        contexto.arcTo(x + width, y + height, x, y + height, r);
+        contexto.arcTo(x, y + height, x, y, r);
+        contexto.arcTo(x, y, x + width, y, r);
+        contexto.closePath();
+      };
+      const visibles = (color) => color && color !== "transparent" && color !== "rgba(0, 0, 0, 0)";
+
+      contexto.fillStyle = "#fff";
+      contexto.fillRect(0, 0, rectangulo.width, rectangulo.height);
+      elementos.forEach((elemento) => {
+        if (elemento.tagName === "IMG") return;
+        const estilo = getComputedStyle(elemento);
+        const fondo = estilo.backgroundColor;
+        if (!visibles(fondo)) return;
+        const area = caja(elemento);
+        const radio = Number.parseFloat(estilo.borderTopLeftRadius) || 0;
+        redondear(area.x, area.y, area.width, area.height, radio);
+        contexto.fillStyle = fondo;
+        contexto.fill();
+      });
+      elementos.filter((elemento) => elemento.tagName === "IMG" && elemento.complete && elemento.naturalWidth)
+        .forEach((imagen) => {
+          const estilo = getComputedStyle(imagen);
+          const area = caja(imagen);
+          const ajuste = estilo.objectFit === "contain" ? "contain" : "cover";
+          let sx = 0;
+          let sy = 0;
+          let sw = imagen.naturalWidth;
+          let sh = imagen.naturalHeight;
+          if (ajuste === "contain") {
+            const escalaImagen = Math.min(area.width / sw, area.height / sh);
+            const width = sw * escalaImagen;
+            const height = sh * escalaImagen;
+            area.x += (area.width - width) / 2;
+            area.y += (area.height - height) / 2;
+            area.width = width;
+            area.height = height;
+          } else {
+            const proporcion = Math.max(area.width / sw, area.height / sh);
+            sw = area.width / proporcion;
+            sh = area.height / proporcion;
+            const posiciones = estilo.objectPosition.split(/\s+/);
+            const posicionX = Number.parseFloat(posiciones[0]) / 100 || 0.5;
+            const posicionY = Number.parseFloat(posiciones[1]) / 100 || 0.5;
+            const zoom = Math.max(1, Number.parseFloat(estilo.getPropertyValue("--badge-frame-zoom")) || 1);
+            sw /= zoom;
+            sh /= zoom;
+            sx = (imagen.naturalWidth - sw) * posicionX;
+            sy = (imagen.naturalHeight - sh) * posicionY;
+          }
+          contexto.save();
+          contexto.filter = estilo.filter === "none" ? "none" : estilo.filter;
+          contexto.drawImage(imagen, sx, sy, sw, sh, area.x, area.y, area.width, area.height);
+          contexto.restore();
+        });
+      elementos.forEach((elemento) => {
+        if (elemento.tagName === "IMG") return;
+        const estilo = getComputedStyle(elemento);
+        const anchoBorde = Number.parseFloat(estilo.borderTopWidth) || 0;
+        if (!anchoBorde || estilo.borderTopStyle === "none" || !visibles(estilo.borderTopColor)) return;
+        const area = caja(elemento);
+        const radio = Number.parseFloat(estilo.borderTopLeftRadius) || 0;
+        redondear(area.x + anchoBorde / 2, area.y + anchoBorde / 2,
+          area.width - anchoBorde, area.height - anchoBorde, radio);
+        contexto.strokeStyle = estilo.borderTopColor;
+        contexto.lineWidth = anchoBorde;
+        contexto.stroke();
+      });
+      elementos.forEach((elemento) => {
+        if (elemento.tagName === "IMG" || elemento.tagName === "BR") return;
+        const textoDirecto = [...elemento.childNodes]
+          .filter((nodo) => nodo.nodeType === Node.TEXT_NODE)
+          .map((nodo) => nodo.textContent)
+          .join(" ").trim();
+        if (!textoDirecto) return;
+        const estilo = getComputedStyle(elemento);
+        if (estilo.display === "none" || estilo.visibility === "hidden") return;
+        let texto = (elemento.innerText || textoDirecto).trim();
+        if (estilo.textTransform === "uppercase") texto = texto.toLocaleUpperCase("es");
+        const area = caja(elemento);
+        const paddingIzquierdo = Number.parseFloat(estilo.paddingLeft) || 0;
+        const paddingDerecho = Number.parseFloat(estilo.paddingRight) || 0;
+        const anchoTexto = Math.max(1, area.width - paddingIzquierdo - paddingDerecho);
+        const tamanoFuente = Number.parseFloat(estilo.fontSize) || 10;
+        const interlineado = estilo.lineHeight === "normal" ? tamanoFuente * 1.2 : Number.parseFloat(estilo.lineHeight) || tamanoFuente * 1.2;
+        const maxLineas = Math.max(1, Math.floor((area.height + 1) / interlineado));
+        contexto.font = `${estilo.fontStyle} ${estilo.fontWeight} ${tamanoFuente}px ${estilo.fontFamily}`;
+        contexto.fillStyle = estilo.color;
+        contexto.textBaseline = "top";
+        const alineacion = estilo.textAlign === "center" ? "center" :
+          estilo.textAlign === "right" || estilo.textAlign === "end" ? "right" : "left";
+        contexto.textAlign = alineacion;
+        const x = alineacion === "center" ? area.x + area.width / 2 :
+          alineacion === "right" ? area.x + area.width - paddingDerecho : area.x + paddingIzquierdo;
+        const lineas = [];
+        texto.split(/\r?\n/).forEach((parrafo) => {
+          let linea = "";
+          parrafo.split(/\s+/).forEach((palabra) => {
+            const prueba = linea ? `${linea} ${palabra}` : palabra;
+            if (linea && contexto.measureText(prueba).width > anchoTexto) {
+              lineas.push(linea);
+              linea = palabra;
+            } else linea = prueba;
+          });
+          if (linea) lineas.push(linea);
+        });
+        lineas.slice(0, maxLineas).forEach((linea, indice) =>
+          contexto.fillText(linea, x, area.y + indice * interlineado, anchoTexto)
+        );
+      });
+      return canvas;
+    }
+
+    async function descargarGafetesPng(persona) {
+      const temporal = document.createElement("div");
+      temporal.setAttribute("aria-hidden", "true");
+      temporal.style.cssText = "position:fixed;left:-10000px;top:0;z-index:-1;";
+      temporal.innerHTML =
+        contenidoGafete(persona, "frente", estiloGafete) +
+        contenidoGafete(persona, "reverso", estiloGafete);
+      document.body.appendChild(temporal);
+      try {
+        const fotos = [...temporal.querySelectorAll(".avatar-photo")];
+        fotos.forEach((imagen) => cargarFoto(imagen, imagen.dataset.photoName));
+        await Promise.all(fotos.map((imagen) => {
+          const resultado = cacheFotos.get(imagen.dataset.photoName);
+          return resultado && typeof resultado.then === "function" ? resultado : Promise.resolve(resultado);
+        }));
+        prepararLogosGafete(temporal);
+        await Promise.all([...temporal.querySelectorAll(".badge-logo")].map((imagen) => {
+          if (imagen.complete) {
+            if (!imagen.naturalWidth) {
+              imagen.closest(".badge-brand")?.classList.add("logo-missing");
+              imagen.closest(".badge-card")?.classList.add("logo-missing");
+            }
+            return Promise.resolve();
+          }
+          return new Promise((resolve, reject) => {
+            const limite = window.setTimeout(() => reject(new Error("Se agotó el tiempo de espera del logo del gafete.")), 10000);
+            imagen.addEventListener("load", () => { window.clearTimeout(limite); resolve(); }, { once: true });
+            imagen.addEventListener("error", () => {
+              window.clearTimeout(limite);
+              imagen.closest(".badge-brand")?.classList.add("logo-missing");
+              imagen.closest(".badge-card")?.classList.add("logo-missing");
+              resolve();
+            }, { once: true });
+          });
+        }));
+        ajustarTextoGafete(temporal);
+        const nombres = ["frente", "reverso"];
+        const gafetes = [...temporal.querySelectorAll(".badge-card")];
+        const archivos = await Promise.all(gafetes.map((gafete) => new Promise((resolve, reject) => {
+          try {
+            pintarGafeteEnCanvas(gafete).toBlob((blob) => {
+              if (!blob) {
+                reject(new Error("El navegador no pudo generar la imagen PNG."));
+                return;
+              }
+              resolve(blob);
+            }, "image/png");
+          } catch (error) {
+            reject(error);
+          }
+        })));
+        const nombreArchivo = normalizarTexto(persona.nombre).replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "empleado";
+        archivos.forEach((archivo, indice) => {
+          const url = URL.createObjectURL(archivo);
+          const enlace = document.createElement("a");
+          enlace.href = url;
+          enlace.download = `gafete_${nombreArchivo}_${nombres[indice]}.png`;
+          document.body.appendChild(enlace);
+          enlace.click();
+          enlace.remove();
+          window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        });
+      } finally {
+        temporal.remove();
+      }
+    }
+
     async function prepararImpresionGafetes(personasParaImprimir, multiple) {
       const area = el("badge-print-area");
       if (multiple) {
@@ -2564,6 +2817,99 @@
       desplazamiento = { x: 0, y: 0 };
       renderizar();
       requestAnimationFrame(() => requestAnimationFrame(centrarVista));
+    }
+
+    function leerPuestosGuardados() {
+      const texto = localStorage.getItem(claveAlmacenamientoVacantes);
+      if (!texto) return [];
+      const datos = JSON.parse(texto);
+      if (!Array.isArray(datos)) throw new Error("El formato guardado debe ser una lista de puestos.");
+      return datos.map((puesto, indice) => {
+        if (!puesto || typeof puesto !== "object" || Array.isArray(puesto) ||
+            !String(puesto.id || "").trim() || !String(puesto.puesto || "").trim() ||
+            !String(puesto.area || "").trim() || !["abierto", "cerrado"].includes(puesto.estado)) {
+          throw new Error(`El puesto guardado en la posición ${indice + 1} tiene datos inválidos.`);
+        }
+        return {
+          id: String(puesto.id),
+          puesto: String(puesto.puesto).trim(),
+          area: String(puesto.area).trim(),
+          jefeId: String(puesto.jefeId || ""),
+          notas: String(puesto.notas || ""),
+          estado: puesto.estado,
+          creadoEn: puesto.creadoEn || "",
+          actualizadoEn: puesto.actualizadoEn || ""
+        };
+      });
+    }
+
+    function guardarPuestos(nuevosPuestos) {
+      if (errorCargaPuestos) {
+        throw new Error("No se pueden guardar cambios hasta corregir los puestos guardados inválidos.");
+      }
+      try {
+        localStorage.setItem(claveAlmacenamientoVacantes, JSON.stringify(nuevosPuestos));
+      } catch (error) {
+        throw new Error(`No se pudieron guardar los puestos en este navegador: ${error.message}`);
+      }
+      puestosGuardados = nuevosPuestos;
+      renderizarPuestos();
+    }
+
+    function renderizarPuestos() {
+      if (errorCargaPuestos) {
+        el("add-vacancy").disabled = true;
+        el("export-vacancies").disabled = true;
+        el("vacancy-list").textContent = `No se pudieron leer los puestos guardados: ${errorCargaPuestos.message}`;
+        return;
+      }
+      el("add-vacancy").disabled = false;
+      el("export-vacancies").disabled = false;
+      const formulario = el("vacancy-form");
+      const selectorJefe = formulario.elements.namedItem("jefeId");
+      selectorJefe.innerHTML = '<option value="">Sin asignar</option>' +
+        personasActivas.map((persona) =>
+          `<option value="${html(idKey(persona.id))}">${html(persona.nombre)} · ${html(persona.cargo)}</option>`
+        ).join("");
+      el("vacancy-list").innerHTML = puestosGuardados.length
+        ? puestosGuardados.slice().sort((a, b) =>
+          (a.estado === "abierto" ? 0 : 1) - (b.estado === "abierto" ? 0 : 1) ||
+          a.area.localeCompare(b.area, "es") || a.puesto.localeCompare(b.puesto, "es")
+        ).map((puesto) => {
+          const jefe = personasActivas.find((persona) => idKey(persona.id) === puesto.jefeId);
+          const estadoCerrado = puesto.estado === "cerrado";
+          return `<article class="vacancy-row">
+            <div class="vacancy-details"><strong>${html(puesto.puesto)}</strong>
+              <small>${html(puesto.area)} · Reporta a: ${html(jefe?.nombre || "Sin asignar")}</small>
+              ${puesto.notas ? `<small>${html(puesto.notas)}</small>` : ""}
+              <span class="vacancy-status${estadoCerrado ? " closed" : ""}">${estadoCerrado ? "Cerrado" : "Abierto"}</span>
+            </div>
+            <div class="vacancy-actions">
+              <button class="control" type="button" data-edit-vacancy="${html(puesto.id)}">Editar</button>
+              <button class="control" type="button" data-toggle-vacancy="${html(puesto.id)}">${estadoCerrado ? "Reabrir" : "Cerrar"}</button>
+            </div>
+          </article>`;
+        }).join("")
+        : '<div class="panel-empty">No hay puestos registrados.</div>';
+    }
+
+    function editarPuesto(puesto = null) {
+      const formulario = el("vacancy-form");
+      formulario.reset();
+      formulario.elements.namedItem("id").value = puesto?.id || "";
+      formulario.elements.namedItem("puesto").value = puesto?.puesto || "";
+      formulario.elements.namedItem("area").value = puesto?.area || "";
+      formulario.elements.namedItem("jefeId").value = puesto?.jefeId || "";
+      formulario.elements.namedItem("notas").value = puesto?.notas || "";
+      formulario.hidden = false;
+      formulario.elements.namedItem("puesto").focus();
+    }
+
+    function cerrarDialogoPuestos() {
+      el("vacancy-dialog").classList.remove("open");
+      el("manage-vacancies").setAttribute("aria-expanded", "false");
+      el("vacancy-form").hidden = true;
+      el("vacancy-form").reset();
     }
 
     /* ============================== Eventos ============================ */
@@ -2748,13 +3094,19 @@
       el("lightbox").classList.remove("open");
       el("lightbox").querySelector("img").removeAttribute("src");
     });
-    el("anniversary-button").addEventListener("click", () => {
-      renderizarAniversarios();
+    const abrirDialogoCelebraciones = (soloCumpleanos) => {
+      renderizarAniversarios(soloCumpleanos);
       el("anniversary-dialog").classList.add("open");
-      el("anniversary-button").setAttribute("aria-expanded", "true");
+      el("birthday-button").setAttribute("aria-expanded", String(soloCumpleanos));
+      el("anniversary-button").setAttribute("aria-expanded", String(!soloCumpleanos));
+    };
+    el("birthday-button").addEventListener("click", () => abrirDialogoCelebraciones(true));
+    el("anniversary-button").addEventListener("click", () => {
+      abrirDialogoCelebraciones(false);
     });
     const cerrarAniversarios = () => {
       el("anniversary-dialog").classList.remove("open");
+      el("birthday-button").setAttribute("aria-expanded", "false");
       el("anniversary-button").setAttribute("aria-expanded", "false");
     };
     el("close-anniversaries").addEventListener("click", cerrarAniversarios);
@@ -2762,6 +3114,89 @@
       if (evento.target === el("anniversary-dialog")) cerrarAniversarios();
     });
     el("export-anniversaries").addEventListener("click", exportarAniversariosDelMes);
+    el("manage-vacancies").addEventListener("click", () => {
+      renderizarPuestos();
+      el("vacancy-dialog").classList.add("open");
+      el("manage-vacancies").setAttribute("aria-expanded", "true");
+    });
+    el("close-vacancies").addEventListener("click", cerrarDialogoPuestos);
+    el("vacancy-dialog").addEventListener("click", (evento) => {
+      if (evento.target === el("vacancy-dialog")) cerrarDialogoPuestos();
+    });
+    el("add-vacancy").addEventListener("click", () => editarPuesto());
+    el("cancel-vacancy").addEventListener("click", () => {
+      el("vacancy-form").hidden = true;
+      el("vacancy-form").reset();
+    });
+    el("vacancy-list").addEventListener("click", (evento) => {
+      const editar = evento.target.closest("[data-edit-vacancy]");
+      if (editar) {
+        const puesto = puestosGuardados.find((item) => item.id === editar.dataset.editVacancy);
+        if (puesto) editarPuesto(puesto);
+        return;
+      }
+      const alternar = evento.target.closest("[data-toggle-vacancy]");
+      if (!alternar) return;
+      const id = alternar.dataset.toggleVacancy;
+      const ahora = new Date().toISOString();
+      try {
+        guardarPuestos(puestosGuardados.map((puesto) => puesto.id === id
+          ? { ...puesto, estado: puesto.estado === "abierto" ? "cerrado" : "abierto", actualizadoEn: ahora }
+          : puesto
+        ));
+        ocultarError();
+      } catch (error) {
+        mostrarError(error.message);
+      }
+    });
+    el("vacancy-form").addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      const formulario = evento.currentTarget;
+      const campos = new FormData(formulario);
+      const id = String(campos.get("id") || "");
+      const puesto = String(campos.get("puesto") || "").trim();
+      const area = String(campos.get("area") || "").trim();
+      const jefeId = String(campos.get("jefeId") || "");
+      if (!puesto || !area) {
+        mostrarError("Captura el nombre del puesto y el área.");
+        return;
+      }
+      if (jefeId && !personasActivas.some((persona) => idKey(persona.id) === jefeId)) {
+        mostrarError("El responsable seleccionado ya no existe en el organigrama.");
+        return;
+      }
+      const anterior = puestosGuardados.find((item) => item.id === id);
+      const ahora = new Date().toISOString();
+      const registro = {
+        id: id || (globalThis.crypto?.randomUUID?.() || `puesto-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`),
+        puesto,
+        area,
+        jefeId,
+        notas: String(campos.get("notas") || "").trim(),
+        estado: anterior?.estado || "abierto",
+        creadoEn: anterior?.creadoEn || ahora,
+        actualizadoEn: ahora
+      };
+      try {
+        guardarPuestos(anterior
+          ? puestosGuardados.map((item) => item.id === id ? registro : item)
+          : [...puestosGuardados, registro]
+        );
+        formulario.hidden = true;
+        formulario.reset();
+        ocultarError();
+      } catch (error) {
+        mostrarError(error.message);
+      }
+    });
+    el("export-vacancies").addEventListener("click", () => {
+      try {
+        descargarJson("puestos_vacantes_drfc.json", { version: 1, puestos: puestosGuardados });
+        ocultarError();
+      } catch (error) {
+        mostrarError(`No se pudieron exportar los puestos: ${error.message}`);
+      }
+    });
     el("close-badge").addEventListener("click", () => el("badge-dialog").classList.remove("open"));
     el("badge-dialog").addEventListener("click", (evento) => {
       if (evento.target === el("badge-dialog")) el("badge-dialog").classList.remove("open");
@@ -2864,6 +3299,16 @@
         mostrarError(`No se pudo descargar el gafete: ${error.message}`);
       }
     });
+    el("download-badge-png").addEventListener("click", async () => {
+      const persona = porId.get(personaGafeteId);
+      if (!persona) return;
+      try {
+        await descargarGafetesPng(persona);
+        ocultarError();
+      } catch (error) {
+        mostrarError(`No se pudieron descargar las imágenes PNG del gafete: ${error.message}`);
+      }
+    });
     el("open-multi-badge").addEventListener("click", () => {
       const areas = [...new Set(personasActivas.map((persona) => persona.area).filter(Boolean))]
         .sort((a, b) => a.localeCompare(b, "es"));
@@ -2905,6 +3350,7 @@
       if (evento.key === "Escape") {
         cerrarPanel();
         cerrarAniversarios();
+        cerrarDialogoPuestos();
         el("badge-dialog").classList.remove("open");
         el("multi-badge-dialog").classList.remove("open");
         el("lightbox").classList.remove("open");
@@ -2952,6 +3398,12 @@
     window.addEventListener("resize", () => requestAnimationFrame(dibujarConectores));
 
     /* ================================ Inicio =========================== */
+    try {
+      puestosGuardados = leerPuestosGuardados();
+    } catch (error) {
+      errorCargaPuestos = error;
+      mostrarError(`No se pudieron leer los puestos guardados: ${error.message}`);
+    }
     try {
       aceptarDatos(personasActivas);
     } catch (error) {
