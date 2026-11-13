@@ -973,7 +973,7 @@ const organigrama = [
     "Observaciones": null,
     "ID Empleado (BD)": 35190166203,
     "Tipo de área": "Operativa",
-    "Correo": "imanol.gonzalez.drfc@gmail.com",
+    "Correo": "imanol",
     "Preparación académica": null,
     "Fecha de ingreso": "2026-06-01",
     "Fecha de nacimiento": null,
