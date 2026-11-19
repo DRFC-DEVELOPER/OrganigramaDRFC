@@ -554,14 +554,26 @@
       color: var(--badge-black); border: .15mm solid #d4d7da; border-radius: 3mm; background: #fff;
       box-shadow: none; font-family: Arial, Helvetica, sans-serif; print-color-adjust: exact; -webkit-print-color-adjust: exact;
     }
-    .badge-brand { display: grid; justify-items: center; align-content: center; gap: .35mm; min-height: 0; }
-    .badge-logo { display: block; width: 44mm; height: auto; max-height: 100%; object-fit: contain; }
-    .badge-card:not(.badge-back):not(.badge-style-band) .badge-logo { width: 30mm; }
-    .badge-company-name { color: var(--badge-black); font-size: 5.5pt; font-weight: 700; line-height: 1; text-align: center; }
+    .badge-brand { position: relative; display: flex; justify-content: center; align-items: center; min-height: 13.5mm; overflow: hidden; padding: .5mm 1mm; border-top: .6mm solid #2c6ea6; border-bottom: .8mm solid #2c6ea6; background: linear-gradient(110deg, #f1f7fb, #e4f0f7); }
+    .badge-brand-logos { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 1mm; width: 100%; }
+    .badge-body-circuit-art { position: absolute; z-index: 0; top: 14mm; right: 0; bottom: 0; left: 0; width: 100%; height: auto; object-fit: fill; opacity: .2; pointer-events: none; }
+    .badge-card > :not(.badge-body-circuit-art) { z-index: 1; }
+    .badge-logo-shell { position: relative; z-index: 1; display: grid; place-items: center; padding: 0; }
+    .badge-logo { display: block; width: 37mm; height: 12mm; max-height: 100%; object-fit: contain; }
+    .badge-client-brand { display: grid; place-items: center; box-sizing: border-box; width: 15mm; height: 9mm; padding: .4mm; overflow: hidden; border-radius: .7mm; background: #fff; }
+    .badge-client-logo { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+    .badge-client-placeholder { color: #536273; font-size: 4.5pt; font-weight: 700; line-height: 1.1; text-align: center; }
+    .badge-client-brand.logo-missing .badge-client-logo { display: none; }
+    .badge-brand-divider { width: .3mm; height: 7mm; background: #2c6ea6; }
     .badge-brand.logo-missing .badge-logo { display: none; }
+    .badge-brand.logo-missing .badge-logo-shell { display: none; }
+    .badge-client-brand:not(.logo-missing) .badge-client-placeholder { display: none; }
+    .badge-mode-campo .badge-brand-logos { justify-content: space-between; }
+    .badge-mode-campo:not(.badge-back) .badge-logo { width: 25mm; height: 9mm; }
     .badge-divider { width: 100%; height: .4mm; background: var(--badge-accent); }
-    .badge-photo { position: relative; display: grid; place-items: center; justify-self: center; overflow: hidden; width: 30mm; height: 38mm; color: var(--badge-black); border: .3mm solid var(--badge-black); background: #fff; }
-    .badge-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); transform: scale(var(--badge-frame-zoom, 1.15)); transform-origin: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); }
+    .badge-photo { position: relative; display: grid; place-items: center; justify-self: center; overflow: hidden; width: 30mm; height: 38mm; color: var(--badge-black); background: #fff; }
+    .badge-photo > .avatar-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); transform: scale(var(--badge-frame-zoom, 1.15)); transform-origin: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); }
+    .badge-photo-frame { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
     .badge-photo.has-photo .badge-initials { display: none; }
     .badge-initials { font: 800 17pt/1 Arial, Helvetica, sans-serif; }
     .badge-photo { touch-action: none; user-select: none; }
@@ -578,7 +590,7 @@
     .badge-frame-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     .badge-frame-notice { color: var(--muted); font-size: 11px; text-align: center; }
     .badge-frame-guides[hidden] { display: none; }
-    .badge-name { align-self: center; max-width: 100%; max-height: 2.35em; overflow: hidden; color: var(--badge-black); font-size: 11pt; font-weight: 700; line-height: 1.08; text-align: center; text-transform: uppercase; }
+    .badge-name { align-self: center; max-width: 100%; max-height: 2.35em; overflow: hidden; color: #10243a; font-size: 11pt; font-weight: 700; line-height: 1.08; text-align: center; text-transform: uppercase; }
     .badge-job { align-self: center; max-width: 100%; overflow: hidden; color: #444; font-size: 7pt; line-height: 1.05; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
     .badge-area { max-width: 100%; overflow-wrap: anywhere; font-size: 6.5pt; }
     .badge-validity { font-size: 6.5pt; }
@@ -586,26 +598,60 @@
     .badge-field-label { color: var(--badge-accent); font-size: 6pt; line-height: 1; }
     .badge-id { color: var(--badge-black); font-size: 9pt; font-weight: 700; overflow-wrap: anywhere; }
     .badge-style-savings { --badge-accent: var(--badge-black); }
+    .badge-style-savings .badge-brand { border-bottom-color: var(--badge-black); background: #f0f0f0; }
+    .badge-style-savings .badge-body-circuit-art { filter: grayscale(1); }
+    .badge-style-savings .badge-logo-shell { background: #f0f0f0; }
     .badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
-    .badge-style-savings .badge-photo img { filter: grayscale(1); }
+    .badge-style-savings .badge-brand-divider { background: var(--badge-black); }
+    .badge-style-savings .badge-photo > .avatar-photo, .badge-style-savings .badge-photo-frame { filter: grayscale(1); }
+    .badge-style-savings .badge-footer-art { filter: grayscale(1); }
     .badge-style-band { grid-template-rows: .4mm 38mm auto auto auto auto auto .4mm; align-content: space-between; gap: .45mm; padding-top: 15mm; }
-    .badge-style-band .badge-brand { position: absolute; inset: 0 0 auto; display: grid; height: 14mm; background: var(--badge-blue); }
-    .badge-style-band .badge-logo { width: auto; height: 8mm; max-width: 44mm; max-height: 8mm; object-fit: contain; filter: brightness(0) invert(1); }
-    .badge-style-band .badge-company-name { color: #fff; font-size: 4.5pt; }
+    .badge-style-band .badge-brand { position: absolute; inset: 0 0 auto; height: 14mm; padding: 0 1.5mm; border-bottom-color: #2c6ea6; background: linear-gradient(110deg, #e5f1f8, #d7eaf5); }
+    .badge-style-band .badge-logo { width: 34mm; height: 10mm; max-width: 44mm; max-height: 10mm; }
+    .badge-style-band.badge-mode-campo:not(.badge-back) .badge-logo { width: 25mm; height: 9mm; }
+    .badge-style-band .badge-client-brand { width: 14mm; height: 9mm; }
     .badge-style-band .badge-divider-top { visibility: hidden; }
     .badge-style-band.logo-missing .badge-brand { background: #fff; }
-    .badge-style-band.logo-missing .badge-company-name { color: var(--badge-black); }
     .badge-style-savings .badge-brand, .badge-style-savings .badge-job { color: #444; }
     .badge-back { display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 1.2mm; text-align: center; }
+    .badge-back .badge-brand { flex: 0 0 13.5mm; }
+    .badge-back .badge-logo { width: 37mm; }
     .badge-back-content { display: grid; gap: .7mm; font-size: 7pt; line-height: 1.1; overflow-wrap: anywhere; }
-    .badge-back-details { display: grid; gap: 1.5mm; text-align: left; }
+    .badge-back-content strong { padding: 0; color: #10243a; background: transparent; }
+    .badge-back-details { display: grid; gap: 1.5mm; padding: 1.3mm; border-top: .8mm solid #2c6ea6; border-radius: 1mm; background: #edf5fa; text-align: left; }
     .badge-back-field { display: grid; gap: .4mm; font-size: 6.5pt; line-height: 1.1; overflow-wrap: anywhere; }
     .badge-back-field-label { color: var(--badge-accent); font-size: 5pt; font-weight: 700; }
-    .badge-signatures { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4mm; min-height: 17mm; }
+    .badge-signatures { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4mm; min-height: 13mm; }
     .badge-signature { display: grid; gap: .7mm; font-size: 5.5pt; }
     .badge-signature-line { height: 9mm; border-bottom: .2mm solid var(--badge-black); }
     .badge-company-address { font-size: 6pt; font-style: normal; line-height: 1.1; }
     .badge-legal { font-size: 5pt; }
+    .badge-back .badge-legal { margin-bottom: 2mm; }
+    .badge-footer-art { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; display: block; width: 100%; height: 3mm; object-fit: fill; pointer-events: none; }
+    .badge-corporate-front {
+      grid-template-rows: 14mm 32mm auto auto minmax(5mm, auto) 5mm 5mm; align-content: space-between; gap: .6mm;
+      padding: 0 3mm 2mm; color: #10243a; background: #fff;
+    }
+    .badge-corporate-front .badge-brand { position: relative; inset: auto; min-height: 14mm; height: 14mm; margin: 0 -3mm; padding: .5mm 1mm; border-bottom: .8mm solid #2c6ea6; background: linear-gradient(110deg, #f1f7fb, #e4f0f7); }
+    .badge-corporate-front .badge-logo-shell { padding: 0; background: transparent; }
+    .badge-corporate-front .badge-hero { display: grid; place-items: center; min-height: 0; }
+    .badge-corporate-front .badge-photo { width: 29mm; height: 32mm; border: .45mm solid #2c6ea6; border-radius: 1.6mm; background: #edf5fa; }
+    .badge-corporate-front .badge-photo-frame, .badge-corporate-front .badge-frame-guides { display: none; }
+    .badge-corporate-front .badge-name { color: #10243a; font-size: 11pt; line-height: 1.05; }
+    .badge-corporate-front .badge-job { justify-self: center; max-width: 100%; padding: .65mm 3mm; border-radius: 99px; color: #fff; background: #2c6ea6; font-size: 7.5pt; font-weight: 700; line-height: 1.1; }
+    .badge-corporate-front .badge-field { grid-template-columns: auto minmax(0, 1fr); justify-items: start; gap: 1.3mm; padding: 0 1.8mm; overflow: hidden; border: .15mm solid #dce8f1; border-radius: 1mm; color: #10243a; background: #f2f7fb; text-align: left; }
+    .badge-corporate-front .badge-field-label { color: #2c6ea6; font-size: 6.5pt; font-weight: 700; text-transform: uppercase; }
+    .badge-corporate-front .badge-field strong { min-width: 0; overflow: hidden; font-size: 7.5pt; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+    .badge-corporate-front .badge-area strong { overflow: visible; line-height: 1.05; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; }
+    .badge-corporate-front.badge-mode-campo .badge-logo { width: 25mm; height: 9mm; }
+    .badge-corporate-front.badge-mode-campo .badge-client-brand { width: 15mm; height: 9mm; }
+    .badge-corporate-front.badge-style-band .badge-brand { background: linear-gradient(110deg, #e5f1f8, #d7eaf5); }
+    .badge-corporate-front.badge-style-savings .badge-brand { border-bottom-color: #444; background: #f0f0f0; }
+    .badge-corporate-front.badge-style-savings .badge-logo-shell { background: #f0f0f0; }
+    .badge-corporate-front.badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
+    .badge-corporate-front.badge-style-savings .badge-job { color: #fff; background: #555; }
+    .badge-corporate-front::after { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; height: .8mm; content: ""; background: #2c6ea6; }
+    .badge-corporate-front.badge-style-savings::after { background: #444; }
     .badge-missing-notes { display: grid; justify-items: center; gap: 3px; color: #5b5350; font-size: 11px; }
     .badge-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
     .vacancy-list { display: grid; gap: 8px; max-height: 55vh; overflow-y: auto; margin: 14px 0; }
@@ -769,6 +815,7 @@
       <label class="control crew-view-toggle" title="Muestra como tarjetas individuales a todas las personas agrupadas">
         <input id="show-full-crews" type="checkbox"> Mostrar cuadrillas completas
       </label>
+      <button class="control" id="manage-people" type="button" aria-expanded="false" aria-controls="people-dialog">Personal</button>
       <button class="control" id="manage-vacancies" type="button" aria-expanded="false" aria-controls="vacancy-dialog">Puestos y vacantes</button>
       <button class="control" id="birthday-button" type="button" aria-expanded="false" aria-controls="anniversary-dialog">🎂 Cumpleaños</button>
       <button class="control" id="anniversary-button" type="button" aria-expanded="false" aria-controls="anniversary-dialog">🎉 Celebraciones <span id="anniversary-count">0</span></button>
@@ -836,6 +883,12 @@
     <div class="dialog-card">
       <div class="dialog-heading"><h2 id="badge-title">Vista previa del gafete</h2><button class="icon-control" id="close-badge" type="button" aria-label="Cerrar">×</button></div>
       <div class="badge-preview-settings">
+        <label>Modalidad del gafete
+          <select id="badge-mode-preview">
+            <option value="oficina">Oficina</option>
+            <option value="campo">Campo</option>
+          </select>
+        </label>
         <label>Estilo de impresión
           <select id="badge-style-preview">
             <option value="estandar">Estándar</option>
@@ -849,6 +902,7 @@
         </label>
         <span id="badge-style-note" class="panel-empty" aria-live="polite"></span>
       </div>
+      <p class="notice">En modalidad Campo se reserva espacio para el logo de la empresa cliente. Si aún no está cargado, aparecerá un marcador.</p>
       <div class="badge-preview-tools" aria-label="Zoom de vista previa">
         <button class="control" id="badge-zoom-out" type="button" aria-label="Alejar">−</button>
         <span id="badge-zoom-value" class="panel-empty">100%</span>
@@ -885,6 +939,7 @@
         <label>Buscar empleado<input id="badge-search" type="search" placeholder="Nombre o ID de empleado"></label>
         <label>Área<select id="badge-area"><option value="">Todas las áreas</option></select></label>
         <label>Tipo<select id="badge-type"><option value="">Todos los tipos</option></select></label>
+        <label>Modalidad<select id="badge-mode"><option value="">Oficina y campo</option><option value="oficina">Oficina</option><option value="campo">Campo</option></select></label>
         <label>Estilo de impresión
           <select id="badge-style-multiple">
             <option value="estandar">Estándar</option>
@@ -923,8 +978,39 @@
       <div id="vacancy-list" class="vacancy-list" aria-live="polite"></div>
     </div>
   </section>
+  <section id="people-dialog" class="badge-dialog" role="dialog" aria-modal="true" aria-labelledby="people-title">
+    <div class="dialog-card">
+      <div class="dialog-heading"><h2 id="people-title">Gestionar personal</h2><button class="icon-control" id="close-people" type="button" aria-label="Cerrar">×</button></div>
+      <p class="notice">Las altas y bajas se guardan en este navegador. Exporta el CSV del organigrama activo para respaldarlo.</p>
+      <div class="vacancy-dialog-actions">
+        <button class="control primary" id="add-person" type="button">Dar de alta persona</button>
+      </div>
+      <form id="person-form" class="panel-form" hidden>
+        <label>Nombre<input name="nombre" maxlength="160" required></label>
+        <label>Puesto<input name="cargo" maxlength="120" required></label>
+        <label>Área<input name="area" maxlength="120" required></label>
+        <label>Tipo de área
+          <select name="tipo" required><option value="">Selecciona un tipo</option><option value="Operativa">Operativa</option><option value="Administrativa">Administrativa</option></select>
+        </label>
+        <label>Modalidad del gafete
+          <select name="modalidadGafete"><option value="oficina">Oficina</option><option value="campo">Campo</option></select>
+        </label>
+        <label>Logo de la empresa cliente (ruta local)<input name="logoEmpresaServicio" maxlength="500" placeholder="assets/img/logos/cliente.png"></label>
+        <label>Jefe inmediato
+          <select name="jefeId" required><option value="">Selecciona un jefe</option></select>
+        </label>
+        <label>Correo electrónico<input name="email" type="email" maxlength="160"></label>
+        <div class="form-actions">
+          <button class="control primary" type="submit">Guardar persona</button>
+          <button class="control" id="cancel-person" type="button">Cancelar</button>
+        </div>
+      </form>
+      <h3 class="reports-heading">Personal archivado</h3>
+      <div id="inactive-people-list" class="vacancy-list" aria-live="polite"></div>
+    </div>
+  </section>
 
-  <script src="datos_organigrama.js?v=20261113-1"></script>
+  <script src="datos_organigrama.js?v=20261118-2"></script>
   <script>
     /* ============================== Datos ============================== */
     const ENCUADRE_POR_DEFECTO = { zoom: 1.15, x: 50, y: 15 };
@@ -946,6 +1032,8 @@
             idEmpleado: persona["ID Empleado (BD)"] ?? null,
             email: persona["Correo"] ?? "",
             formacion: persona["Preparación académica"] ?? "",
+            modalidadGafete: persona["Modalidad del gafete"] ?? persona.modalidadGafete ?? "oficina",
+            logoEmpresaServicio: persona["Logo empresa servicio"] ?? persona.logoEmpresaServicio ?? "",
             fechaIngreso: persona["Fecha de ingreso"] ?? "",
             fechaNacimiento: persona["Fecha de nacimiento"] ?? "",
             tipoSangre: persona["Tipo de sangre"] ?? "",
@@ -956,6 +1044,7 @@
             agrupado: ["sí", "si", "yes"].includes(String(persona["Agrupado en cuadrilla"] ?? "No").trim().toLowerCase())
           }))
         : []);
+    const personasBase = personasActivas.map((persona) => ({ ...persona }));
     let raiz = null;
     let porId = new Map();
     let coloresPorPersona = new Map();
@@ -973,15 +1062,22 @@
     let arrastreEncuadre = null;
     let fotosFicha = new Map();
     let encuadresGafete = {};
-    const camposCapturables = ["tipo", "idEmpleado", "email", "formacion", "fechaIngreso", "fechaNacimiento", "tipoSangre", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
+    const camposCapturables = ["cargo", "area", "tipo", "jefeId", "idEmpleado", "email", "formacion", "modalidadGafete", "logoEmpresaServicio", "fechaIngreso", "fechaNacimiento", "tipoSangre", "vigencia", "numeroSeguroSocial", "contactoEmergencia"];
     const claveAlmacenamiento = "drfc_rrhh_cambios_v1";
+    const claveAlmacenamientoPersonal = "drfc_rrhh_personas_v1";
     const claveAlmacenamientoVacantes = "drfc_puestos_v1";
     const claveVersionDatosBase = "drfc_rrhh_version_datos_base";
     let puestosGuardados = [];
     let errorCargaPuestos = null;
-    // Incrementa esta versión cuando cambien datos personales en el JavaScript.
-    const versionDatosBase = "20261113-1";
+    let estadoPersonal = { agregadas: [], archivadas: [], eliminadas: [] };
+    let errorCargaPersonal = null;
+    // Incrementa esta versión cuando cambien los datos base del organigrama.
+    const versionDatosBase = "20261118-2";
     const camposSinDato = "Pendiente de captura";
+    function normalizarModalidadGafete(valor) {
+      return String(valor || "").trim().toLocaleLowerCase("es") === "campo" ? "campo" : "oficina";
+    }
+
     const rangosCuadrilla = [
       { valor: 1, nombre: "Supervisor", tono: "#174f70" },
       { valor: 2, nombre: "Jefe de Cuadrilla", tono: "#236b8d" },
@@ -1108,6 +1204,37 @@
     function normalizarPuesto(cargo) {
       return String(cargo || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .toLocaleLowerCase("es").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+    }
+
+    function esJefeElegible(persona) {
+      return /\b(jefatura|jefe|jefa|gerencia|gerente|supervisor|supervisora|director|directora)\b/.test(
+        normalizarPuesto(persona.cargo)
+      );
+    }
+
+    function opcionesJefesHtml(personaExcluirId = "", jefeActualId = "", etiquetaVacia = "Sin jefe directo") {
+      const elegibles = personasActivas.filter((persona) =>
+        idKey(persona.id) !== idKey(personaExcluirId) && esJefeElegible(persona)
+      );
+      const jefeActual = jefeActualId
+        ? personasActivas.find((persona) => idKey(persona.id) === idKey(jefeActualId))
+        : null;
+      if (jefeActual && !elegibles.some((persona) => idKey(persona.id) === idKey(jefeActual.id))) {
+        elegibles.unshift(jefeActual);
+      }
+      return `<option value="">${html(etiquetaVacia)}</option>` + elegibles.map((persona) =>
+        `<option value="${html(idKey(persona.id))}" ${idKey(persona.id) === idKey(jefeActualId) ? "selected" : ""}>${html(persona.nombre)} · ${html(persona.cargo)}</option>`
+      ).join("");
+    }
+
+    function validarJefeAsignado(personaId, jefeId, jefeActualId = "") {
+      if (!jefeId) return;
+      if (idKey(personaId) === idKey(jefeId)) throw new Error("Una persona no puede ser su propio jefe inmediato.");
+      const jefe = personasActivas.find((persona) => idKey(persona.id) === idKey(jefeId));
+      if (!jefe) throw new Error("El jefe inmediato seleccionado ya no existe en el organigrama.");
+      if (idKey(jefeId) !== idKey(jefeActualId) && !esJefeElegible(jefe)) {
+        throw new Error("El jefe inmediato debe tener puesto de jefatura, gerencia, supervisión o dirección.");
+      }
     }
 
     function familiaPuesto(cargo) {
@@ -1244,6 +1371,82 @@
       return { ...persona, ...(cambiosGuardados[idKey(persona.id)] || {}) };
     }
 
+    function leerEstadoPersonal() {
+      const texto = localStorage.getItem(claveAlmacenamientoPersonal);
+      if (!texto) return { agregadas: [], archivadas: [], eliminadas: [] };
+      const datos = JSON.parse(texto);
+      if (!datos || Array.isArray(datos) || typeof datos !== "object" ||
+          !Array.isArray(datos.agregadas) || !Array.isArray(datos.archivadas) || !Array.isArray(datos.eliminadas)) {
+        throw new Error("El formato guardado del personal no es válido.");
+      }
+      const ids = new Set(personasBase.map((persona) => idKey(persona.id)));
+      const agregadas = datos.agregadas.map((persona, indice) => {
+        if (!persona || typeof persona !== "object" || Array.isArray(persona) ||
+            !String(persona.id || "").trim() || !String(persona.nombre || "").trim() ||
+            !String(persona.cargo || "").trim() || !String(persona.area || "").trim() ||
+            !String(persona.jefeId || "").trim()) {
+          throw new Error(`La persona agregada en la posición ${indice + 1} tiene datos inválidos.`);
+        }
+        const id = idKey(persona.id);
+        if (ids.has(id)) throw new Error(`El ID "${id}" está duplicado en el personal guardado.`);
+        ids.add(id);
+        return {
+          id,
+          nombre: String(persona.nombre).trim(),
+          cargo: String(persona.cargo).trim(),
+          area: String(persona.area).trim(),
+          tipo: String(persona.tipo || ""),
+          jefeId: idKey(persona.jefeId),
+          nivel: null,
+          idEmpleado: String(persona.idEmpleado || ""),
+          email: String(persona.email || ""),
+          formacion: "",
+          fechaIngreso: "",
+          fechaNacimiento: "",
+          tipoSangre: "",
+          vigencia: "",
+          numeroSeguroSocial: "",
+          contactoEmergencia: "",
+          rangoCuadrilla: null,
+          agrupado: false
+        };
+      });
+      return {
+        agregadas,
+        archivadas: [...new Set(datos.archivadas.map(idKey))],
+        eliminadas: [...new Set(datos.eliminadas.map(idKey))]
+      };
+    }
+
+    function guardarEstadoPersonal(nuevoEstado, nuevosCambios = null) {
+      if (errorCargaPersonal) {
+        throw new Error("No se pueden guardar cambios hasta corregir los datos de personal guardados.");
+      }
+      const estadoAnterior = localStorage.getItem(claveAlmacenamientoPersonal);
+      const cambiosAnteriores = localStorage.getItem(claveAlmacenamiento);
+      try {
+        if (nuevosCambios) localStorage.setItem(claveAlmacenamiento, JSON.stringify(nuevosCambios));
+        localStorage.setItem(claveAlmacenamientoPersonal, JSON.stringify(nuevoEstado));
+      } catch (error) {
+        try {
+          if (estadoAnterior === null) localStorage.removeItem(claveAlmacenamientoPersonal);
+          else localStorage.setItem(claveAlmacenamientoPersonal, estadoAnterior);
+          if (nuevosCambios) {
+            if (cambiosAnteriores === null) localStorage.removeItem(claveAlmacenamiento);
+            else localStorage.setItem(claveAlmacenamiento, cambiosAnteriores);
+          }
+        } catch (errorRollback) {
+          throw new Error(`No se pudieron guardar los cambios de personal: ${error.message}. Tampoco se pudo restaurar el estado anterior: ${errorRollback.message}`);
+        }
+        throw new Error(`No se pudieron guardar los cambios de personal: ${error.message}`);
+      }
+      estadoPersonal = nuevoEstado;
+      if (nuevosCambios) {
+        Object.keys(cambiosGuardados).forEach((id) => delete cambiosGuardados[id]);
+        Object.assign(cambiosGuardados, nuevosCambios);
+      }
+    }
+
     function sincronizarDatosBase() {
       let cambiosActualizados;
       try {
@@ -1274,7 +1477,7 @@
         localStorage.setItem(claveAlmacenamiento, JSON.stringify(cambiosActualizados));
         localStorage.setItem(claveVersionDatosBase, versionDatosBase);
       } catch (error) {
-        mostrarError(`No se pudieron sincronizar el correo y la fecha de ingreso con el JavaScript actualizado: ${error.message}`);
+        mostrarError(`No se pudieron sincronizar los datos base con el JavaScript actualizado: ${error.message}`);
         return;
       }
       Object.keys(cambiosGuardados).forEach((id) => delete cambiosGuardados[id]);
@@ -1469,17 +1672,36 @@
       camposCapturables.forEach((campo) => {
         if (Object.prototype.hasOwnProperty.call(campos, campo)) nuevos[campo] = campos[campo];
       });
-      cambiosGuardados[id] = nuevos;
-      try {
-        localStorage.setItem(claveAlmacenamiento, JSON.stringify(cambiosGuardados));
-      } catch (error) {
-        delete cambiosGuardados[id];
-        if (Object.keys(anteriores).length) cambiosGuardados[id] = anteriores;
-        throw new Error(`No se pudieron guardar los cambios en este navegador: ${error.message}`);
+      if (Object.prototype.hasOwnProperty.call(campos, "modalidadGafete")) {
+        const modalidad = String(campos.modalidadGafete || "").trim().toLocaleLowerCase("es");
+        if (!["oficina", "campo"].includes(modalidad)) {
+          throw new Error("La modalidad del gafete debe ser Oficina o Campo.");
+        }
+        nuevos.modalidadGafete = modalidad;
       }
       const base = personasActivas.find((persona) => idKey(persona.id) === idKey(id));
-      if (base) Object.assign(base, nuevos);
-      const arbol = prepararArbol(personasActivas);
+      if (!base) throw new Error("No se encontró la persona que se está editando.");
+      if (Object.prototype.hasOwnProperty.call(campos, "jefeId")) {
+        validarJefeAsignado(id, campos.jefeId, base.jefeId);
+      }
+      const reportesDirectos = personasActivas.filter((persona) => idKey(persona.jefeId) === idKey(id));
+      if (reportesDirectos.length && Object.prototype.hasOwnProperty.call(campos, "cargo") &&
+          !esJefeElegible({ cargo: campos.cargo })) {
+        throw new Error("Reasigna a las personas a su cargo antes de cambiar este puesto a uno sin jefatura.");
+      }
+      const listaActualizada = personasActivas.map((persona) =>
+        idKey(persona.id) === idKey(id) ? { ...persona, ...nuevos } : persona
+      );
+      const arbol = prepararArbol(listaActualizada);
+      const cambiosActualizados = { ...cambiosGuardados, [idKey(id)]: nuevos };
+      try {
+        localStorage.setItem(claveAlmacenamiento, JSON.stringify(cambiosActualizados));
+      } catch (error) {
+        throw new Error(`No se pudieron guardar los cambios en este navegador: ${error.message}`);
+      }
+      Object.keys(cambiosGuardados).forEach((clave) => delete cambiosGuardados[clave]);
+      Object.assign(cambiosGuardados, cambiosActualizados);
+      personasActivas = listaActualizada;
       raiz = arbol.raiz;
       porId = arbol.mapa;
       coloresPorPersona = arbol.coloresPorPersona;
@@ -1672,7 +1894,7 @@
         if (indice < 0) throw new Error(`Falta la columna "${nombre}" en el CSV.`);
         indices[nombre] = indice;
       });
-      ["vigencia", "numeroSeguroSocial", "contactoEmergencia", "fechaNacimiento", "tipoSangre"].forEach((nombre) => {
+      ["vigencia", "numeroSeguroSocial", "contactoEmergencia", "fechaNacimiento", "tipoSangre", "modalidadGafete", "logoEmpresaServicio"].forEach((nombre) => {
         const indice = encabezados.indexOf(nombre);
         if (indice >= 0) indices[nombre] = indice;
       });
@@ -1692,7 +1914,7 @@
           formacion: leer("formacion"),
           fechaIngreso: leer("fechaIngreso")
         };
-        ["vigencia", "numeroSeguroSocial", "contactoEmergencia", "fechaNacimiento", "tipoSangre"].forEach((nombre) => {
+        ["vigencia", "numeroSeguroSocial", "contactoEmergencia", "fechaNacimiento", "tipoSangre", "modalidadGafete", "logoEmpresaServicio"].forEach((nombre) => {
           if (Object.prototype.hasOwnProperty.call(indices, nombre)) persona[nombre] = leer(nombre);
         });
         return persona;
@@ -1917,7 +2139,7 @@
     }
 
     function exportarPersonas(lista, nombre = "datos_rrhh_drfc.csv") {
-      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "fechaIngreso", "fechaNacimiento", "tipoSangre", "vigencia", "numeroSeguroSocial", "contactoEmergencia", "rangoCuadrilla", "agrupado"];
+      const columnas = ["id", "nombre", "cargo", "area", "tipo", "jefeId", "nivel", "idEmpleado", "email", "formacion", "modalidadGafete", "logoEmpresaServicio", "fechaIngreso", "fechaNacimiento", "tipoSangre", "vigencia", "numeroSeguroSocial", "contactoEmergencia", "rangoCuadrilla", "agrupado"];
       descargarCsv(nombre, columnas, lista.map((persona) => columnas.map((campo) => persona[campo] ?? "")));
     }
 
@@ -1932,11 +2154,24 @@
         if (!base) throw new Error(`El ID "${id}" no existe en datos_organigrama.js; no se agregarán personas.`);
         if (idsImportados.has(id)) throw new Error(`El ID "${id}" aparece más de una vez en el CSV.`);
         idsImportados.add(id);
-        if (fila.nombre !== base.nombre || fila.cargo !== base.cargo || fila.area !== base.area) {
-          throw new Error(`Los datos base de "${base.nombre}" no coinciden. El CSV solo puede actualizar campos capturables.`);
+        if (fila.nombre !== base.nombre) {
+          throw new Error(`El nombre de "${base.nombre}" no coincide. El CSV no puede actualizar nombres.`);
+        }
+        if (!fila.cargo || !fila.area) {
+          throw new Error(`El puesto y el área de "${base.nombre}" son obligatorios.`);
+        }
+        if (fila.jefeId) {
+          const jefe = personasActivas.find((persona) => idKey(persona.id) === idKey(fila.jefeId));
+          if (!jefe) throw new Error(`El jefe inmediato de "${base.nombre}" no existe en el organigrama.`);
+          if (idKey(fila.jefeId) === id || (idKey(fila.jefeId) !== idKey(base.jefeId) && !esJefeElegible(jefe))) {
+            throw new Error(`El jefe inmediato de "${base.nombre}" debe ser otra persona con jefatura, gerencia, supervisión o dirección.`);
+          }
         }
         if (fila.tipo && !["Operativa", "Administrativa"].includes(fila.tipo)) {
           throw new Error(`El tipo de área de "${fila.nombre}" debe ser Operativa o Administrativa.`);
+        }
+        if (fila.modalidadGafete && !["oficina", "campo"].includes(fila.modalidadGafete.toLocaleLowerCase("es"))) {
+          throw new Error(`La modalidad del gafete de "${fila.nombre}" debe ser Oficina o Campo.`);
         }
         if (fila.fechaIngreso && !fechaValida(fila.fechaIngreso)) {
           throw new Error(`La fecha de ingreso de "${fila.nombre}" debe tener formato AAAA-MM-DD.`);
@@ -1951,6 +2186,10 @@
             : (nuevosCambios[id]?.[campo] ?? base[campo] ?? "")
         ]));
       });
+      prepararArbol(personasActivas.map((persona) => ({
+        ...persona,
+        ...(nuevosCambios[idKey(persona.id)] || {})
+      })));
       try {
         localStorage.setItem(claveAlmacenamiento, JSON.stringify(nuevosCambios));
       } catch (error) {
@@ -2032,7 +2271,9 @@
           <h3>${html(persona.nombre)}</h3>
           <p>${html(persona.cargo)}</p>
           <div class="panel-actions">
-            <button type="button" class="control" data-edit-person="${html(idKey(persona.id))}">Editar datos</button>
+            <button type="button" class="control" data-edit-person="${html(idKey(persona.id))}">Editar ficha</button>
+            <button type="button" class="control" data-retire-person="${html(idKey(persona.id))}">Dar de baja</button>
+            <button type="button" class="control" data-delete-person="${html(idKey(persona.id))}">Eliminar definitivamente</button>
             <button type="button" class="control primary" data-badge-person="${html(idKey(persona.id))}">Generar gafete</button>
           </div>
           <p class="notice">Los cambios se guardan solo en este navegador; exporta el CSV para conservarlos.</p>
@@ -2057,7 +2298,12 @@
           ${cumpleanos ? `<div class="wide"><span class="detail-label">Próximo cumpleaños</span><span class="detail-value">${cumpleanos.esHoy ? "🎂 Hoy" : `En ${cumpleanos.faltan} días · ${html(new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "long" }).format(cumpleanos.fecha))}`}</span></div>` : ""}
         </div>
         <form class="panel-form" id="employee-edit-form" hidden>
+          <label>Puesto<input name="cargo" value="${html(persona.cargo)}" maxlength="120" required></label>
+          <label>Área<input name="area" value="${html(persona.area)}" maxlength="120" required></label>
+          <label>Jefe inmediato<select name="jefeId">${opcionesJefesHtml(persona.id, persona.jefeId)}</select></label>
           <label>Tipo de área<select name="tipo"><option value="">Pendiente de captura</option><option value="Operativa" ${persona.tipo === "Operativa" ? "selected" : ""}>Operativa</option><option value="Administrativa" ${persona.tipo === "Administrativa" ? "selected" : ""}>Administrativa</option></select></label>
+          <label>Modalidad del gafete<select name="modalidadGafete"><option value="oficina" ${normalizarModalidadGafete(persona.modalidadGafete) === "oficina" ? "selected" : ""}>Oficina</option><option value="campo" ${normalizarModalidadGafete(persona.modalidadGafete) === "campo" ? "selected" : ""}>Campo</option></select></label>
+          <label>Logo de la empresa cliente (ruta local)<input name="logoEmpresaServicio" value="${html(persona.logoEmpresaServicio || "")}" maxlength="500" placeholder="assets/img/logos/cliente.png"></label>
           <label>ID de empleado<input name="idEmpleado" value="${html(persona.idEmpleado || "")}" placeholder="Pendiente de captura"></label>
           <label>Correo electrónico<input name="email" type="email" value="${html(persona.email || "")}" placeholder="Pendiente de captura"></label>
           <label>Preparación académica (una credencial por línea)<textarea name="formacion" placeholder="Ejemplo:&#10;Licenciatura en ...&#10;Diplomado en ...&#10;Certificación en ...">${html(persona.formacion || "")}</textarea></label>
@@ -2067,7 +2313,7 @@
           <label>Vigencia del gafete<input name="vigencia" value="${html(persona.vigencia || "")}" placeholder="Pendiente de captura"></label>
           <label>Número de seguridad social<input name="numeroSeguroSocial" value="${html(persona.numeroSeguroSocial || "")}" placeholder="Pendiente de captura"></label>
           <label>Contacto de emergencia<input name="contactoEmergencia" value="${html(persona.contactoEmergencia || "")}" placeholder="Nombre y teléfono"></label>
-          <div class="form-actions"><button class="control primary" type="submit">Guardar datos</button><button class="control" type="button" data-cancel-edit>Cancelar</button></div>
+          <div class="form-actions"><button class="control primary" type="submit">Guardar cambios</button><button class="control" type="button" data-cancel-edit>Cancelar</button></div>
         </form>
         <h4 class="reports-heading">Personas a su cargo (${hijos.length})</h4>
         <div class="report-list">${hijos.length ? hijos.map((hijo) =>
@@ -2255,17 +2501,32 @@
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 
+    const arteMarcoFotoGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 380"><path fill="#fff" fill-rule="evenodd" d="M0 0H300V380H0ZM60 4H240L296 60V320L240 376H60L4 320V60Z"/><path fill="none" stroke="#2c6ea6" stroke-width="10" d="M60 4H240L296 60V320L240 376H60L4 320V60Z"/><path fill="none" stroke="#8cc9ef" stroke-width="3" d="M63 11H237L289 63V317L237 369H63L11 317V63Z"/><path fill="none" stroke="#174f70" stroke-linecap="square" stroke-width="6" d="M7 270v48l48 48"/></svg>'
+    )}`;
+    const arteFranjaGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 30"><path fill="#10243a" d="M0 0H540V30H0Z"/><path fill="#2c6ea6" d="M0 30 55 0h135l-55 30Z"/><path fill="#4a91c4" d="M345 30 400 0h40l-55 30Z"/><path fill="#8cc9ef" d="M463 30 518 0h22v4l-48 26Z"/></svg>'
+    )}`;
+    const arteCircuitosCuerpoGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 720"><g fill="none" stroke="#63a9dc" stroke-width="4" opacity=".82"><path d="M0 72h17l11 11v40"/><path d="M540 150h-17l-11 11v43"/><path d="M0 286h18l10-10v-42"/><path d="M540 366h-18l-10 10v36"/><path d="M0 510h17l11 11v43"/><path d="M540 590h-17l-11-11v-43"/></g><g fill="#2c6ea6" opacity=".72"><circle cx="28" cy="123" r="5"/><circle cx="512" cy="204" r="5"/><circle cx="28" cy="234" r="5"/><circle cx="512" cy="412" r="5"/><circle cx="28" cy="564" r="5"/><circle cx="512" cy="536" r="5"/></g></svg>'
+    )}`;
     function contenidoGafete(persona, lado = "frente", estilo = estiloGafete, mostrarGuias = false) {
       const estiloSeguro = ["estandar", "ahorro", "banda"].includes(estilo) ? estilo : "estandar";
       const claseEstilo = estiloSeguro === "ahorro" ? "badge-style-savings" :
         estiloSeguro === "banda" ? "badge-style-band" : "badge-style-standard";
-      const logo = estiloSeguro === "banda"
-        ? "assets/img/logos/Logo_DRFC_Blanco_recortado.png"
-        : "assets/img/logos/Logo_DRFC_Color_recortado.png";
-      const marca = `<div class="badge-brand"><img class="badge-logo" src="${logo}" alt="Logo DRFC"><span class="badge-company-name">DRFC Ingeniería S.A. de C.V.</span></div>`;
+      const modalidad = normalizarModalidadGafete(persona.modalidadGafete);
+      const logoCliente = String(persona.logoEmpresaServicio || "").trim();
+      const logo = "assets/img/logos/Logo_DRFC_Color_recortado.png";
+      const logos = (incluirCliente) => `<div class="badge-brand-logos">
+          <span class="badge-logo-shell"><img class="badge-logo" src="${logo}" alt="Logo DRFC"></span>
+          ${incluirCliente ? `<span class="badge-brand-divider" aria-hidden="true"></span><span class="badge-client-brand ${logoCliente ? "" : "logo-missing"}">${logoCliente ? `<img class="badge-client-logo" src="${html(logoCliente)}" alt="Logo de empresa de servicio">` : ""}<span class="badge-client-placeholder">LOGO<br>CLIENTE</span></span>` : ""}
+        </div>`;
+      const marca = `<div class="badge-brand">${logos(lado !== "reverso" && modalidad === "campo")}</div>`;
+      const arteCuerpo = `<img class="badge-body-circuit-art" src="${arteCircuitosCuerpoGafete}" alt="" aria-hidden="true">`;
+      const modo = `badge-mode-${modalidad}`;
       if (lado === "reverso") {
-        return `<article class="badge-card badge-back ${claseEstilo}">
-          ${marca}<div class="badge-divider badge-divider-top"></div>
+        return `<article class="badge-card badge-back ${claseEstilo} ${modo}">
+          ${arteCuerpo}${marca}<div class="badge-divider badge-divider-top"></div>
           <div class="badge-back-content"><strong>${html(persona.nombre)}</strong></div>
           <div class="badge-back-details">
             <div class="badge-back-field"><span class="badge-back-field-label">ID DE EMPLEADO</span><strong>${html(valorCapturado(persona.idEmpleado))}</strong></div>
@@ -2278,29 +2539,32 @@
           </div>
           <address class="badge-company-address">Camino a Ocotepec, SN<br>Col. Ocotepec, Cuernavaca, Morelos<br>C.P. 62220</address>
           <small class="badge-legal">Este gafete es personal e intransferible.</small>
-          <div class="badge-divider"></div>
+          <img class="badge-footer-art" src="${arteFranjaGafete}" alt="" aria-hidden="true">
         </article>`;
       }
       const encuadre = obtenerEncuadreGafete(persona);
       const puesto = String(persona.cargo || "").trim()
         ? `<div class="badge-job">${html(persona.cargo)}</div>` : "";
-      return `<article class="badge-card ${claseEstilo}">
-        ${marca}
-        <div class="badge-divider badge-divider-top"></div>
-        <div class="badge-photo"><span class="badge-initials">${html(iniciales(persona.nombre))}</span><img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="Foto de ${html(persona.nombre)}" style="--badge-frame-zoom:${encuadre.zoom};--badge-frame-x:${encuadre.x}%;--badge-frame-y:${encuadre.y}%">${mostrarGuias ? '<span class="badge-frame-guides" aria-hidden="true"><span class="badge-eye-guide"></span><span class="badge-sternum-guide"></span></span>' : ""}</div>
+      return `<article class="badge-card badge-corporate-front ${claseEstilo} ${modo}">
+        ${arteCuerpo}${marca}
+        <div class="badge-hero"><div class="badge-photo"><span class="badge-initials">${html(iniciales(persona.nombre))}</span><img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="Foto de ${html(persona.nombre)}" style="--badge-frame-zoom:${encuadre.zoom};--badge-frame-x:${encuadre.x}%;--badge-frame-y:${encuadre.y}%"><img class="badge-photo-frame" src="${arteMarcoFotoGafete}" alt="" aria-hidden="true">${mostrarGuias ? '<span class="badge-frame-guides" aria-hidden="true"><span class="badge-eye-guide"></span><span class="badge-sternum-guide"></span></span>' : ""}</div></div>
         <div class="badge-name">${html(persona.nombre)}</div>
         ${puesto}
-        <div class="badge-field badge-area"><span class="badge-field-label">Área</span><strong>${html(valorCapturado(persona.area))}</strong></div>
-        <div class="badge-field badge-validity"><span class="badge-field-label">VIGENCIA</span><strong>${html(valorCapturado(persona.vigencia))}</strong></div>
-        <div class="badge-divider"></div>
+        <div class="badge-field badge-area"><span class="badge-field-label">ÁREA:</span><strong>${html(valorCapturado(persona.area))}</strong></div>
+        <div class="badge-field badge-employee-id"><span class="badge-field-label">NÚMERO ID:</span><strong>${html(valorCapturado(persona.idEmpleado))}</strong></div>
+        <div class="badge-field badge-validity"><span class="badge-field-label">VIGENCIA:</span><strong>${html(valorCapturado(persona.vigencia))}</strong></div>
       </article>`;
     }
 
     function prepararLogosGafete(contenedor) {
-      contenedor.querySelectorAll(".badge-logo").forEach((imagen) => {
+      contenedor.querySelectorAll(".badge-logo, .badge-client-logo").forEach((imagen) => {
         imagen.onerror = () => {
-          imagen.closest(".badge-brand")?.classList.add("logo-missing");
-          imagen.closest(".badge-card")?.classList.add("logo-missing");
+          if (imagen.classList.contains("badge-logo")) {
+            imagen.closest(".badge-brand")?.classList.add("logo-missing");
+            imagen.closest(".badge-card")?.classList.add("logo-missing");
+          } else {
+            imagen.closest(".badge-client-brand")?.classList.add("logo-missing");
+          }
           imagen.onerror = null;
         };
         if (imagen.complete && imagen.naturalWidth === 0) imagen.onerror();
@@ -2344,7 +2608,8 @@
     function renderizarGafete() {
       const persona = porId.get(personaGafeteId);
       if (!persona) return;
-      el("badge-preview").innerHTML = `<div class="badge-preview-stage"><div class="badge-preview-scale" style="--badge-preview-zoom:${zoomGafete}">${contenidoGafete(persona, ladoGafete, estiloGafete, true)}</div></div>`;
+      el("badge-preview").innerHTML = `<div class="badge-preview-stage"><div class="badge-preview-scale" style="--badge-preview-zoom:${zoomGafete}">${contenidoGafete(persona, ladoGafete, estiloGafete)}</div></div>`;
+      el("badge-mode-preview").value = normalizarModalidadGafete(persona.modalidadGafete);
       el("badge-preview-notes").innerHTML = '<span data-badge-photo-note></span>';
       el("badge-preview").querySelectorAll(".avatar-photo").forEach((img) => cargarFoto(img, img.dataset.photoName));
       prepararLogosGafete(el("badge-preview"));
@@ -2356,6 +2621,22 @@
       el("badge-zoom-value").textContent = `${Math.round(zoomGafete * 100)}%`;
       actualizarControlesEncuadreGafete();
       actualizarNotaEstiloGafete();
+    }
+
+    function cambiarModalidadGafete(modalidad) {
+      if (!["oficina", "campo"].includes(modalidad)) {
+        mostrarError("La modalidad del gafete debe ser Oficina o Campo.");
+        return;
+      }
+      try {
+        guardarCambios(personaGafeteId, { modalidadGafete: modalidad });
+        renderizarGafete();
+        ocultarError();
+      } catch (error) {
+        mostrarError(error.message);
+        const persona = porId.get(personaGafeteId);
+        el("badge-mode-preview").value = normalizarModalidadGafete(persona?.modalidadGafete);
+      }
     }
 
     function actualizarControlesEncuadreGafete() {
@@ -2606,6 +2887,8 @@
             sy = (imagen.naturalHeight - sh) * posicionY;
           }
           contexto.save();
+          const opacidad = Number.parseFloat(estilo.opacity);
+          contexto.globalAlpha = Number.isFinite(opacidad) ? opacidad : 1;
           contexto.filter = estilo.filter === "none" ? "none" : estilo.filter;
           contexto.drawImage(imagen, sx, sy, sw, sh, area.x, area.y, area.width, area.height);
           contexto.restore();
@@ -2776,13 +3059,15 @@
       const termino = normalizarTexto(el("badge-search").value);
       const area = el("badge-area").value;
       const tipo = el("badge-type").value;
+      const modalidad = el("badge-mode").value;
       const lista = personasActivas.filter((persona) =>
         (!area || persona.area === area) &&
         (!tipo || persona.tipo === tipo) &&
+        (!modalidad || normalizarModalidadGafete(persona.modalidadGafete) === modalidad) &&
         (!termino || normalizarTexto(`${persona.nombre} ${persona.idEmpleado || ""}`).includes(termino))
       );
       el("badge-picker-list").innerHTML = lista.map((persona) =>
-        `<label><input type="checkbox" value="${html(idKey(persona.id))}"><span>${html(persona.nombre)}<small> · ${html(persona.area)}</small></span></label>`
+        `<label><input type="checkbox" value="${html(idKey(persona.id))}"><span>${html(persona.nombre)}<small> · ${html(persona.area)} · ${normalizarModalidadGafete(persona.modalidadGafete) === "campo" ? "Campo" : "Oficina"}</small></span></label>`
       ).join("") || '<div class="panel-empty">No se encontraron personas.</div>';
     }
 
@@ -2817,6 +3102,151 @@
       desplazamiento = { x: 0, y: 0 };
       renderizar();
       requestAnimationFrame(() => requestAnimationFrame(centrarVista));
+    }
+
+    function personasCompletas(estado = estadoPersonal) {
+      const eliminadas = new Set(estado.eliminadas.map(idKey));
+      return [...personasBase, ...estado.agregadas]
+        .filter((persona) => !eliminadas.has(idKey(persona.id)))
+        .map(personaConDatos);
+    }
+
+    function listaActivaDesdeEstado(estado = estadoPersonal) {
+      const ocultas = new Set([...estado.archivadas, ...estado.eliminadas].map(idKey));
+      return [...personasBase, ...estado.agregadas]
+        .filter((persona) => !ocultas.has(idKey(persona.id)))
+        .map(personaConDatos);
+    }
+
+    function generarIdPersona() {
+      let id;
+      const existentes = new Set([
+        ...personasCompletas().map((persona) => idKey(persona.id)),
+        ...estadoPersonal.eliminadas.map(idKey)
+      ]);
+      do {
+        id = `local-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+      } while (existentes.has(id));
+      return id;
+    }
+
+    function renderizarPersonal() {
+      const form = el("person-form");
+      form.elements.namedItem("jefeId").innerHTML = opcionesJefesHtml("", "", "Selecciona un jefe");
+      el("add-person").disabled = Boolean(errorCargaPersonal);
+      if (errorCargaPersonal) {
+        el("inactive-people-list").textContent = `No se pudieron leer los datos guardados: ${errorCargaPersonal.message}`;
+        return;
+      }
+      const archivadas = new Set(estadoPersonal.archivadas.map(idKey));
+      const personasInactivas = personasCompletas().filter((persona) => archivadas.has(idKey(persona.id)));
+      el("inactive-people-list").innerHTML = personasInactivas.length
+        ? personasInactivas.map((persona) => `<article class="vacancy-row">
+            <div class="vacancy-details"><strong>${html(persona.nombre)}</strong>
+              <small>${html(persona.cargo)} · ${html(persona.area)}</small>
+            </div>
+            <div class="vacancy-actions">
+              <button class="control" type="button" data-reactivate-person="${html(idKey(persona.id))}">Reactivar</button>
+              <button class="control" type="button" data-delete-archived-person="${html(idKey(persona.id))}">Eliminar definitivamente</button>
+            </div>
+          </article>`).join("")
+        : '<div class="panel-empty">No hay personas archivadas.</div>';
+    }
+
+    function actualizarEstadoPersona(id, accion) {
+      if (errorCargaPersonal) throw new Error("No se pueden modificar personas hasta corregir los datos guardados.");
+      const clave = idKey(id);
+      const persona = personasCompletas().find((item) => idKey(item.id) === clave);
+      if (!persona) throw new Error("No se encontró la persona seleccionada.");
+      const dependientes = personasCompletas().filter((item) => idKey(item.jefeId) === clave);
+      if (dependientes.length) {
+        throw new Error(`Antes de dar de baja a ${persona.nombre}, reasigna a sus ${dependientes.length} reportes directos.`);
+      }
+      const vacantesAsignadas = puestosGuardados.filter((puesto) => idKey(puesto.jefeId) === clave);
+      if (vacantesAsignadas.length) {
+        throw new Error(`Antes de dar de baja a ${persona.nombre}, reasigna sus ${vacantesAsignadas.length} puestos vacantes.`);
+      }
+      const eliminada = accion === "eliminar";
+      const nuevoEstado = {
+        agregadas: eliminada
+          ? estadoPersonal.agregadas.filter((item) => idKey(item.id) !== clave)
+          : estadoPersonal.agregadas,
+        archivadas: eliminada
+          ? estadoPersonal.archivadas.filter((item) => idKey(item) !== clave)
+          : [...new Set([...estadoPersonal.archivadas, clave])],
+        eliminadas: eliminada
+          ? [...new Set([...estadoPersonal.eliminadas, clave])]
+          : estadoPersonal.eliminadas
+      };
+      const listaActualizada = listaActivaDesdeEstado(nuevoEstado);
+      prepararArbol(listaActualizada);
+      const cambiosActualizados = { ...cambiosGuardados };
+      if (eliminada) delete cambiosActualizados[clave];
+      guardarEstadoPersonal(nuevoEstado, eliminada ? cambiosActualizados : null);
+      aceptarDatos(listaActualizada);
+      renderizarPersonal();
+      cerrarPanel();
+    }
+
+    function reactivarPersona(id) {
+      if (errorCargaPersonal) throw new Error("No se pueden modificar personas hasta corregir los datos guardados.");
+      const clave = idKey(id);
+      if (!estadoPersonal.archivadas.some((item) => idKey(item) === clave)) {
+        throw new Error("La persona seleccionada no está archivada.");
+      }
+      const nuevoEstado = {
+        ...estadoPersonal,
+        archivadas: estadoPersonal.archivadas.filter((item) => idKey(item) !== clave)
+      };
+      const listaActualizada = listaActivaDesdeEstado(nuevoEstado);
+      prepararArbol(listaActualizada);
+      guardarEstadoPersonal(nuevoEstado);
+      aceptarDatos(listaActualizada);
+      renderizarPersonal();
+    }
+
+    function agregarPersona(campos) {
+      if (errorCargaPersonal) throw new Error("No se pueden agregar personas hasta corregir los datos guardados.");
+      const nombre = String(campos.get("nombre") || "").trim();
+      const cargo = String(campos.get("cargo") || "").trim();
+      const area = String(campos.get("area") || "").trim();
+      const tipo = String(campos.get("tipo") || "");
+      const jefeId = String(campos.get("jefeId") || "");
+      if (!nombre || !cargo || !area || !jefeId) {
+        throw new Error("Nombre, puesto, área y jefe inmediato son obligatorios.");
+      }
+      if (!["Operativa", "Administrativa"].includes(tipo)) {
+        throw new Error("Selecciona un tipo de área válido.");
+      }
+      const id = generarIdPersona();
+      validarJefeAsignado(id, jefeId);
+      const persona = {
+        id,
+        nombre,
+        cargo,
+        area,
+        tipo,
+        modalidadGafete: normalizarModalidadGafete(campos.get("modalidadGafete")),
+        logoEmpresaServicio: String(campos.get("logoEmpresaServicio") || "").trim(),
+        jefeId,
+        nivel: null,
+        idEmpleado: "",
+        email: String(campos.get("email") || "").trim(),
+        formacion: "",
+        fechaIngreso: "",
+        fechaNacimiento: "",
+        tipoSangre: "",
+        vigencia: "",
+        numeroSeguroSocial: "",
+        contactoEmergencia: "",
+        rangoCuadrilla: null,
+        agrupado: false
+      };
+      const nuevoEstado = { ...estadoPersonal, agregadas: [...estadoPersonal.agregadas, persona] };
+      const listaActualizada = listaActivaDesdeEstado(nuevoEstado);
+      prepararArbol(listaActualizada);
+      guardarEstadoPersonal(nuevoEstado);
+      aceptarDatos(listaActualizada);
     }
 
     function leerPuestosGuardados() {
@@ -2867,10 +3297,7 @@
       el("export-vacancies").disabled = false;
       const formulario = el("vacancy-form");
       const selectorJefe = formulario.elements.namedItem("jefeId");
-      selectorJefe.innerHTML = '<option value="">Sin asignar</option>' +
-        personasActivas.map((persona) =>
-          `<option value="${html(idKey(persona.id))}">${html(persona.nombre)} · ${html(persona.cargo)}</option>`
-        ).join("");
+      selectorJefe.innerHTML = opcionesJefesHtml("", "", "Sin asignar");
       el("vacancy-list").innerHTML = puestosGuardados.length
         ? puestosGuardados.slice().sort((a, b) =>
           (a.estado === "abierto" ? 0 : 1) - (b.estado === "abierto" ? 0 : 1) ||
@@ -2887,6 +3314,7 @@
             <div class="vacancy-actions">
               <button class="control" type="button" data-edit-vacancy="${html(puesto.id)}">Editar</button>
               <button class="control" type="button" data-toggle-vacancy="${html(puesto.id)}">${estadoCerrado ? "Reabrir" : "Cerrar"}</button>
+              <button class="control" type="button" data-delete-vacancy="${html(puesto.id)}">Eliminar</button>
             </div>
           </article>`;
         }).join("")
@@ -2899,6 +3327,7 @@
       formulario.elements.namedItem("id").value = puesto?.id || "";
       formulario.elements.namedItem("puesto").value = puesto?.puesto || "";
       formulario.elements.namedItem("area").value = puesto?.area || "";
+      formulario.elements.namedItem("jefeId").innerHTML = opcionesJefesHtml("", puesto?.jefeId || "", "Sin asignar");
       formulario.elements.namedItem("jefeId").value = puesto?.jefeId || "";
       formulario.elements.namedItem("notas").value = puesto?.notas || "";
       formulario.hidden = false;
@@ -2910,6 +3339,13 @@
       el("manage-vacancies").setAttribute("aria-expanded", "false");
       el("vacancy-form").hidden = true;
       el("vacancy-form").reset();
+    }
+
+    function cerrarDialogoPersonal() {
+      el("people-dialog").classList.remove("open");
+      el("manage-people").setAttribute("aria-expanded", "false");
+      el("person-form").hidden = true;
+      el("person-form").reset();
     }
 
     /* ============================== Eventos ============================ */
@@ -3043,6 +3479,32 @@
         el("employee-edit-form").querySelector("input, select, textarea").focus();
         return;
       }
+      const darDeBaja = evento.target.closest("[data-retire-person]");
+      if (darDeBaja) {
+        const persona = personasActivas.find((item) => idKey(item.id) === darDeBaja.dataset.retirePerson);
+        if (persona && window.confirm(`¿Dar de baja a ${persona.nombre}? Podrás reactivarlo desde Personal.`)) {
+          try {
+            actualizarEstadoPersona(persona.id, "archivar");
+            ocultarError();
+          } catch (error) {
+            mostrarError(error.message);
+          }
+        }
+        return;
+      }
+      const eliminarPersona = evento.target.closest("[data-delete-person]");
+      if (eliminarPersona) {
+        const persona = personasActivas.find((item) => idKey(item.id) === eliminarPersona.dataset.deletePerson);
+        if (persona && window.confirm(`¿Eliminar definitivamente a ${persona.nombre} de este navegador? Esta acción no se puede deshacer.`)) {
+          try {
+            actualizarEstadoPersona(persona.id, "eliminar");
+            ocultarError();
+          } catch (error) {
+            mostrarError(error.message);
+          }
+        }
+        return;
+      }
       if (evento.target.closest("[data-cancel-edit]")) {
         el("employee-edit-form").hidden = true;
         return;
@@ -3066,6 +3528,10 @@
       evento.preventDefault();
       const formulario = new FormData(evento.target);
       const cambios = Object.fromEntries(camposCapturables.map((campo) => [campo, String(formulario.get(campo) || "").trim()]));
+      if (!cambios.cargo || !cambios.area) {
+        mostrarError("El puesto y el área son obligatorios.");
+        return;
+      }
       if (cambios.tipo && !["Operativa", "Administrativa"].includes(cambios.tipo)) {
         mostrarError("El tipo de área debe ser Operativa o Administrativa.");
         return;
@@ -3114,6 +3580,60 @@
       if (evento.target === el("anniversary-dialog")) cerrarAniversarios();
     });
     el("export-anniversaries").addEventListener("click", exportarAniversariosDelMes);
+    el("manage-people").addEventListener("click", () => {
+      renderizarPersonal();
+      el("people-dialog").classList.add("open");
+      el("manage-people").setAttribute("aria-expanded", "true");
+    });
+    el("close-people").addEventListener("click", cerrarDialogoPersonal);
+    el("people-dialog").addEventListener("click", (evento) => {
+      if (evento.target === el("people-dialog")) cerrarDialogoPersonal();
+    });
+    el("add-person").addEventListener("click", () => {
+      el("person-form").reset();
+      renderizarPersonal();
+      el("person-form").hidden = false;
+      el("person-form").elements.namedItem("nombre").focus();
+    });
+    el("cancel-person").addEventListener("click", () => {
+      el("person-form").hidden = true;
+      el("person-form").reset();
+    });
+    el("person-form").addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      try {
+        agregarPersona(new FormData(evento.currentTarget));
+        evento.currentTarget.hidden = true;
+        evento.currentTarget.reset();
+        renderizarPersonal();
+        ocultarError();
+      } catch (error) {
+        mostrarError(error.message);
+      }
+    });
+    el("inactive-people-list").addEventListener("click", (evento) => {
+      const reactivar = evento.target.closest("[data-reactivate-person]");
+      if (reactivar) {
+        try {
+          reactivarPersona(reactivar.dataset.reactivatePerson);
+          ocultarError();
+        } catch (error) {
+          mostrarError(error.message);
+        }
+        return;
+      }
+      const eliminar = evento.target.closest("[data-delete-archived-person]");
+      if (!eliminar) return;
+      const persona = personasCompletas().find((item) => idKey(item.id) === eliminar.dataset.deleteArchivedPerson);
+      if (persona && window.confirm(`¿Eliminar definitivamente a ${persona.nombre} de este navegador? Esta acción no se puede deshacer.`)) {
+        try {
+          actualizarEstadoPersona(persona.id, "eliminar");
+          ocultarError();
+        } catch (error) {
+          mostrarError(error.message);
+        }
+      }
+    });
     el("manage-vacancies").addEventListener("click", () => {
       renderizarPuestos();
       el("vacancy-dialog").classList.add("open");
@@ -3136,6 +3656,20 @@
         return;
       }
       const alternar = evento.target.closest("[data-toggle-vacancy]");
+      const eliminar = evento.target.closest("[data-delete-vacancy]");
+      if (eliminar) {
+        const id = eliminar.dataset.deleteVacancy;
+        const puesto = puestosGuardados.find((item) => item.id === id);
+        if (puesto && window.confirm(`¿Eliminar definitivamente el puesto "${puesto.puesto}"?`)) {
+          try {
+            guardarPuestos(puestosGuardados.filter((item) => item.id !== id));
+            ocultarError();
+          } catch (error) {
+            mostrarError(error.message);
+          }
+        }
+        return;
+      }
       if (!alternar) return;
       const id = alternar.dataset.toggleVacancy;
       const ahora = new Date().toISOString();
@@ -3157,15 +3691,18 @@
       const puesto = String(campos.get("puesto") || "").trim();
       const area = String(campos.get("area") || "").trim();
       const jefeId = String(campos.get("jefeId") || "");
+      const anterior = puestosGuardados.find((item) => item.id === id);
       if (!puesto || !area) {
         mostrarError("Captura el nombre del puesto y el área.");
         return;
       }
-      if (jefeId && !personasActivas.some((persona) => idKey(persona.id) === jefeId)) {
-        mostrarError("El responsable seleccionado ya no existe en el organigrama.");
-        return;
+      if (jefeId) {
+        const jefe = personasActivas.find((persona) => idKey(persona.id) === jefeId);
+        if (!jefe || (jefeId !== anterior?.jefeId && !esJefeElegible(jefe))) {
+          mostrarError("El responsable debe tener puesto de jefatura, gerencia, supervisión o dirección.");
+          return;
+        }
       }
-      const anterior = puestosGuardados.find((item) => item.id === id);
       const ahora = new Date().toISOString();
       const registro = {
         id: id || (globalThis.crypto?.randomUUID?.() || `puesto-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`),
@@ -3205,6 +3742,7 @@
       ladoGafete = ladoGafete === "frente" ? "reverso" : "frente";
       renderizarGafete();
     });
+    el("badge-mode-preview").addEventListener("change", (evento) => cambiarModalidadGafete(evento.target.value));
     el("badge-style-preview").addEventListener("change", (evento) => cambiarEstiloGafete(evento.target.value));
     el("badge-style-multiple").addEventListener("change", (evento) => cambiarEstiloGafete(evento.target.value));
     el("badge-print-scale").addEventListener("input", (evento) => {
@@ -3321,6 +3859,7 @@
       el("badge-search").value = "";
       el("badge-area").value = "";
       el("badge-type").value = "";
+      el("badge-mode").value = "";
       actualizarNotaEstiloGafete();
       actualizarListaGafetes();
       el("multi-badge-dialog").classList.add("open");
@@ -3332,6 +3871,7 @@
     el("badge-search").addEventListener("input", actualizarListaGafetes);
     el("badge-area").addEventListener("change", actualizarListaGafetes);
     el("badge-type").addEventListener("change", actualizarListaGafetes);
+    el("badge-mode").addEventListener("change", actualizarListaGafetes);
     el("print-multiple-badges").addEventListener("click", () => {
       const ids = [...el("badge-picker-list").querySelectorAll("input:checked")].map((input) => input.value);
       if (!ids.length) {
@@ -3399,13 +3939,19 @@
 
     /* ================================ Inicio =========================== */
     try {
+      estadoPersonal = leerEstadoPersonal();
+    } catch (error) {
+      errorCargaPersonal = error;
+      mostrarError(`No se pudieron leer los datos guardados del personal: ${error.message}`);
+    }
+    try {
       puestosGuardados = leerPuestosGuardados();
     } catch (error) {
       errorCargaPuestos = error;
       mostrarError(`No se pudieron leer los puestos guardados: ${error.message}`);
     }
     try {
-      aceptarDatos(personasActivas);
+      aceptarDatos(listaActivaDesdeEstado());
     } catch (error) {
       mostrarError(`No se pudo construir el organigrama: ${error.message}`);
     }
