@@ -556,7 +556,7 @@
     }
     .badge-brand { position: relative; display: flex; justify-content: center; align-items: center; min-height: 13.5mm; overflow: hidden; padding: .5mm 1mm; border-top: .6mm solid #2c6ea6; border-bottom: .8mm solid #2c6ea6; background: linear-gradient(110deg, #f1f7fb, #e4f0f7); }
     .badge-brand-logos { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 1mm; width: 100%; }
-    .badge-body-circuit-art { position: absolute; z-index: 0; top: 14mm; right: 0; bottom: 0; left: 0; width: 100%; height: auto; object-fit: fill; opacity: .2; pointer-events: none; }
+    .badge-body-circuit-art { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: fill; opacity: 1; pointer-events: none; }
     .badge-card > :not(.badge-body-circuit-art) { z-index: 1; }
     .badge-logo-shell { position: relative; z-index: 1; display: grid; place-items: center; padding: 0; }
     .badge-logo { display: block; width: 37mm; height: 12mm; max-height: 100%; object-fit: contain; }
@@ -614,13 +614,15 @@
     .badge-style-band.logo-missing .badge-brand { background: #fff; }
     .badge-style-savings .badge-brand, .badge-style-savings .badge-job { color: #444; }
     .badge-back { display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 1.2mm; text-align: center; }
-    .badge-back .badge-brand { flex: 0 0 13.5mm; }
-    .badge-back .badge-logo { width: 37mm; }
-    .badge-back-content { display: grid; gap: .7mm; font-size: 7pt; line-height: 1.1; overflow-wrap: anywhere; }
+    .badge-back { padding: 0 3mm 2.2mm; background: #fff; }
+    .badge-back .badge-brand { flex: 0 0 17mm; min-height: 17mm; margin: 0 -3mm; border: 0; border-bottom: 1mm solid #38b8d1; background: linear-gradient(125deg, #102a62 0%, #1b3f78 58%, #238ba7 100%); }
+    .badge-back .badge-logo-shell { min-width: 38mm; height: 12mm; padding: .8mm 2mm; border-radius: 2mm; background: rgba(255,255,255,.96); box-shadow: 0 .6mm 1.5mm rgba(5,25,55,.22); }
+    .badge-back .badge-logo { width: 34mm; height: 10.5mm; }
+    .badge-back-content { display: grid; gap: .7mm; min-height: 7mm; align-content: center; margin: 1mm 0 0; font-size: 8pt; line-height: 1.1; overflow-wrap: anywhere; }
     .badge-back-content strong { padding: 0; color: #10243a; background: transparent; }
-    .badge-back-details { display: grid; gap: 1.5mm; padding: 1.3mm; border-top: .8mm solid #2c6ea6; border-radius: 1mm; background: #edf5fa; text-align: left; }
-    .badge-back-field { display: grid; gap: .4mm; font-size: 6.5pt; line-height: 1.1; overflow-wrap: anywhere; }
-    .badge-back-field-label { color: var(--badge-accent); font-size: 5pt; font-weight: 700; }
+    .badge-back-details { display: grid; gap: 1.2mm; padding: 1.5mm; border: 0; border-left: 1mm solid #2c83a5; border-radius: 0 .8mm .8mm 0; background: rgba(239,246,250,.96); text-align: left; }
+    .badge-back-field { display: grid; gap: .35mm; font-size: 6.5pt; line-height: 1.1; overflow-wrap: anywhere; }
+    .badge-back-field-label { color: #1d557d; font-size: 5.2pt; font-weight: 800; }
     .badge-signatures { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4mm; min-height: 13mm; }
     .badge-signature { display: grid; gap: .7mm; font-size: 5.5pt; }
     .badge-signature-line { height: 9mm; border-bottom: .2mm solid var(--badge-black); }
@@ -629,20 +631,27 @@
     .badge-back .badge-legal { margin-bottom: 2mm; }
     .badge-footer-art { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; display: block; width: 100%; height: 3mm; object-fit: fill; pointer-events: none; }
     .badge-corporate-front {
-      grid-template-rows: 14mm 32mm auto auto minmax(5mm, auto) 5mm 5mm; align-content: space-between; gap: .6mm;
-      padding: 0 3mm 2mm; color: #10243a; background: #fff;
+      display: block;
+      padding: 0 3mm 1.5mm; color: #10243a; background: #fff;
     }
-    .badge-corporate-front .badge-brand { position: relative; inset: auto; min-height: 14mm; height: 14mm; margin: 0 -3mm; padding: .5mm 1mm; border-bottom: .8mm solid #2c6ea6; background: linear-gradient(110deg, #f1f7fb, #e4f0f7); }
-    .badge-corporate-front .badge-logo-shell { padding: 0; background: transparent; }
-    .badge-corporate-front .badge-hero { display: grid; place-items: center; min-height: 0; }
-    .badge-corporate-front .badge-photo { width: 29mm; height: 32mm; border: .45mm solid #2c6ea6; border-radius: 1.6mm; background: #edf5fa; }
+    .badge-corporate-front .badge-brand { position: absolute; z-index: 4; top: 0; left: 0; right: 0; min-height: 20mm; height: 20mm; margin: 0; padding: 1.5mm 2.5mm .8mm; border: 0; background: transparent; }
+    .badge-corporate-front .badge-logo-shell { width: 42mm; min-width: 42mm; height: 16mm; padding: 0; background: transparent; }
+    .badge-corporate-front .badge-logo { width: 42mm; height: 16mm; }
+    .badge-corporate-front .badge-client-brand { display: none; }
+    .badge-corporate-front .badge-brand-divider { display: none; }
+    .badge-corporate-front .badge-hero { position: absolute; z-index: 4; top: 30mm; left: 0; right: 0; display: grid; place-items: center; height: 28mm; }
+    .badge-corporate-front .badge-photo { width: 26mm; height: 26mm; border: .8mm solid #fff; border-radius: 50%; background: #edf5fa; box-shadow: 0 0 0 .65mm #10243a; }
     .badge-corporate-front .badge-photo-frame, .badge-corporate-front .badge-frame-guides { display: none; }
-    .badge-corporate-front .badge-name { color: #10243a; font-size: 11pt; line-height: 1.05; }
-    .badge-corporate-front .badge-job { justify-self: center; max-width: 100%; padding: .65mm 3mm; border-radius: 99px; color: #fff; background: #2c6ea6; font-size: 7.5pt; font-weight: 700; line-height: 1.1; }
-    .badge-corporate-front .badge-field { grid-template-columns: auto minmax(0, 1fr); justify-items: start; gap: 1.3mm; padding: 0 1.8mm; overflow: hidden; border: .15mm solid #dce8f1; border-radius: 1mm; color: #10243a; background: #f2f7fb; text-align: left; }
-    .badge-corporate-front .badge-field-label { color: #2c6ea6; font-size: 6.5pt; font-weight: 700; text-transform: uppercase; }
-    .badge-corporate-front .badge-field strong { min-width: 0; overflow: hidden; font-size: 7.5pt; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
-    .badge-corporate-front .badge-area strong { overflow: visible; line-height: 1.05; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; }
+    .badge-corporate-front .badge-name { position: absolute; z-index: 4; top: 58.5mm; left: 3mm; right: 3mm; min-height: 7mm; max-height: 7mm; display: flex; align-items: center; justify-content: center; color: #10243a; font-size: 11.5pt; font-weight: 800; line-height: 1.02; text-align: center; }
+    .badge-corporate-front .badge-job { position: absolute; z-index: 4; top: 66.5mm; left: 4mm; right: 4mm; max-height: 3.5mm; padding: 0; color: #2c82a3; background: transparent; font-size: 7.5pt; font-weight: 800; line-height: 1.12; text-align: center; }
+    .badge-corporate-front .badge-field { display: grid; grid-template-columns: 1fr; justify-items: center; align-content: center; gap: .2mm; padding: 0; overflow: hidden; border: 0; border-radius: 0; color: #10243a; background: transparent; text-align: center; }
+    .badge-corporate-front .badge-field-label { color: #677995; font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .badge-corporate-front .badge-field strong { min-width: 0; overflow: hidden; color: #10243a; font-size: 10pt; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .badge-corporate-front .badge-area { position: absolute; z-index: 4; top: 69.5mm; left: 6mm; right: 6mm; height: 3.5mm; }
+    .badge-corporate-front .badge-area strong { display: block; overflow: visible; color: #677995; font-size: 7.2pt; font-weight: 500; line-height: 1.05; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; }
+    .badge-corporate-front .badge-employee-id { position: absolute; z-index: 5; top: 73mm; left: 8mm; width: 38mm; height: 5.5mm; min-height: 5.5mm; padding: .25mm 2mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
+    .badge-corporate-front .badge-employee-id strong { color: #10243a; font-size: 10.5pt; line-height: 1; letter-spacing: .08em; }
+    .badge-corporate-front .badge-website { position: absolute; z-index: 5; left: 3mm; right: 3mm; top: 79.2mm; height: 2.5mm; color: #61748a; font-size: 6.2pt; font-weight: 500; line-height: 1; }
     .badge-corporate-front.badge-mode-campo .badge-logo { width: 25mm; height: 9mm; }
     .badge-corporate-front.badge-mode-campo .badge-client-brand { width: 15mm; height: 9mm; }
     .badge-corporate-front.badge-style-band .badge-brand { background: linear-gradient(110deg, #e5f1f8, #d7eaf5); }
@@ -650,7 +659,21 @@
     .badge-corporate-front.badge-style-savings .badge-logo-shell { background: #f0f0f0; }
     .badge-corporate-front.badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
     .badge-corporate-front.badge-style-savings .badge-job { color: #fff; background: #555; }
-    .badge-corporate-front::after { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; height: .8mm; content: ""; background: #2c6ea6; }
+    .badge-corporate-front::after {
+      position: absolute;
+      z-index: 3;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3.5mm;
+      content: "";
+      background:
+        linear-gradient(135deg, transparent 0 64%, rgba(255,255,255,.72) 64% 67%, transparent 67%) 0 0/100% 100% no-repeat,
+        linear-gradient(135deg, transparent 0 62%, #172f58 62% 78%, transparent 78%) 0 0/100% 100% no-repeat,
+        linear-gradient(135deg, transparent 0 38%, #8dd0df 38% 58%, transparent 58%) 0 0/100% 100% no-repeat,
+        linear-gradient(90deg, #edf5f8 0 28%, #172f58 28% 43%, #edf5f8 43% 68%, #63adc4 68% 82%, #172f58 82%);
+      border-top: .35mm solid #c9dde5;
+    }
     .badge-corporate-front.badge-style-savings::after { background: #444; }
     .badge-missing-notes { display: grid; justify-items: center; gap: 3px; color: #5b5350; font-size: 11px; }
     .badge-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
@@ -2509,7 +2532,7 @@
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 30"><path fill="#10243a" d="M0 0H540V30H0Z"/><path fill="#2c6ea6" d="M0 30 55 0h135l-55 30Z"/><path fill="#4a91c4" d="M345 30 400 0h40l-55 30Z"/><path fill="#8cc9ef" d="M463 30 518 0h22v4l-48 26Z"/></svg>'
     )}`;
     const arteCircuitosCuerpoGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 720"><g fill="none" stroke="#63a9dc" stroke-width="4" opacity=".82"><path d="M0 72h17l11 11v40"/><path d="M540 150h-17l-11 11v43"/><path d="M0 286h18l10-10v-42"/><path d="M540 366h-18l-10 10v36"/><path d="M0 510h17l11 11v43"/><path d="M540 590h-17l-11-11v-43"/></g><g fill="#2c6ea6" opacity=".72"><circle cx="28" cy="123" r="5"/><circle cx="512" cy="204" r="5"/><circle cx="28" cy="234" r="5"/><circle cx="512" cy="412" r="5"/><circle cx="28" cy="564" r="5"/><circle cx="512" cy="536" r="5"/></g></svg>'
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 856"><rect width="540" height="856" fill="#fff"/><rect width="540" height="220" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 122h82l20 22h96l22-22h94l28 35h198"/><path d="M0 174h78l18-18h86l28 28h92l34-34h204"/><path d="M118 122l12 44h78l28 28h92"/><path d="M330 144l42 42h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="122" r="12"/><circle cx="198" cy="144" r="12"/><circle cx="292" cy="122" r="12"/><circle cx="402" cy="179" r="12"/><circle cx="510" cy="186" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="122" r="5"/><circle cx="198" cy="144" r="5"/><circle cx="292" cy="122" r="5"/><circle cx="402" cy="179" r="5"/><circle cx="510" cy="186" r="5"/></g><path fill="#edf4f7" d="M0 808h540v48H0Z"/><path fill="#74bed3" d="M0 808h540v12H0Z"/><path fill="#b8dbe6" d="M0 820h540v36H0Z"/><path fill="#172f58" d="M0 808h138v48H0Z"/><path fill="#62afc9" d="M138 808h248v48H138Z"/><path fill="#172f58" d="M386 808h154v48H386Z"/></svg>'
     )}`;
     function contenidoGafete(persona, lado = "frente", estilo = estiloGafete, mostrarGuias = false) {
       const estiloSeguro = ["estandar", "ahorro", "banda"].includes(estilo) ? estilo : "estandar";
@@ -2517,7 +2540,7 @@
         estiloSeguro === "banda" ? "badge-style-band" : "badge-style-standard";
       const modalidad = normalizarModalidadGafete(persona.modalidadGafete);
       const logoCliente = String(persona.logoEmpresaServicio || "").trim();
-      const logo = "assets/img/logos/Logo_DRFC_Color_recortado.png";
+      const logo = "assets/img/logos/Logo_DRFC_Blanco_recortado.png";
       const logos = (incluirCliente) => `<div class="badge-brand-logos">
           <span class="badge-logo-shell"><img class="badge-logo" src="${logo}" alt="Logo DRFC"></span>
           ${incluirCliente ? `<span class="badge-brand-divider" aria-hidden="true"></span><span class="badge-client-brand ${logoCliente ? "" : "logo-missing"}">${logoCliente ? `<img class="badge-client-logo" src="${html(logoCliente)}" alt="Logo de empresa de servicio">` : ""}<span class="badge-client-placeholder">LOGO<br>CLIENTE</span></span>` : ""}
@@ -2546,14 +2569,15 @@
       const encuadre = obtenerEncuadreGafete(persona);
       const puesto = String(persona.cargo || "").trim()
         ? `<div class="badge-job">${html(persona.cargo)}</div>` : "";
+      const idGafete = String(persona.idEmpleado || "").trim() || "000000";
       return `<article class="badge-card badge-corporate-front ${claseEstilo} ${modo}">
         ${arteCuerpo}${marca}
         <div class="badge-hero"><div class="badge-photo"><span class="badge-initials">${html(iniciales(persona.nombre))}</span><img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="Foto de ${html(persona.nombre)}" style="--badge-frame-zoom:${encuadre.zoom};--badge-frame-x:${encuadre.x}%;--badge-frame-y:${encuadre.y}%"><img class="badge-photo-frame" src="${arteMarcoFotoGafete}" alt="" aria-hidden="true">${mostrarGuias ? '<span class="badge-frame-guides" aria-hidden="true"><span class="badge-eye-guide"></span><span class="badge-sternum-guide"></span></span>' : ""}</div></div>
         <div class="badge-name">${html(persona.nombre)}</div>
         ${puesto}
         <div class="badge-field badge-area"><span class="badge-field-label">ÁREA:</span><strong>${html(valorCapturado(persona.area))}</strong></div>
-        <div class="badge-field badge-employee-id"><span class="badge-field-label">NÚMERO ID:</span><strong>${html(valorCapturado(persona.idEmpleado))}</strong></div>
-        <div class="badge-field badge-validity"><span class="badge-field-label">VIGENCIA:</span><strong>${html(valorCapturado(persona.vigencia))}</strong></div>
+        <div class="badge-field badge-employee-id"><span class="badge-field-label">NÚMERO ID:</span><strong>${html(idGafete)}</strong></div>
+        <div class="badge-field badge-website"><strong>www.drfc.mx</strong></div>
       </article>`;
     }
 

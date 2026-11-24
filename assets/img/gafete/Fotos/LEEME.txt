@@ -1,0 +1,1 @@
+Coloca aqui las fotos cuadradas del organigrama (PNG/JPG, ej. 1000x1000). Nombre del archivo = columna Foto del CSV.
