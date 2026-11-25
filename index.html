@@ -544,6 +544,7 @@
     .badge-preview-tools .control { min-height: 32px; padding: 5px 9px; }
     .badge-preview-settings label, .badge-picker label { display: grid; gap: 4px; color: var(--muted); font-size: 12px; }
     .badge-preview-settings select { min-height: 34px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); background: var(--surface); }
+    .badge-preview-settings .badge-client-logo-setting[hidden] { display: none; }
     .badge-preview-settings input { width: 150px; accent-color: var(--accent); }
     .badge-preview-stage { display: grid; justify-items: center; overflow: auto; max-width: 100%; padding: 4mm; }
     .badge-preview-scale { transform: scale(var(--badge-preview-zoom, 1)); transform-origin: center top; }
@@ -570,6 +571,7 @@
     .badge-client-brand:not(.logo-missing) .badge-client-placeholder { display: none; }
     .badge-mode-campo .badge-brand-logos { justify-content: space-between; }
     .badge-mode-campo:not(.badge-back) .badge-logo { width: 25mm; height: 9mm; }
+    .badge-campo-header-art { position: absolute; z-index: 0; top: 0; left: 0; width: 100%; height: 14mm; object-fit: fill; pointer-events: none; }
     .badge-divider { width: 100%; height: .4mm; background: var(--badge-accent); }
     .badge-photo { position: relative; display: grid; place-items: center; justify-self: center; overflow: hidden; width: 30mm; height: 38mm; color: var(--badge-black); background: #fff; }
     .badge-photo > .avatar-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); transform: scale(var(--badge-frame-zoom, 1.15)); transform-origin: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); }
@@ -616,8 +618,12 @@
     .badge-back { display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 1.2mm; text-align: center; }
     .badge-back { padding: 0 3mm 2.2mm; background: #fff; }
     .badge-back .badge-brand { flex: 0 0 17mm; min-height: 17mm; margin: 0 -3mm; border: 0; border-bottom: 1mm solid #38b8d1; background: linear-gradient(125deg, #102a62 0%, #1b3f78 58%, #238ba7 100%); }
-    .badge-back .badge-logo-shell { min-width: 38mm; height: 12mm; padding: .8mm 2mm; border-radius: 2mm; background: rgba(255,255,255,.96); box-shadow: 0 .6mm 1.5mm rgba(5,25,55,.22); }
+    .badge-back .badge-logo-shell { min-width: 38mm; height: 12mm; padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
     .badge-back .badge-logo { width: 34mm; height: 10.5mm; }
+    .badge-back.badge-mode-campo .badge-brand { flex-basis: 14mm; min-height: 14mm; padding: 0 2.5mm; }
+    .badge-back.badge-mode-campo .badge-brand-logos { justify-content: center; gap: 0; }
+    .badge-back.badge-mode-campo .badge-logo-shell { width: 24mm; min-width: 24mm; height: 11mm; }
+    .badge-back.badge-mode-campo .badge-logo { width: 24mm; height: 11mm; }
     .badge-back-content { display: grid; gap: .7mm; min-height: 7mm; align-content: center; margin: 1mm 0 0; font-size: 8pt; line-height: 1.1; overflow-wrap: anywhere; }
     .badge-back-content strong { padding: 0; color: #10243a; background: transparent; }
     .badge-back-details { display: grid; gap: 1.2mm; padding: 1.5mm; border: 0; border-left: 1mm solid #2c83a5; border-radius: 0 .8mm .8mm 0; background: rgba(239,246,250,.96); text-align: left; }
@@ -625,10 +631,11 @@
     .badge-back-field-label { color: #1d557d; font-size: 5.2pt; font-weight: 800; }
     .badge-signatures { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4mm; min-height: 13mm; }
     .badge-signature { display: grid; gap: .7mm; font-size: 5.5pt; }
-    .badge-signature-line { height: 9mm; border-bottom: .2mm solid var(--badge-black); }
+    .badge-signature-line { position: relative; height: 9mm; border-bottom: .2mm solid var(--badge-black); }
+    .badge-signature-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
     .badge-company-address { font-size: 6pt; font-style: normal; line-height: 1.1; }
     .badge-legal { font-size: 5pt; }
-    .badge-back .badge-legal { margin-bottom: 2mm; }
+    .badge-back .badge-legal { margin-bottom: 4mm; }
     .badge-footer-art { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; display: block; width: 100%; height: 3mm; object-fit: fill; pointer-events: none; }
     .badge-corporate-front {
       display: block;
@@ -639,21 +646,34 @@
     .badge-corporate-front .badge-logo { width: 42mm; height: 16mm; }
     .badge-corporate-front .badge-client-brand { display: none; }
     .badge-corporate-front .badge-brand-divider { display: none; }
-    .badge-corporate-front .badge-hero { position: absolute; z-index: 4; top: 30mm; left: 0; right: 0; display: grid; place-items: center; height: 28mm; }
+    .badge-corporate-front .badge-hero { position: absolute; z-index: 4; top: 26mm; left: 0; right: 0; display: grid; place-items: center; height: 27mm; }
     .badge-corporate-front .badge-photo { width: 26mm; height: 26mm; border: .8mm solid #fff; border-radius: 50%; background: #edf5fa; box-shadow: 0 0 0 .65mm #10243a; }
     .badge-corporate-front .badge-photo-frame, .badge-corporate-front .badge-frame-guides { display: none; }
-    .badge-corporate-front .badge-name { position: absolute; z-index: 4; top: 58.5mm; left: 3mm; right: 3mm; min-height: 7mm; max-height: 7mm; display: flex; align-items: center; justify-content: center; color: #10243a; font-size: 11.5pt; font-weight: 800; line-height: 1.02; text-align: center; }
-    .badge-corporate-front .badge-job { position: absolute; z-index: 4; top: 66.5mm; left: 4mm; right: 4mm; max-height: 3.5mm; padding: 0; color: #2c82a3; background: transparent; font-size: 7.5pt; font-weight: 800; line-height: 1.12; text-align: center; }
+    .badge-corporate-front .badge-name { position: absolute; z-index: 4; top: 54mm; left: 3mm; right: 3mm; min-height: 6.5mm; max-height: 7mm; display: flex; align-items: center; justify-content: center; color: #10243a; font-size: 9.5pt; font-weight: 800; line-height: 1.02; text-align: center; }
+    .badge-corporate-front .badge-job { position: absolute; z-index: 4; top: 62mm; left: 4mm; right: 4mm; height: 4mm; max-height: 4mm; padding: 0; color: #2c82a3; background: transparent; font-size: 7pt; font-weight: 800; line-height: 1.12; text-align: center; }
     .badge-corporate-front .badge-field { display: grid; grid-template-columns: 1fr; justify-items: center; align-content: center; gap: .2mm; padding: 0; overflow: hidden; border: 0; border-radius: 0; color: #10243a; background: transparent; text-align: center; }
-    .badge-corporate-front .badge-field-label { color: #677995; font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .badge-corporate-front .badge-field-label { color: #677995; font-size: 6pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .badge-corporate-front .badge-field strong { min-width: 0; overflow: hidden; color: #10243a; font-size: 10pt; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
-    .badge-corporate-front .badge-area { position: absolute; z-index: 4; top: 69.5mm; left: 6mm; right: 6mm; height: 3.5mm; }
-    .badge-corporate-front .badge-area strong { display: block; overflow: visible; color: #677995; font-size: 7.2pt; font-weight: 500; line-height: 1.05; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; }
-    .badge-corporate-front .badge-employee-id { position: absolute; z-index: 5; top: 73mm; left: 8mm; width: 38mm; height: 5.5mm; min-height: 5.5mm; padding: .25mm 2mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
-    .badge-corporate-front .badge-employee-id strong { color: #10243a; font-size: 10.5pt; line-height: 1; letter-spacing: .08em; }
-    .badge-corporate-front .badge-website { position: absolute; z-index: 5; left: 3mm; right: 3mm; top: 79.2mm; height: 2.5mm; color: #61748a; font-size: 6.2pt; font-weight: 500; line-height: 1; }
-    .badge-corporate-front.badge-mode-campo .badge-logo { width: 25mm; height: 9mm; }
-    .badge-corporate-front.badge-mode-campo .badge-client-brand { width: 15mm; height: 9mm; }
+    .badge-corporate-front .badge-area { position: absolute; z-index: 4; top: 66.5mm; left: 6mm; right: 6mm; height: 6.3mm; }
+    .badge-corporate-front .badge-area strong { display: -webkit-box; max-height: 4.2mm; overflow: hidden; color: #677995; font-size: 6pt; font-weight: 500; line-height: 1; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+    .badge-corporate-front .badge-employee-id { position: absolute; z-index: 5; top: 73.5mm; left: 8mm; width: 38mm; height: 6mm; min-height: 6mm; padding: .25mm 2mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
+    .badge-corporate-front .badge-employee-id .badge-field-label { font-size: 5pt; }
+    .badge-corporate-front .badge-employee-id strong { color: #10243a; font-size: 9pt; line-height: 1; letter-spacing: .08em; }
+    .badge-corporate-front .badge-website { position: absolute; z-index: 5; right: 3mm; bottom: .5mm; left: 3mm; height: 2mm; color: #fff; font-size: 5pt; font-weight: 500; line-height: 1; }
+    .badge-corporate-front .badge-website strong { color: inherit; font-size: inherit; line-height: inherit; }
+    .badge-corporate-front.badge-mode-campo .badge-body-circuit-art { display: none; }
+    .badge-corporate-front.badge-mode-campo .badge-brand { min-height: 14mm; height: 14mm; padding: 0 2.5mm; }
+    .badge-corporate-front.badge-mode-campo .badge-brand-logos { justify-content: center; gap: 0; }
+    .badge-corporate-front.badge-mode-campo .badge-logo-shell { width: 24mm; min-width: 24mm; height: 11mm; }
+    .badge-corporate-front.badge-mode-campo .badge-logo { width: 24mm; height: 11mm; }
+    .badge-corporate-front.badge-mode-campo .badge-hero { top: 15mm; height: 27mm; }
+    .badge-corporate-front.badge-mode-campo .badge-name { top: 42.5mm; }
+    .badge-corporate-front.badge-mode-campo .badge-job { top: 50mm; }
+    .badge-corporate-front.badge-mode-campo .badge-area { top: 55mm; }
+    .badge-corporate-front.badge-mode-campo .badge-employee-id { top: 62.5mm; }
+    .badge-corporate-front.badge-mode-campo .badge-service-footer { position: absolute; z-index: 4; top: 70mm; right: 7mm; left: 7mm; display: flex; align-items: center; justify-content: center; gap: 2mm; height: 9mm; }
+    .badge-corporate-front.badge-mode-campo .badge-service-caption { flex: 0 0 18mm; color: #172f58; font-size: 5.5pt; font-weight: 750; line-height: 1.05; text-align: right; }
+    .badge-corporate-front.badge-mode-campo .badge-service-footer .badge-client-brand { display: grid; flex: 0 0 18mm; width: 18mm; height: 8mm; }
     .badge-corporate-front.badge-style-band .badge-brand { background: linear-gradient(110deg, #e5f1f8, #d7eaf5); }
     .badge-corporate-front.badge-style-savings .badge-brand { border-bottom-color: #444; background: #f0f0f0; }
     .badge-corporate-front.badge-style-savings .badge-logo-shell { background: #f0f0f0; }
@@ -912,6 +932,9 @@
             <option value="campo">Campo</option>
           </select>
         </label>
+        <label id="badge-client-logo-setting" class="badge-client-logo-setting" hidden>Empresa de servicio
+          <select id="badge-client-logo-preview"></select>
+        </label>
         <label>Estilo de impresión
           <select id="badge-style-preview">
             <option value="estandar">Estándar</option>
@@ -925,7 +948,7 @@
         </label>
         <span id="badge-style-note" class="panel-empty" aria-live="polite"></span>
       </div>
-      <p class="notice">En modalidad Campo se reserva espacio para el logo de la empresa cliente. Si aún no está cargado, aparecerá un marcador.</p>
+      <p class="notice">En modalidad Campo, selecciona la empresa de servicio para mostrar su logo junto a la leyenda “Al servicio de...”.</p>
       <div class="badge-preview-tools" aria-label="Zoom de vista previa">
         <button class="control" id="badge-zoom-out" type="button" aria-label="Alejar">−</button>
         <span id="badge-zoom-value" class="panel-empty">100%</span>
@@ -2534,19 +2557,51 @@
     const arteCircuitosCuerpoGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 856"><rect width="540" height="856" fill="#fff"/><rect width="540" height="220" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 122h82l20 22h96l22-22h94l28 35h198"/><path d="M0 174h78l18-18h86l28 28h92l34-34h204"/><path d="M118 122l12 44h78l28 28h92"/><path d="M330 144l42 42h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="122" r="12"/><circle cx="198" cy="144" r="12"/><circle cx="292" cy="122" r="12"/><circle cx="402" cy="179" r="12"/><circle cx="510" cy="186" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="122" r="5"/><circle cx="198" cy="144" r="5"/><circle cx="292" cy="122" r="5"/><circle cx="402" cy="179" r="5"/><circle cx="510" cy="186" r="5"/></g><path fill="#edf4f7" d="M0 808h540v48H0Z"/><path fill="#74bed3" d="M0 808h540v12H0Z"/><path fill="#b8dbe6" d="M0 820h540v36H0Z"/><path fill="#172f58" d="M0 808h138v48H0Z"/><path fill="#62afc9" d="M138 808h248v48H138Z"/><path fill="#172f58" d="M386 808h154v48H386Z"/></svg>'
     )}`;
+    const arteEncabezadoCampo = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140"><rect width="540" height="140" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 46h82l20 18h96l22-22h94l28 30h198"/><path d="M0 106h78l18-18h86l28 28h92l34-34h204"/><path d="M118 46l12 60h78l28 28h92"/><path d="M330 76l42 48h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="46" r="12"/><circle cx="198" cy="64" r="12"/><circle cx="292" cy="42" r="12"/><circle cx="402" cy="82" r="12"/><circle cx="510" cy="106" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="46" r="5"/><circle cx="198" cy="64" r="5"/><circle cx="292" cy="42" r="5"/><circle cx="402" cy="82" r="5"/><circle cx="510" cy="106" r="5"/></g></svg>'
+    )}`;
+    const logosEmpresasServicioGafete = [
+      { nombre: "Izzi", ruta: "assets/img/gafete/elementos/Izzi.png" },
+      { nombre: "Total Play", ruta: "GafetesDRFC/Assets/total_play.jpg" },
+      { nombre: "Huawei", ruta: "GafetesDRFC/Assets/huawei.png" }
+    ];
+
+    function actualizarSelectorLogoEmpresaGafete(persona) {
+      const selector = el("badge-client-logo-preview");
+      const rutaActual = String(persona.logoEmpresaServicio || "").trim();
+      const opciones = [{ nombre: "Sin logotipo", ruta: "" }, ...logosEmpresasServicioGafete];
+      if (rutaActual && !logosEmpresasServicioGafete.some((empresa) => empresa.ruta === rutaActual)) {
+        const archivo = rutaActual.split(/[\\/]/).pop() || rutaActual;
+        opciones.push({ nombre: `Logo actual: ${archivo}`, ruta: rutaActual });
+      }
+      selector.innerHTML = opciones.map(({ nombre, ruta }) =>
+        `<option value="${html(ruta)}">${html(nombre)}</option>`
+      ).join("");
+      selector.value = rutaActual;
+      el("badge-client-logo-setting").hidden =
+        normalizarModalidadGafete(persona.modalidadGafete) !== "campo";
+    }
+
     function contenidoGafete(persona, lado = "frente", estilo = estiloGafete, mostrarGuias = false) {
       const estiloSeguro = ["estandar", "ahorro", "banda"].includes(estilo) ? estilo : "estandar";
       const claseEstilo = estiloSeguro === "ahorro" ? "badge-style-savings" :
         estiloSeguro === "banda" ? "badge-style-band" : "badge-style-standard";
       const modalidad = normalizarModalidadGafete(persona.modalidadGafete);
       const logoCliente = String(persona.logoEmpresaServicio || "").trim();
-      const logo = "assets/img/logos/Logo_DRFC_Blanco_recortado.png";
-      const logos = (incluirCliente) => `<div class="badge-brand-logos">
+      const logo = estiloSeguro === "banda" && lado !== "reverso"
+        ? "assets/img/logos/Logo_DRFC_Color_recortado.png"
+        : "assets/img/logos/Logo_DRFC_Blanco_recortado.png";
+      const logos = () => `<div class="badge-brand-logos">
           <span class="badge-logo-shell"><img class="badge-logo" src="${logo}" alt="Logo DRFC"></span>
-          ${incluirCliente ? `<span class="badge-brand-divider" aria-hidden="true"></span><span class="badge-client-brand ${logoCliente ? "" : "logo-missing"}">${logoCliente ? `<img class="badge-client-logo" src="${html(logoCliente)}" alt="Logo de empresa de servicio">` : ""}<span class="badge-client-placeholder">LOGO<br>CLIENTE</span></span>` : ""}
         </div>`;
-      const marca = `<div class="badge-brand">${logos(lado !== "reverso" && modalidad === "campo")}</div>`;
+      const marca = `<div class="badge-brand">${logos()}</div>`;
       const arteCuerpo = `<img class="badge-body-circuit-art" src="${arteCircuitosCuerpoGafete}" alt="" aria-hidden="true">`;
+      const arteCampo = lado !== "reverso" && modalidad === "campo"
+        ? `<img class="badge-campo-header-art" src="${arteEncabezadoCampo}" alt="" aria-hidden="true">`
+        : "";
+      const servicio = modalidad === "campo"
+        ? `<div class="badge-service-footer"><span class="badge-service-caption">Al servicio de</span><span class="badge-client-brand ${logoCliente ? "" : "logo-missing"}">${logoCliente ? `<img class="badge-client-logo" src="${html(logoCliente)}" alt="Logo de empresa de servicio">` : ""}<span class="badge-client-placeholder">LOGO<br>CLIENTE</span></span></div>`
+        : "";
       const modo = `badge-mode-${modalidad}`;
       if (lado === "reverso") {
         return `<article class="badge-card badge-back ${claseEstilo} ${modo}">
@@ -2559,7 +2614,7 @@
           </div>
           <div class="badge-signatures">
             <div class="badge-signature"><span class="badge-signature-line"></span><span>Firma del empleado</span></div>
-            <div class="badge-signature"><span class="badge-signature-line"></span><span>Firma de la dirección</span></div>
+            <div class="badge-signature"><span class="badge-signature-line"><img class="badge-signature-image" src="assets/img/gafete/elementos/firma_direccion.png" alt="" aria-hidden="true"></span><span>Firma de la dirección</span></div>
           </div>
           <address class="badge-company-address">Camino a Ocotepec, SN<br>Col. Ocotepec, Cuernavaca, Morelos<br>C.P. 62220</address>
           <small class="badge-legal">Este gafete es personal e intransferible.</small>
@@ -2571,7 +2626,7 @@
         ? `<div class="badge-job">${html(persona.cargo)}</div>` : "";
       const idGafete = String(persona.idEmpleado || "").trim() || "000000";
       return `<article class="badge-card badge-corporate-front ${claseEstilo} ${modo}">
-        ${arteCuerpo}${marca}
+        ${arteCuerpo}${arteCampo}${marca}${servicio}
         <div class="badge-hero"><div class="badge-photo"><span class="badge-initials">${html(iniciales(persona.nombre))}</span><img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="Foto de ${html(persona.nombre)}" style="--badge-frame-zoom:${encuadre.zoom};--badge-frame-x:${encuadre.x}%;--badge-frame-y:${encuadre.y}%"><img class="badge-photo-frame" src="${arteMarcoFotoGafete}" alt="" aria-hidden="true">${mostrarGuias ? '<span class="badge-frame-guides" aria-hidden="true"><span class="badge-eye-guide"></span><span class="badge-sternum-guide"></span></span>' : ""}</div></div>
         <div class="badge-name">${html(persona.nombre)}</div>
         ${puesto}
@@ -2598,7 +2653,10 @@
 
     function ajustarTextoGafete(contenedor) {
       contenedor.querySelectorAll(".badge-name").forEach((nombre) => {
-        for (let tamano = 11; tamano >= 8; tamano -= .5) {
+        const esFrenteCorporativo = nombre.closest(".badge-corporate-front");
+        const tamanoMaximo = esFrenteCorporativo ? 9.5 : 11;
+        const tamanoMinimo = esFrenteCorporativo ? 7.5 : 8;
+        for (let tamano = tamanoMaximo; tamano >= tamanoMinimo; tamano -= .5) {
           nombre.style.fontSize = `${tamano}pt`;
           const altoLinea = Number.parseFloat(getComputedStyle(nombre).lineHeight);
           if (nombre.scrollWidth <= nombre.clientWidth + 1 &&
@@ -2635,6 +2693,7 @@
       if (!persona) return;
       el("badge-preview").innerHTML = `<div class="badge-preview-stage"><div class="badge-preview-scale" style="--badge-preview-zoom:${zoomGafete}">${contenidoGafete(persona, ladoGafete, estiloGafete)}</div></div>`;
       el("badge-mode-preview").value = normalizarModalidadGafete(persona.modalidadGafete);
+      actualizarSelectorLogoEmpresaGafete(persona);
       el("badge-preview-notes").innerHTML = '<span data-badge-photo-note></span>';
       el("badge-preview").querySelectorAll(".avatar-photo").forEach((img) => cargarFoto(img, img.dataset.photoName));
       prepararLogosGafete(el("badge-preview"));
@@ -2661,6 +2720,28 @@
         mostrarError(error.message);
         const persona = porId.get(personaGafeteId);
         el("badge-mode-preview").value = normalizarModalidadGafete(persona?.modalidadGafete);
+      }
+    }
+
+    function cambiarLogoEmpresaGafete(ruta) {
+      const persona = porId.get(personaGafeteId);
+      if (!persona) return;
+      const rutaActual = String(persona.logoEmpresaServicio || "").trim();
+      const rutaSeleccionada = String(ruta || "").trim();
+      if (rutaSeleccionada && rutaSeleccionada !== rutaActual &&
+          !logosEmpresasServicioGafete.some((empresa) => empresa.ruta === rutaSeleccionada)) {
+        mostrarError("Selecciona una empresa de servicio disponible.");
+        actualizarSelectorLogoEmpresaGafete(persona);
+        return;
+      }
+      try {
+        guardarCambios(personaGafeteId, { logoEmpresaServicio: rutaSeleccionada });
+        renderizarGafete();
+        ocultarError();
+      } catch (error) {
+        mostrarError(error.message);
+        const personaActual = porId.get(personaGafeteId);
+        if (personaActual) actualizarSelectorLogoEmpresaGafete(personaActual);
       }
     }
 
@@ -3768,6 +3849,7 @@
       renderizarGafete();
     });
     el("badge-mode-preview").addEventListener("change", (evento) => cambiarModalidadGafete(evento.target.value));
+    el("badge-client-logo-preview").addEventListener("change", (evento) => cambiarLogoEmpresaGafete(evento.target.value));
     el("badge-style-preview").addEventListener("change", (evento) => cambiarEstiloGafete(evento.target.value));
     el("badge-style-multiple").addEventListener("change", (evento) => cambiarEstiloGafete(evento.target.value));
     el("badge-print-scale").addEventListener("input", (evento) => {
