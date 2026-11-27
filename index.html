@@ -571,7 +571,9 @@
     .badge-client-brand:not(.logo-missing) .badge-client-placeholder { display: none; }
     .badge-mode-campo .badge-brand-logos { justify-content: space-between; }
     .badge-mode-campo:not(.badge-back) .badge-logo { width: 25mm; height: 9mm; }
-    .badge-campo-header-art { position: absolute; z-index: 0; top: 0; left: 0; width: 100%; height: 14mm; object-fit: fill; pointer-events: none; }
+    .badge-campo-header-art { position: absolute; z-index: 0; top: 0; left: 0; width: 100%; height: 14mm; object-fit: cover; pointer-events: none; }
+    .badge-office-header-art { position: absolute; z-index: 0; top: 0; left: 0; width: 100%; height: 20mm; object-fit: cover; pointer-events: none; }
+    .badge-back .badge-office-header-art { height: 17mm; }
     .badge-divider { width: 100%; height: .4mm; background: var(--badge-accent); }
     .badge-photo { position: relative; display: grid; place-items: center; justify-self: center; overflow: hidden; width: 30mm; height: 38mm; color: var(--badge-black); background: #fff; }
     .badge-photo > .avatar-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); transform: scale(var(--badge-frame-zoom, 1.15)); transform-origin: var(--badge-frame-x, 50%) var(--badge-frame-y, 15%); }
@@ -606,7 +608,6 @@
     .badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
     .badge-style-savings .badge-brand-divider { background: var(--badge-black); }
     .badge-style-savings .badge-photo > .avatar-photo, .badge-style-savings .badge-photo-frame { filter: grayscale(1); }
-    .badge-style-savings .badge-footer-art { filter: grayscale(1); }
     .badge-style-band { grid-template-rows: .4mm 38mm auto auto auto auto auto .4mm; align-content: space-between; gap: .45mm; padding-top: 15mm; }
     .badge-style-band .badge-brand { position: absolute; inset: 0 0 auto; height: 14mm; padding: 0 1.5mm; border-bottom-color: #2c6ea6; background: linear-gradient(110deg, #e5f1f8, #d7eaf5); }
     .badge-style-band .badge-logo { width: 34mm; height: 10mm; max-width: 44mm; max-height: 10mm; }
@@ -624,8 +625,6 @@
     .badge-back.badge-mode-campo .badge-brand-logos { justify-content: center; gap: 0; }
     .badge-back.badge-mode-campo .badge-logo-shell { width: 24mm; min-width: 24mm; height: 11mm; }
     .badge-back.badge-mode-campo .badge-logo { width: 24mm; height: 11mm; }
-    .badge-back-content { display: grid; gap: .7mm; min-height: 7mm; align-content: center; margin: 1mm 0 0; font-size: 8pt; line-height: 1.1; overflow-wrap: anywhere; }
-    .badge-back-content strong { padding: 0; color: #10243a; background: transparent; }
     .badge-back-details { display: grid; gap: 1.2mm; padding: 1.5mm; border: 0; border-left: 1mm solid #2c83a5; border-radius: 0 .8mm .8mm 0; background: rgba(239,246,250,.96); text-align: left; }
     .badge-back-field { display: grid; gap: .35mm; font-size: 6.5pt; line-height: 1.1; overflow-wrap: anywhere; }
     .badge-back-field-label { color: #1d557d; font-size: 5.2pt; font-weight: 800; }
@@ -651,14 +650,19 @@
     .badge-corporate-front .badge-photo-frame, .badge-corporate-front .badge-frame-guides { display: none; }
     .badge-corporate-front .badge-name { position: absolute; z-index: 4; top: 54mm; left: 3mm; right: 3mm; min-height: 6.5mm; max-height: 7mm; display: flex; align-items: center; justify-content: center; color: #10243a; font-size: 9.5pt; font-weight: 800; line-height: 1.02; text-align: center; }
     .badge-corporate-front .badge-job { position: absolute; z-index: 4; top: 62mm; left: 4mm; right: 4mm; height: 4mm; max-height: 4mm; padding: 0; color: #2c82a3; background: transparent; font-size: 7pt; font-weight: 800; line-height: 1.12; text-align: center; }
+    .badge-corporate-front:not(.badge-mode-campo) .badge-job { top: 62.5mm; }
     .badge-corporate-front .badge-field { display: grid; grid-template-columns: 1fr; justify-items: center; align-content: center; gap: .2mm; padding: 0; overflow: hidden; border: 0; border-radius: 0; color: #10243a; background: transparent; text-align: center; }
     .badge-corporate-front .badge-field-label { color: #677995; font-size: 6pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .badge-corporate-front .badge-field strong { min-width: 0; overflow: hidden; color: #10243a; font-size: 10pt; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
     .badge-corporate-front .badge-area { position: absolute; z-index: 4; top: 66.5mm; left: 6mm; right: 6mm; height: 6.3mm; }
     .badge-corporate-front .badge-area strong { display: -webkit-box; max-height: 4.2mm; overflow: hidden; color: #677995; font-size: 6pt; font-weight: 500; line-height: 1; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-    .badge-corporate-front .badge-employee-id { position: absolute; z-index: 5; top: 73.5mm; left: 8mm; width: 38mm; height: 6mm; min-height: 6mm; padding: .25mm 2mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
+    .badge-corporate-front .badge-employee-id { position: absolute; z-index: 5; top: 73.5mm; left: 5mm; width: 21mm; height: 6mm; min-height: 6mm; padding: .25mm 1mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
+    .badge-corporate-front:not(.badge-mode-campo) .badge-employee-id { left: 4mm; width: 23mm; }
     .badge-corporate-front .badge-employee-id .badge-field-label { font-size: 5pt; }
-    .badge-corporate-front .badge-employee-id strong { color: #10243a; font-size: 9pt; line-height: 1; letter-spacing: .08em; }
+    .badge-corporate-front .badge-employee-id strong { color: #10243a; font-size: 8pt; line-height: 1; letter-spacing: .08em; }
+    .badge-corporate-front .badge-validity { position: absolute; z-index: 5; top: 73.5mm; right: 5mm; width: 21mm; height: 6mm; min-height: 6mm; padding: .25mm 1mm; border: .15mm solid #e1e8ed; border-radius: 2mm; background: #f1f5f7; box-shadow: 0 .4mm 1mm rgba(16,36,58,.04); }
+    .badge-corporate-front .badge-validity .badge-field-label { font-size: 5pt; }
+    .badge-corporate-front .badge-validity strong { color: #10243a; font-size: 6.5pt; line-height: 1; }
     .badge-corporate-front .badge-website { position: absolute; z-index: 5; right: 3mm; bottom: .5mm; left: 3mm; height: 2mm; color: #fff; font-size: 5pt; font-weight: 500; line-height: 1; }
     .badge-corporate-front .badge-website strong { color: inherit; font-size: inherit; line-height: inherit; }
     .badge-corporate-front.badge-mode-campo .badge-body-circuit-art { display: none; }
@@ -670,7 +674,8 @@
     .badge-corporate-front.badge-mode-campo .badge-name { top: 42.5mm; }
     .badge-corporate-front.badge-mode-campo .badge-job { top: 50mm; }
     .badge-corporate-front.badge-mode-campo .badge-area { top: 55mm; }
-    .badge-corporate-front.badge-mode-campo .badge-employee-id { top: 62.5mm; }
+    .badge-corporate-front.badge-mode-campo .badge-employee-id,
+    .badge-corporate-front.badge-mode-campo .badge-validity { top: 62.5mm; }
     .badge-corporate-front.badge-mode-campo .badge-service-footer { position: absolute; z-index: 4; top: 70mm; right: 7mm; left: 7mm; display: flex; align-items: center; justify-content: center; gap: 2mm; height: 9mm; }
     .badge-corporate-front.badge-mode-campo .badge-service-caption { flex: 0 0 18mm; color: #172f58; font-size: 5.5pt; font-weight: 750; line-height: 1.05; text-align: right; }
     .badge-corporate-front.badge-mode-campo .badge-service-footer .badge-client-brand { display: grid; flex: 0 0 18mm; width: 18mm; height: 8mm; }
@@ -679,6 +684,8 @@
     .badge-corporate-front.badge-style-savings .badge-logo-shell { background: #f0f0f0; }
     .badge-corporate-front.badge-style-savings .badge-logo { filter: grayscale(1) brightness(0); }
     .badge-corporate-front.badge-style-savings .badge-job { color: #fff; background: #555; }
+    .badge-corporate-front:not(.badge-mode-campo) .badge-brand,
+    .badge-back.badge-mode-oficina .badge-brand { background: transparent; }
     .badge-corporate-front::after {
       position: absolute;
       z-index: 3;
@@ -687,14 +694,9 @@
       left: 0;
       height: 3.5mm;
       content: "";
-      background:
-        linear-gradient(135deg, transparent 0 64%, rgba(255,255,255,.72) 64% 67%, transparent 67%) 0 0/100% 100% no-repeat,
-        linear-gradient(135deg, transparent 0 62%, #172f58 62% 78%, transparent 78%) 0 0/100% 100% no-repeat,
-        linear-gradient(135deg, transparent 0 38%, #8dd0df 38% 58%, transparent 58%) 0 0/100% 100% no-repeat,
-        linear-gradient(90deg, #edf5f8 0 28%, #172f58 28% 43%, #edf5f8 43% 68%, #63adc4 68% 82%, #172f58 82%);
+      background: #172f58;
       border-top: .35mm solid #c9dde5;
     }
-    .badge-corporate-front.badge-style-savings::after { background: #444; }
     .badge-missing-notes { display: grid; justify-items: center; gap: 3px; color: #5b5350; font-size: 11px; }
     .badge-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
     .vacancy-list { display: grid; gap: 8px; max-height: 55vh; overflow-y: auto; margin: 14px 0; }
@@ -980,7 +982,7 @@
   </section>
   <section id="multi-badge-dialog" class="badge-dialog" role="dialog" aria-modal="true" aria-labelledby="multi-badge-title">
     <div class="dialog-card">
-      <div class="dialog-heading"><h2 id="multi-badge-title">Imprimir varios gafetes</h2><button class="icon-control" id="close-multi-badge" type="button" aria-label="Cerrar">×</button></div>
+      <div class="dialog-heading"><h2 id="multi-badge-title">Imprimir o exportar varios gafetes</h2><button class="icon-control" id="close-multi-badge" type="button" aria-label="Cerrar">×</button></div>
       <div class="badge-picker">
         <label>Buscar empleado<input id="badge-search" type="search" placeholder="Nombre o ID de empleado"></label>
         <label>Área<select id="badge-area"><option value="">Todas las áreas</option></select></label>
@@ -996,7 +998,11 @@
       </div>
       <div id="badge-multiple-style-note" class="panel-empty" aria-live="polite"></div>
       <div id="badge-picker-list" class="badge-picker-list"></div>
-      <div class="badge-actions"><button class="control primary" id="print-multiple-badges" type="button">Imprimir seleccionados (3 × 3)</button></div>
+      <p class="notice">El PowerPoint tendrá dos diapositivas por persona (frente y reverso), de 5.44 × 8.64 cm cada una.</p>
+      <div class="badge-actions">
+        <button class="control primary" id="print-multiple-badges" type="button">Imprimir seleccionados (3 × 3)</button>
+        <button class="control" id="export-multiple-badges-pptx" type="button">Exportar seleccionados a PowerPoint</button>
+      </div>
     </div>
   </section>
   <div id="badge-print-area" hidden></div>
@@ -1826,6 +1832,52 @@
       imgElemento.src = ruta;
     }
 
+    async function esperarFotosGafete(imagenes) {
+      await Promise.all(imagenes.map(async (imagen) => {
+        const resultado = cacheFotos.get(imagen.dataset.photoName);
+        if (resultado && typeof resultado.then === "function") await resultado;
+        if (!imagen.isConnected) return;
+        if (!imagen.complete) {
+          await new Promise((resolver) => {
+            imagen.addEventListener("load", resolver, { once: true });
+            imagen.addEventListener("error", resolver, { once: true });
+          });
+        }
+        if (imagen.isConnected && imagen.naturalWidth) {
+          imagen.closest(".badge-photo")?.classList.add("has-photo");
+        }
+      }));
+    }
+
+    async function esperarImagenesCriticasGafete(contenedor) {
+      const imagenes = [...contenedor.querySelectorAll(".badge-campo-header-art, .badge-office-header-art, .badge-signature-image")];
+      await Promise.all(imagenes.map((imagen) => {
+        const fuente = imagen.getAttribute("src") || "una imagen del gafete";
+        const errorCarga = () => new Error(`No se pudo cargar la imagen ${fuente}.`);
+        if (imagen.complete) {
+          return imagen.naturalWidth ? Promise.resolve() : Promise.reject(errorCarga());
+        }
+        return new Promise((resolver, rechazar) => {
+          let limite;
+          const terminar = (error) => {
+            window.clearTimeout(limite);
+            imagen.removeEventListener("load", alCargar);
+            imagen.removeEventListener("error", alFallar);
+            if (error) rechazar(error);
+            else resolver();
+          };
+          const alCargar = () => terminar(imagen.naturalWidth ? null : errorCarga());
+          const alFallar = () => terminar(errorCarga());
+          limite = window.setTimeout(
+            () => terminar(new Error(`Se agotó el tiempo de espera al cargar la imagen ${fuente}.`)),
+            10000
+          );
+          imagen.addEventListener("load", alCargar, { once: true });
+          imagen.addEventListener("error", alFallar, { once: true });
+        });
+      }));
+    }
+
     function colorArea(area) {
       let hash = 0;
       for (const caracter of String(area || "")) hash = (hash * 31 + caracter.codePointAt(0)) | 0;
@@ -2552,14 +2604,12 @@
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 380"><path fill="#fff" fill-rule="evenodd" d="M0 0H300V380H0ZM60 4H240L296 60V320L240 376H60L4 320V60Z"/><path fill="none" stroke="#2c6ea6" stroke-width="10" d="M60 4H240L296 60V320L240 376H60L4 320V60Z"/><path fill="none" stroke="#8cc9ef" stroke-width="3" d="M63 11H237L289 63V317L237 369H63L11 317V63Z"/><path fill="none" stroke="#174f70" stroke-linecap="square" stroke-width="6" d="M7 270v48l48 48"/></svg>'
     )}`;
     const arteFranjaGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 30"><path fill="#10243a" d="M0 0H540V30H0Z"/><path fill="#2c6ea6" d="M0 30 55 0h135l-55 30Z"/><path fill="#4a91c4" d="M345 30 400 0h40l-55 30Z"/><path fill="#8cc9ef" d="M463 30 518 0h22v4l-48 26Z"/></svg>'
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 30"><path fill="#172f58" d="M0 0H540V30H0Z"/></svg>'
     )}`;
     const arteCircuitosCuerpoGafete = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 856"><rect width="540" height="856" fill="#fff"/><rect width="540" height="220" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 122h82l20 22h96l22-22h94l28 35h198"/><path d="M0 174h78l18-18h86l28 28h92l34-34h204"/><path d="M118 122l12 44h78l28 28h92"/><path d="M330 144l42 42h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="122" r="12"/><circle cx="198" cy="144" r="12"/><circle cx="292" cy="122" r="12"/><circle cx="402" cy="179" r="12"/><circle cx="510" cy="186" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="122" r="5"/><circle cx="198" cy="144" r="5"/><circle cx="292" cy="122" r="5"/><circle cx="402" cy="179" r="5"/><circle cx="510" cy="186" r="5"/></g><path fill="#edf4f7" d="M0 808h540v48H0Z"/><path fill="#74bed3" d="M0 808h540v12H0Z"/><path fill="#b8dbe6" d="M0 820h540v36H0Z"/><path fill="#172f58" d="M0 808h138v48H0Z"/><path fill="#62afc9" d="M138 808h248v48H138Z"/><path fill="#172f58" d="M386 808h154v48H386Z"/></svg>'
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 856"><rect width="540" height="856" fill="#fff"/><rect width="540" height="220" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 122h82l20 22h96l22-22h94l28 35h198"/><path d="M0 174h78l18-18h86l28 28h92l34-34h204"/><path d="M118 122l12 44h78l28 28h92"/><path d="M330 144l42 42h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="122" r="12"/><circle cx="198" cy="144" r="12"/><circle cx="292" cy="122" r="12"/><circle cx="402" cy="179" r="12"/><circle cx="510" cy="186" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="122" r="5"/><circle cx="198" cy="144" r="5"/><circle cx="292" cy="122" r="5"/><circle cx="402" cy="179" r="5"/><circle cx="510" cy="186" r="5"/></g><path fill="#172f58" d="M0 808h540v48H0Z"/></svg>'
     )}`;
-    const arteEncabezadoCampo = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140"><rect width="540" height="140" fill="#172f58"/><g fill="none" stroke="#5d84a5" stroke-width="3" opacity=".72"><path d="M0 46h82l20 18h96l22-22h94l28 30h198"/><path d="M0 106h78l18-18h86l28 28h92l34-34h204"/><path d="M118 46l12 60h78l28 28h92"/><path d="M330 76l42 48h168"/></g><g fill="#172f58" stroke="#172f58" stroke-width="7"><circle cx="82" cy="46" r="12"/><circle cx="198" cy="64" r="12"/><circle cx="292" cy="42" r="12"/><circle cx="402" cy="82" r="12"/><circle cx="510" cy="106" r="12"/></g><g fill="none" stroke="#7bb7d1" stroke-width="5" opacity=".9"><circle cx="82" cy="46" r="5"/><circle cx="198" cy="64" r="5"/><circle cx="292" cy="42" r="5"/><circle cx="402" cy="82" r="5"/><circle cx="510" cy="106" r="5"/></g></svg>'
-    )}`;
+    const arteEncabezadoGafete = "assets/img/gafete/elementos/encabezado.png";
     const logosEmpresasServicioGafete = [
       { nombre: "Izzi", ruta: "assets/img/gafete/elementos/Izzi.png" },
       { nombre: "Total Play", ruta: "GafetesDRFC/Assets/total_play.jpg" },
@@ -2596,8 +2646,11 @@
         </div>`;
       const marca = `<div class="badge-brand">${logos()}</div>`;
       const arteCuerpo = `<img class="badge-body-circuit-art" src="${arteCircuitosCuerpoGafete}" alt="" aria-hidden="true">`;
+      const arteOficina = modalidad === "oficina"
+        ? `<img class="badge-office-header-art" src="${arteEncabezadoGafete}" alt="" aria-hidden="true">`
+        : "";
       const arteCampo = lado !== "reverso" && modalidad === "campo"
-        ? `<img class="badge-campo-header-art" src="${arteEncabezadoCampo}" alt="" aria-hidden="true">`
+        ? `<img class="badge-campo-header-art" src="${arteEncabezadoGafete}" alt="" aria-hidden="true">`
         : "";
       const servicio = modalidad === "campo"
         ? `<div class="badge-service-footer"><span class="badge-service-caption">Al servicio de</span><span class="badge-client-brand ${logoCliente ? "" : "logo-missing"}">${logoCliente ? `<img class="badge-client-logo" src="${html(logoCliente)}" alt="Logo de empresa de servicio">` : ""}<span class="badge-client-placeholder">LOGO<br>CLIENTE</span></span></div>`
@@ -2605,10 +2658,8 @@
       const modo = `badge-mode-${modalidad}`;
       if (lado === "reverso") {
         return `<article class="badge-card badge-back ${claseEstilo} ${modo}">
-          ${arteCuerpo}${marca}<div class="badge-divider badge-divider-top"></div>
-          <div class="badge-back-content"><strong>${html(persona.nombre)}</strong></div>
+          ${arteCuerpo}${arteOficina}${marca}<div class="badge-divider badge-divider-top"></div>
           <div class="badge-back-details">
-            <div class="badge-back-field"><span class="badge-back-field-label">ID DE EMPLEADO</span><strong>${html(valorCapturado(persona.idEmpleado))}</strong></div>
             <div class="badge-back-field"><span class="badge-back-field-label">TIPO DE SANGRE</span><strong>${html(valorCapturado(persona.tipoSangre))}</strong></div>
             <div class="badge-back-field"><span class="badge-back-field-label">CONTACTO DE EMERGENCIA</span><strong>${html(valorCapturado(persona.contactoEmergencia))}</strong></div>
           </div>
@@ -2626,12 +2677,13 @@
         ? `<div class="badge-job">${html(persona.cargo)}</div>` : "";
       const idGafete = String(persona.idEmpleado || "").trim() || "000000";
       return `<article class="badge-card badge-corporate-front ${claseEstilo} ${modo}">
-        ${arteCuerpo}${arteCampo}${marca}${servicio}
+        ${arteCuerpo}${arteOficina}${arteCampo}${marca}${servicio}
         <div class="badge-hero"><div class="badge-photo"><span class="badge-initials">${html(iniciales(persona.nombre))}</span><img class="avatar-photo" data-photo-name="${html(persona.nombre)}" alt="Foto de ${html(persona.nombre)}" style="--badge-frame-zoom:${encuadre.zoom};--badge-frame-x:${encuadre.x}%;--badge-frame-y:${encuadre.y}%"><img class="badge-photo-frame" src="${arteMarcoFotoGafete}" alt="" aria-hidden="true">${mostrarGuias ? '<span class="badge-frame-guides" aria-hidden="true"><span class="badge-eye-guide"></span><span class="badge-sternum-guide"></span></span>' : ""}</div></div>
         <div class="badge-name">${html(persona.nombre)}</div>
         ${puesto}
         <div class="badge-field badge-area"><span class="badge-field-label">ÁREA:</span><strong>${html(valorCapturado(persona.area))}</strong></div>
         <div class="badge-field badge-employee-id"><span class="badge-field-label">NÚMERO ID:</span><strong>${html(idGafete)}</strong></div>
+        <div class="badge-field badge-validity"><span class="badge-field-label">VIGENCIA:</span><strong>${html(valorCapturado(persona.vigencia))}</strong></div>
         <div class="badge-field badge-website"><strong>www.drfc.mx</strong></div>
       </article>`;
     }
@@ -2849,11 +2901,10 @@
       try {
         const fotos = [...temporal.querySelectorAll(".avatar-photo")];
         fotos.forEach((imagen) => cargarFoto(imagen, imagen.dataset.photoName));
-        await Promise.all(fotos.map((imagen) => {
-          const resultado = cacheFotos.get(imagen.dataset.photoName);
-          return resultado && typeof resultado.then === "function" ? resultado : Promise.resolve(resultado);
-        }));
+        await esperarFotosGafete(fotos);
         prepararLogosGafete(temporal);
+        await esperarImagenesCriticasGafete(temporal);
+        ajustarTextoGafete(temporal);
         temporal.querySelectorAll("img").forEach((imagen) => {
           const ruta = imagen.currentSrc || imagen.src;
           if (ruta) imagen.setAttribute("src", new URL(ruta, document.baseURI).href);
@@ -2938,8 +2989,17 @@
         };
       };
       const redondear = (x, y, width, height, radio) => {
-        const r = Math.min(radio, width / 2, height / 2);
+        const radioTexto = String(radio || "0");
+        const porcentaje = radioTexto.includes("%") ? Number.parseFloat(radioTexto) / 100 : 0;
+        const radioX = porcentaje ? width * porcentaje : Number.parseFloat(radioTexto) || 0;
+        const radioY = porcentaje ? height * porcentaje : Number.parseFloat(radioTexto) || 0;
         contexto.beginPath();
+        if (radioX >= width / 2 && radioY >= height / 2) {
+          contexto.ellipse(x + width / 2, y + height / 2, width / 2, height / 2, 0, 0, Math.PI * 2);
+          contexto.closePath();
+          return;
+        }
+        const r = Math.min(radioX, radioY, width / 2, height / 2);
         contexto.moveTo(x + r, y);
         contexto.arcTo(x + width, y, x + width, y + height, r);
         contexto.arcTo(x + width, y + height, x, y + height, r);
@@ -2948,39 +3008,71 @@
         contexto.closePath();
       };
       const visibles = (color) => color && color !== "transparent" && color !== "rgba(0, 0, 0, 0)";
-
-      contexto.fillStyle = "#fff";
-      contexto.fillRect(0, 0, rectangulo.width, rectangulo.height);
-      elementos.forEach((elemento) => {
-        if (elemento.tagName === "IMG") return;
-        const estilo = getComputedStyle(elemento);
-        const fondo = estilo.backgroundColor;
-        if (!visibles(fondo)) return;
-        const area = caja(elemento);
-        const radio = Number.parseFloat(estilo.borderTopLeftRadius) || 0;
-        redondear(area.x, area.y, area.width, area.height, radio);
-        contexto.fillStyle = fondo;
-        contexto.fill();
-      });
-      elementos.filter((elemento) => elemento.tagName === "IMG" && elemento.complete && elemento.naturalWidth)
-        .forEach((imagen) => {
-          const estilo = getComputedStyle(imagen);
-          const area = caja(imagen);
-          const ajuste = estilo.objectFit === "contain" ? "contain" : "cover";
-          let sx = 0;
-          let sy = 0;
-          let sw = imagen.naturalWidth;
-          let sh = imagen.naturalHeight;
+      const recortarPorAncestros = (elemento) => {
+        const ancestros = [];
+        for (let actual = elemento.parentElement; actual; actual = actual.parentElement) {
+          const estilo = getComputedStyle(actual);
+          if (["hidden", "clip", "scroll", "auto"].includes(estilo.overflowX) ||
+              ["hidden", "clip", "scroll", "auto"].includes(estilo.overflowY)) {
+            ancestros.push(actual);
+          }
+          if (actual === gafete) break;
+        }
+        ancestros.reverse().forEach((ancestro) => {
+          const area = caja(ancestro);
+          const estilo = getComputedStyle(ancestro);
+          const radioTexto = estilo.borderTopLeftRadius;
+          if (radioTexto.includes("%")) {
+            const porcentaje = Number.parseFloat(radioTexto) / 100;
+            const radioX = area.width * porcentaje;
+            const radioY = area.height * porcentaje;
+            contexto.beginPath();
+            if (radioX >= area.width / 2 && radioY >= area.height / 2) {
+              contexto.ellipse(area.x + area.width / 2, area.y + area.height / 2,
+                area.width / 2, area.height / 2, 0, 0, Math.PI * 2);
+            } else {
+              redondear(area.x, area.y, area.width, area.height, Math.min(radioX, radioY));
+            }
+            contexto.clip();
+            return;
+          }
+          redondear(area.x, area.y, area.width, area.height, Number.parseFloat(radioTexto) || 0);
+          contexto.clip();
+        });
+      };
+      const dibujarImagen = (imagen) => {
+        if (!imagen.complete || !imagen.naturalWidth) return;
+        const estilo = getComputedStyle(imagen);
+        const area = caja(imagen);
+        let fuente = imagen;
+        if ((imagen.currentSrc || imagen.src).toLocaleLowerCase("en").startsWith("data:image/svg+xml")) {
+          const raster = document.createElement("canvas");
+          raster.width = imagen.naturalWidth;
+          raster.height = imagen.naturalHeight;
+          const rasterContexto = raster.getContext("2d");
+          if (!rasterContexto) throw new Error("El navegador no pudo preparar los elementos gráficos del gafete.");
+          rasterContexto.drawImage(imagen, 0, 0);
+          fuente = raster;
+        }
+        const ajuste = estilo.objectFit;
+        const anchoFuente = fuente === imagen ? imagen.naturalWidth : fuente.width;
+        const altoFuente = fuente === imagen ? imagen.naturalHeight : fuente.height;
+        let sx = 0;
+        let sy = 0;
+        let sw = anchoFuente;
+        let sh = altoFuente;
+        if (ajuste === "contain" || ajuste === "cover") {
+          const proporcion = ajuste === "contain"
+            ? Math.min(area.width / sw, area.height / sh)
+            : Math.max(area.width / sw, area.height / sh);
+          const width = sw * proporcion;
+          const height = sh * proporcion;
           if (ajuste === "contain") {
-            const escalaImagen = Math.min(area.width / sw, area.height / sh);
-            const width = sw * escalaImagen;
-            const height = sh * escalaImagen;
             area.x += (area.width - width) / 2;
             area.y += (area.height - height) / 2;
             area.width = width;
             area.height = height;
           } else {
-            const proporcion = Math.max(area.width / sw, area.height / sh);
             sw = area.width / proporcion;
             sh = area.height / proporcion;
             const posiciones = estilo.objectPosition.split(/\s+/);
@@ -2989,25 +3081,43 @@
             const zoom = Math.max(1, Number.parseFloat(estilo.getPropertyValue("--badge-frame-zoom")) || 1);
             sw /= zoom;
             sh /= zoom;
-            sx = (imagen.naturalWidth - sw) * posicionX;
-            sy = (imagen.naturalHeight - sh) * posicionY;
+            sx = (anchoFuente - sw) * posicionX;
+            sy = (altoFuente - sh) * posicionY;
           }
-          contexto.save();
-          const opacidad = Number.parseFloat(estilo.opacity);
-          contexto.globalAlpha = Number.isFinite(opacidad) ? opacidad : 1;
-          contexto.filter = estilo.filter === "none" ? "none" : estilo.filter;
-          contexto.drawImage(imagen, sx, sy, sw, sh, area.x, area.y, area.width, area.height);
-          contexto.restore();
-        });
+        }
+        contexto.save();
+        recortarPorAncestros(imagen);
+        const opacidad = Number.parseFloat(estilo.opacity);
+        contexto.globalAlpha = Number.isFinite(opacidad) ? opacidad : 1;
+        contexto.filter = estilo.filter === "none" ? "none" : estilo.filter;
+        contexto.drawImage(fuente, sx, sy, sw, sh, area.x, area.y, area.width, area.height);
+        contexto.restore();
+      };
+
+      contexto.fillStyle = "#fff";
+      contexto.fillRect(0, 0, rectangulo.width, rectangulo.height);
+      const arteCuerpo = gafete.querySelector(".badge-body-circuit-art");
+      if (arteCuerpo) dibujarImagen(arteCuerpo);
+      elementos.forEach((elemento) => {
+        if (elemento === gafete || elemento.tagName === "IMG") return;
+        const estilo = getComputedStyle(elemento);
+        const fondo = estilo.backgroundColor;
+        if (!visibles(fondo)) return;
+        const area = caja(elemento);
+        redondear(area.x, area.y, area.width, area.height, estilo.borderTopLeftRadius);
+        contexto.fillStyle = fondo;
+        contexto.fill();
+      });
+      elementos.filter((elemento) => elemento.tagName === "IMG" && elemento !== arteCuerpo)
+        .forEach(dibujarImagen);
       elementos.forEach((elemento) => {
         if (elemento.tagName === "IMG") return;
         const estilo = getComputedStyle(elemento);
         const anchoBorde = Number.parseFloat(estilo.borderTopWidth) || 0;
         if (!anchoBorde || estilo.borderTopStyle === "none" || !visibles(estilo.borderTopColor)) return;
         const area = caja(elemento);
-        const radio = Number.parseFloat(estilo.borderTopLeftRadius) || 0;
         redondear(area.x + anchoBorde / 2, area.y + anchoBorde / 2,
-          area.width - anchoBorde, area.height - anchoBorde, radio);
+          area.width - anchoBorde, area.height - anchoBorde, estilo.borderTopLeftRadius);
         contexto.strokeStyle = estilo.borderTopColor;
         contexto.lineWidth = anchoBorde;
         contexto.stroke();
@@ -3039,39 +3149,55 @@
         const x = alineacion === "center" ? area.x + area.width / 2 :
           alineacion === "right" ? area.x + area.width - paddingDerecho : area.x + paddingIzquierdo;
         const lineas = [];
-        texto.split(/\r?\n/).forEach((parrafo) => {
-          let linea = "";
-          parrafo.split(/\s+/).forEach((palabra) => {
-            const prueba = linea ? `${linea} ${palabra}` : palabra;
-            if (linea && contexto.measureText(prueba).width > anchoTexto) {
-              lineas.push(linea);
-              linea = palabra;
-            } else linea = prueba;
+        if (estilo.whiteSpace === "nowrap") {
+          lineas.push(texto);
+        } else {
+          texto.split(/\r?\n/).forEach((parrafo) => {
+            let linea = "";
+            parrafo.split(/\s+/).forEach((palabra) => {
+              const prueba = linea ? `${linea} ${palabra}` : palabra;
+              if (linea && contexto.measureText(prueba).width > anchoTexto) {
+                lineas.push(linea);
+                linea = palabra;
+              } else linea = prueba;
+            });
+            if (linea) lineas.push(linea);
           });
-          if (linea) lineas.push(linea);
-        });
+        }
+        if (estilo.textOverflow === "ellipsis" && lineas.length === 1 &&
+            contexto.measureText(lineas[0]).width > anchoTexto) {
+          const puntos = "…";
+          while (lineas[0] && contexto.measureText(lineas[0] + puntos).width > anchoTexto) {
+            lineas[0] = lineas[0].slice(0, -1);
+          }
+          lineas[0] = `${lineas[0]}${puntos}`;
+        }
+        const recortarTexto = estilo.overflowX !== "visible" || estilo.overflowY !== "visible";
+        if (recortarTexto) {
+          contexto.save();
+          redondear(area.x, area.y, area.width, area.height, estilo.borderTopLeftRadius);
+          contexto.clip();
+        }
         lineas.slice(0, maxLineas).forEach((linea, indice) =>
           contexto.fillText(linea, x, area.y + indice * interlineado, anchoTexto)
         );
+        if (recortarTexto) contexto.restore();
       });
       return canvas;
     }
 
-    async function descargarGafetesPng(persona) {
+    async function generarImagenesGafete(persona, estilo = estiloGafete) {
       const temporal = document.createElement("div");
       temporal.setAttribute("aria-hidden", "true");
       temporal.style.cssText = "position:fixed;left:-10000px;top:0;z-index:-1;";
       temporal.innerHTML =
-        contenidoGafete(persona, "frente", estiloGafete) +
-        contenidoGafete(persona, "reverso", estiloGafete);
+        contenidoGafete(persona, "frente", estilo) +
+        contenidoGafete(persona, "reverso", estilo);
       document.body.appendChild(temporal);
       try {
         const fotos = [...temporal.querySelectorAll(".avatar-photo")];
         fotos.forEach((imagen) => cargarFoto(imagen, imagen.dataset.photoName));
-        await Promise.all(fotos.map((imagen) => {
-          const resultado = cacheFotos.get(imagen.dataset.photoName);
-          return resultado && typeof resultado.then === "function" ? resultado : Promise.resolve(resultado);
-        }));
+        await esperarFotosGafete(fotos);
         prepararLogosGafete(temporal);
         await Promise.all([...temporal.querySelectorAll(".badge-logo")].map((imagen) => {
           if (imagen.complete) {
@@ -3092,10 +3218,10 @@
             }, { once: true });
           });
         }));
+        await esperarImagenesCriticasGafete(temporal);
         ajustarTextoGafete(temporal);
-        const nombres = ["frente", "reverso"];
         const gafetes = [...temporal.querySelectorAll(".badge-card")];
-        const archivos = await Promise.all(gafetes.map((gafete) => new Promise((resolve, reject) => {
+        return await Promise.all(gafetes.map((gafete) => new Promise((resolve, reject) => {
           try {
             pintarGafeteEnCanvas(gafete).toBlob((blob) => {
               if (!blob) {
@@ -3108,20 +3234,187 @@
             reject(error);
           }
         })));
-        const nombreArchivo = normalizarTexto(persona.nombre).replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "empleado";
-        archivos.forEach((archivo, indice) => {
-          const url = URL.createObjectURL(archivo);
-          const enlace = document.createElement("a");
-          enlace.href = url;
-          enlace.download = `gafete_${nombreArchivo}_${nombres[indice]}.png`;
-          document.body.appendChild(enlace);
-          enlace.click();
-          enlace.remove();
-          window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-        });
       } finally {
         temporal.remove();
       }
+    }
+
+    async function descargarGafetesPng(persona) {
+      const archivos = await generarImagenesGafete(persona);
+      const nombres = ["frente", "reverso"];
+      const nombreArchivo = normalizarTexto(persona.nombre).replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "empleado";
+      archivos.forEach((archivo, indice) => {
+        const url = URL.createObjectURL(archivo);
+        const enlace = document.createElement("a");
+        enlace.href = url;
+        enlace.download = `gafete_${nombreArchivo}_${nombres[indice]}.png`;
+        document.body.appendChild(enlace);
+        enlace.click();
+        enlace.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+    }
+
+    function crearZipSinCompresion(entradas) {
+      if (entradas.length > 0xffff) throw new Error("El PowerPoint tiene demasiadas diapositivas.");
+      const codificador = new TextEncoder();
+      const tablaCrc32 = new Uint32Array(256);
+      for (let indice = 0; indice < tablaCrc32.length; indice++) {
+        let valor = indice;
+        for (let bit = 0; bit < 8; bit++) {
+          valor = valor & 1 ? 0xedb88320 ^ (valor >>> 1) : valor >>> 1;
+        }
+        tablaCrc32[indice] = valor >>> 0;
+      }
+      const crc32 = (bytes) => {
+        let valor = 0xffffffff;
+        bytes.forEach((byte) => {
+          valor = tablaCrc32[(valor ^ byte) & 0xff] ^ (valor >>> 8);
+        });
+        return (valor ^ 0xffffffff) >>> 0;
+      };
+      const ahora = new Date();
+      const fechaDos = ((Math.max(1980, ahora.getFullYear()) - 1980) << 9) |
+        ((ahora.getMonth() + 1) << 5) | ahora.getDate();
+      const horaDos = (ahora.getHours() << 11) | (ahora.getMinutes() << 5) |
+        Math.floor(ahora.getSeconds() / 2);
+      const partesLocales = [];
+      const partesCentrales = [];
+      let posicion = 0;
+      let tamanoCentral = 0;
+      entradas.forEach(({ nombre, contenido }) => {
+        const nombreBytes = codificador.encode(nombre);
+        const datos = typeof contenido === "string" ? codificador.encode(contenido) : contenido;
+        if (datos.length > 0xffffffff || posicion > 0xffffffff) {
+          throw new Error("El PowerPoint supera el tamaño máximo compatible.");
+        }
+        const checksum = crc32(datos);
+        const cabeceraLocal = new Uint8Array(30 + nombreBytes.length);
+        const vistaLocal = new DataView(cabeceraLocal.buffer);
+        vistaLocal.setUint32(0, 0x04034b50, true);
+        vistaLocal.setUint16(4, 20, true);
+        vistaLocal.setUint16(6, 0x0800, true);
+        vistaLocal.setUint16(8, 0, true);
+        vistaLocal.setUint16(10, horaDos, true);
+        vistaLocal.setUint16(12, fechaDos, true);
+        vistaLocal.setUint32(14, checksum, true);
+        vistaLocal.setUint32(18, datos.length, true);
+        vistaLocal.setUint32(22, datos.length, true);
+        vistaLocal.setUint16(26, nombreBytes.length, true);
+        vistaLocal.setUint16(28, 0, true);
+        cabeceraLocal.set(nombreBytes, 30);
+        partesLocales.push(cabeceraLocal, datos);
+
+        const cabeceraCentral = new Uint8Array(46 + nombreBytes.length);
+        const vistaCentral = new DataView(cabeceraCentral.buffer);
+        vistaCentral.setUint32(0, 0x02014b50, true);
+        vistaCentral.setUint16(4, 20, true);
+        vistaCentral.setUint16(6, 20, true);
+        vistaCentral.setUint16(8, 0x0800, true);
+        vistaCentral.setUint16(10, 0, true);
+        vistaCentral.setUint16(12, horaDos, true);
+        vistaCentral.setUint16(14, fechaDos, true);
+        vistaCentral.setUint32(16, checksum, true);
+        vistaCentral.setUint32(20, datos.length, true);
+        vistaCentral.setUint32(24, datos.length, true);
+        vistaCentral.setUint16(28, nombreBytes.length, true);
+        vistaCentral.setUint16(30, 0, true);
+        vistaCentral.setUint16(32, 0, true);
+        vistaCentral.setUint16(34, 0, true);
+        vistaCentral.setUint16(36, 0, true);
+        vistaCentral.setUint32(38, 0, true);
+        vistaCentral.setUint32(42, posicion, true);
+        cabeceraCentral.set(nombreBytes, 46);
+        partesCentrales.push(cabeceraCentral);
+        posicion += cabeceraLocal.length + datos.length;
+        tamanoCentral += cabeceraCentral.length;
+      });
+      if (posicion > 0xffffffff || tamanoCentral > 0xffffffff) {
+        throw new Error("El PowerPoint supera el tamaño máximo compatible.");
+      }
+      const cierre = new Uint8Array(22);
+      const vistaCierre = new DataView(cierre.buffer);
+      vistaCierre.setUint32(0, 0x06054b50, true);
+      vistaCierre.setUint16(4, 0, true);
+      vistaCierre.setUint16(6, 0, true);
+      vistaCierre.setUint16(8, entradas.length, true);
+      vistaCierre.setUint16(10, entradas.length, true);
+      vistaCierre.setUint32(12, tamanoCentral, true);
+      vistaCierre.setUint32(16, posicion, true);
+      vistaCierre.setUint16(20, 0, true);
+      return new Blob([...partesLocales, ...partesCentrales, cierre], {
+        type: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      });
+    }
+
+    async function crearArchivoPowerPointGafetes(imagenes) {
+      if (!imagenes.length) throw new Error("No se generaron imágenes para el PowerPoint.");
+      const anchoDiapositiva = 1958400;
+      const altoDiapositiva = 3110400;
+      const relaciones = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+      const tiposContenido = "http://schemas.openxmlformats.org/package/2006/content-types";
+      const raiz = "http://schemas.openxmlformats.org/package/2006/relationships";
+      const dibujo = "http://schemas.openxmlformats.org/drawingml/2006/main";
+      const presentacion = "http://schemas.openxmlformats.org/presentationml/2006/main";
+      const entrada = (nombre, contenido) => ({ nombre, contenido });
+      const archivos = [];
+      const relacionesDiapositivas = imagenes.map((_, indice) =>
+        `<p:sldId id="${256 + indice}" r:id="rId${indice + 2}"/>`
+      ).join("");
+      const relacionesPresentacion = [
+        `<Relationship Id="rId1" Type="${relaciones}/slideMaster" Target="slideMasters/slideMaster1.xml"/>`,
+        ...imagenes.map((_, indice) =>
+          `<Relationship Id="rId${indice + 2}" Type="${relaciones}/slide" Target="slides/slide${indice + 1}.xml"/>`
+        )
+      ].join("");
+      const tiposDiapositivas = imagenes.map((_, indice) =>
+        `<Override PartName="/ppt/slides/slide${indice + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`
+      ).join("");
+      const nombresRelaciones = (numero) =>
+        `<Relationships xmlns="${raiz}"><Relationship Id="rId1" Type="${relaciones}/image" Target="../media/gafete${numero}.png"/><Relationship Id="rId2" Type="${relaciones}/slideLayout" Target="../slideLayouts/slideLayout1.xml"/></Relationships>`;
+      const grupoVacio = `<p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr></p:spTree>`;
+      const tema = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><a:theme xmlns:a="${dibujo}" name="Organigrama"><a:themeElements><a:clrScheme name="Organigrama"><a:dk1><a:srgbClr val="10243A"/></a:dk1><a:lt1><a:srgbClr val="FFFFFF"/></a:lt1><a:dk2><a:srgbClr val="172F58"/></a:dk2><a:lt2><a:srgbClr val="EDF5F8"/></a:lt2><a:accent1><a:srgbClr val="2C6EA6"/></a:accent1><a:accent2><a:srgbClr val="2C83A5"/></a:accent2><a:accent3><a:srgbClr val="63ADC4"/></a:accent3><a:accent4><a:srgbClr val="8CC9EF"/></a:accent4><a:accent5><a:srgbClr val="677995"/></a:accent5><a:accent6><a:srgbClr val="444444"/></a:accent6><a:hlink><a:srgbClr val="0000FF"/></a:hlink><a:folHlink><a:srgbClr val="800080"/></a:folHlink></a:clrScheme><a:fontScheme name="Organigrama"><a:majorFont><a:latin typeface="Arial"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont><a:minorFont><a:latin typeface="Arial"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont></a:fontScheme><a:fmtScheme name="Organigrama"><a:fillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:gradFill rotWithShape="1"><a:gsLst><a:gs pos="0"><a:schemeClr val="phClr"/></a:gs><a:gs pos="100000"><a:schemeClr val="phClr"/></a:gs></a:gsLst><a:lin ang="0" scaled="1"/></a:gradFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:fillStyleLst><a:lnStyleLst><a:ln w="6350"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:prstDash val="solid"/></a:ln><a:ln w="12700"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:prstDash val="solid"/></a:ln><a:ln w="19050"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:prstDash val="solid"/></a:ln></a:lnStyleLst><a:effectStyleLst><a:effectStyle><a:effectLst/></a:effectStyle><a:effectStyle><a:effectLst/></a:effectStyle><a:effectStyle><a:effectLst/></a:effectStyle></a:effectStyleLst><a:bgFillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:bgFillStyleLst></a:fmtScheme></a:themeElements><a:objectDefaults/><a:extraClrSchemeLst/></a:theme>`;
+      archivos.push(
+        entrada("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="${tiposContenido}"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/><Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/><Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/><Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>${tiposDiapositivas}</Types>`),
+        entrada("_rels/.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="${raiz}"><Relationship Id="rId1" Type="${relaciones}/officeDocument" Target="ppt/presentation.xml"/></Relationships>`),
+        entrada("ppt/presentation.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:presentation xmlns:a="${dibujo}" xmlns:r="${relaciones}" xmlns:p="${presentacion}"><p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst><p:sldIdLst>${relacionesDiapositivas}</p:sldIdLst><p:sldSz cx="${anchoDiapositiva}" cy="${altoDiapositiva}" type="custom"/><p:notesSz cx="6858000" cy="9144000"/><p:defaultTextStyle><a:defPPr><a:defRPr lang="es-MX"/></a:defPPr></p:defaultTextStyle></p:presentation>`),
+        entrada("ppt/_rels/presentation.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="${raiz}">${relacionesPresentacion}</Relationships>`),
+        entrada("ppt/slideMasters/slideMaster1.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sldMaster xmlns:a="${dibujo}" xmlns:r="${relaciones}" xmlns:p="${presentacion}"><p:cSld name="Gafetes">${grupoVacio}</p:cSld><p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/><p:sldLayoutIdLst><p:sldLayoutId id="1" r:id="rId1"/></p:sldLayoutIdLst><p:txStyles><p:titleStyle/><p:bodyStyle/><p:otherStyle/></p:txStyles></p:sldMaster>`),
+        entrada("ppt/slideMasters/_rels/slideMaster1.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="${raiz}"><Relationship Id="rId1" Type="${relaciones}/slideLayout" Target="../slideLayouts/slideLayout1.xml"/><Relationship Id="rId2" Type="${relaciones}/theme" Target="../theme/theme1.xml"/></Relationships>`),
+        entrada("ppt/slideLayouts/slideLayout1.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sldLayout xmlns:a="${dibujo}" xmlns:r="${relaciones}" xmlns:p="${presentacion}" type="blank" preserve="1"><p:cSld name="Blank">${grupoVacio}</p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sldLayout>`),
+        entrada("ppt/slideLayouts/_rels/slideLayout1.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="${raiz}"><Relationship Id="rId1" Type="${relaciones}/slideMaster" Target="../slideMasters/slideMaster1.xml"/></Relationships>`),
+        entrada("ppt/theme/theme1.xml", tema)
+      );
+      for (let indice = 0; indice < imagenes.length; indice++) {
+        const numero = indice + 1;
+        const datosImagen = new Uint8Array(await imagenes[indice].arrayBuffer());
+        archivos.push(
+          entrada(`ppt/media/gafete${numero}.png`, datosImagen),
+          entrada(`ppt/slides/slide${numero}.xml`, `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sld xmlns:a="${dibujo}" xmlns:r="${relaciones}" xmlns:p="${presentacion}"><p:cSld name="Gafete ${numero}"><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr><p:pic><p:nvPicPr><p:cNvPr id="2" name="Gafete ${numero}"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr><p:blipFill><a:blip r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></p:blipFill><p:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${anchoDiapositiva}" cy="${altoDiapositiva}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic></p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sld>`),
+          entrada(`ppt/slides/_rels/slide${numero}.xml.rels`, nombresRelaciones(numero))
+        );
+      }
+      return crearZipSinCompresion(archivos);
+    }
+
+    async function descargarGafetesPowerPoint(personas, estilo) {
+      const imagenes = [];
+      for (const persona of personas) {
+        imagenes.push(...await generarImagenesGafete(persona, estilo));
+      }
+      const archivo = await crearArchivoPowerPointGafetes(imagenes);
+      const url = URL.createObjectURL(archivo);
+      const enlace = document.createElement("a");
+      const area = el("badge-area").value;
+      const nombreArea = area
+        ? normalizarTexto(area).replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")
+        : "seleccionados";
+      enlace.href = url;
+      enlace.download = `gafetes_${nombreArea || "seleccionados"}.pptx`;
+      document.body.appendChild(enlace);
+      enlace.click();
+      enlace.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 10000);
     }
 
     async function prepararImpresionGafetes(personasParaImprimir, multiple) {
@@ -3147,9 +3440,7 @@
       const imagenes = [...area.querySelectorAll(".avatar-photo")];
       imagenes.forEach((img) => cargarFoto(img, img.dataset.photoName));
       prepararLogosGafete(area);
-      const fotosPendientes = imagenes.map((img) => cacheFotos.get(img.dataset.photoName))
-        .filter((resultado) => resultado && typeof resultado.then === "function");
-      await Promise.all(fotosPendientes);
+      await esperarFotosGafete(imagenes);
       await Promise.all([...area.querySelectorAll("img")].map((img) =>
         img.complete ? Promise.resolve() : new Promise((resolver) => {
           img.addEventListener("load", resolver, { once: true });
@@ -3987,6 +4278,27 @@
       }
       el("multi-badge-dialog").classList.remove("open");
       prepararImpresionGafetes(ids.map((id) => porId.get(id)).filter(Boolean), true);
+    });
+    el("export-multiple-badges-pptx").addEventListener("click", async (evento) => {
+      const ids = [...el("badge-picker-list").querySelectorAll("input:checked")].map((input) => input.value);
+      const personas = ids.map((id) => porId.get(id)).filter(Boolean);
+      if (!personas.length) {
+        mostrarError("Selecciona al menos una persona para exportar los gafetes.");
+        return;
+      }
+      const boton = evento.currentTarget;
+      const textoOriginal = boton.textContent;
+      boton.disabled = true;
+      boton.textContent = "Generando PowerPoint...";
+      try {
+        await descargarGafetesPowerPoint(personas, el("badge-style-multiple").value);
+        ocultarError();
+      } catch (error) {
+        mostrarError(`No se pudo crear el PowerPoint: ${error.message}`);
+      } finally {
+        boton.disabled = false;
+        boton.textContent = textoOriginal;
+      }
     });
     window.addEventListener("afterprint", () => {
       document.body.classList.remove("printing-badge", "badge-single", "badge-multiple");

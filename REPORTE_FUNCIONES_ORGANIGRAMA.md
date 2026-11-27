@@ -25,7 +25,8 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 ### 3. Consultar fichas individuales
 
 - Abre una ficha con la fotografía disponible, nombre, cargo, área, tipo de área, ID de empleado y correo.
-- Presenta información de jefe directo, preparación académica, fecha de ingreso, fecha de nacimiento, tipo de sangre y antigüedad cuando está capturada.
+- Presenta información de jefe directo, preparación académica, fechas de ingreso y nacimiento, tipo de sangre, antigüedad y vigencia del gafete cuando está capturada.
+- Permite capturar la vigencia del gafete desde la edición de la ficha personal y la muestra en el frente del gafete.
 - Muestra el próximo aniversario laboral y cumpleaños cuando las fechas están registradas.
 - Permite actualizar los campos de Recursos Humanos disponibles desde **Editar datos**.
 - Desde la ficha se puede generar el gafete de la persona.
@@ -70,6 +71,7 @@ El organigrama digital permite consultar la estructura de DRFC de forma visual e
 - Permite elegir un estilo estándar, de ahorro de tinta o con banda azul.
 - Permite descargar el frente y el reverso como imágenes PNG, además de conservar la descarga editable en HTML.
 - Incluye herramientas para ajustar el encuadre de la fotografía y para imprimir varios gafetes en hojas tamaño carta.
+- Permite filtrar por área, seleccionar varios gafetes y exportarlos a PowerPoint con frente y reverso en diapositivas consecutivas de 5.44 × 8.64 cm.
 
 ### 9. Imprimir o guardar el organigrama
 
