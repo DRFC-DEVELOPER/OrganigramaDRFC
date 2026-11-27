@@ -3076,11 +3076,14 @@
             sw = area.width / proporcion;
             sh = area.height / proporcion;
             const posiciones = estilo.objectPosition.split(/\s+/);
-            const posicionX = Number.parseFloat(posiciones[0]) / 100 || 0.5;
-            const posicionY = Number.parseFloat(posiciones[1]) / 100 || 0.5;
-            const zoom = Math.max(1, Number.parseFloat(estilo.getPropertyValue("--badge-frame-zoom")) || 1);
-            sw /= zoom;
-            sh /= zoom;
+            const leerPosicion = (valor) => {
+              const numero = Number.parseFloat(valor) / 100;
+              return Number.isFinite(numero) ? Math.min(1, Math.max(0, numero)) : 0.5;
+            };
+            const posicionX = leerPosicion(posiciones[0]);
+            const posicionY = leerPosicion(posiciones[1]);
+            // El zoom ya viene incluido en el área: getBoundingClientRect() devuelve
+            // la caja con el transform scale() aplicado, así que no se divide otra vez.
             sx = (anchoFuente - sw) * posicionX;
             sy = (altoFuente - sh) * posicionY;
           }
@@ -3110,6 +3113,27 @@
       });
       elementos.filter((elemento) => elemento.tagName === "IMG" && elemento !== arteCuerpo)
         .forEach(dibujarImagen);
+      // Contornos sólidos (box-shadow sin desplazamiento ni desenfoque): se trazan
+      // como anillo DESPUÉS de las imágenes para que la foto nunca los tape, sin
+      // importar el zoom o el encuadre.
+      elementos.forEach((elemento) => {
+        const estilo = getComputedStyle(elemento);
+        const sombra = estilo.boxShadow;
+        if (!sombra || sombra === "none") return;
+        const color = sombra.match(/rgba?\([^)]*\)|#[\da-fA-F]{3,8}/);
+        if (!color) return;
+        const medidas = sombra.replace(color[0], "").match(/-?(?:\d+\.?\d*|\.\d+)px/g);
+        if (!medidas || medidas.length !== 4) return;
+        const [desplazamientoX, desplazamientoY, desenfoque, expansion] = medidas.map(Number.parseFloat);
+        if (desplazamientoX !== 0 || desplazamientoY !== 0 || desenfoque !== 0 || expansion <= 0) return;
+        const area = caja(elemento);
+        const mitad = expansion / 2;
+        redondear(area.x - mitad, area.y - mitad,
+          area.width + expansion, area.height + expansion, estilo.borderTopLeftRadius);
+        contexto.strokeStyle = color[0];
+        contexto.lineWidth = expansion + 0.3;
+        contexto.stroke();
+      });
       elementos.forEach((elemento) => {
         if (elemento.tagName === "IMG") return;
         const estilo = getComputedStyle(elemento);
