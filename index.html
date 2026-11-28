@@ -680,12 +680,12 @@
     .badge-corporate-front .badge-area { top: 63.1mm; left: 3mm; right: 3mm; display: block; height: 5.6mm; overflow: hidden; }
     .badge-area-title { display: flex; align-items: center; gap: 1.5mm; height: 2.6mm; }
     .badge-area-rule { flex: 1 1 auto; height: .2mm; background: var(--gafete-caja-borde); }
-    .badge-area-label { flex: 0 0 auto; color: var(--gafete-azul-texto); font-size: 6pt; font-weight: 700; line-height: 2.6mm; letter-spacing: .06em; }
+    .badge-area-label { flex: 0 0 auto; color: var(--gafete-azul-texto); font-size: 6pt; font-weight: 700; line-height: 2.6mm; letter-spacing: .06em; white-space: nowrap; }
     .badge-area-value { display: block; max-width: 100%; margin-top: .3mm; overflow: hidden; color: var(--gafete-gris-texto); font-size: 6.5pt; font-weight: 600; line-height: 2.7mm; white-space: nowrap; }
     .badge-corporate-front .badge-employee-id, .badge-corporate-front .badge-validity { top: 70.8mm; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5mm; width: 23.5mm; height: 7.2mm; min-height: 0; padding: 0 1mm; overflow: hidden; border: .2mm solid var(--gafete-caja-borde); border-radius: 1.5mm; background: var(--gafete-caja); box-shadow: none; }
     .badge-corporate-front .badge-employee-id { left: 2.8mm; }
     .badge-corporate-front .badge-validity { right: 2.8mm; }
-    .badge-corporate-front .badge-field-label { display: block; color: var(--gafete-azul-texto); font-size: 5.5pt; font-weight: 700; line-height: 1; letter-spacing: .04em; text-transform: uppercase; }
+    .badge-corporate-front .badge-field-label { display: block; color: var(--gafete-azul-texto); font-size: 5.5pt; font-weight: 700; line-height: 1; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
     .badge-corporate-front .badge-employee-id strong, .badge-corporate-front .badge-validity strong { display: block; max-width: 100%; overflow: hidden; color: var(--gafete-marino); font-size: 8.5pt; font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; }
     /* www.drfc.mx: blanco, negritas, 7 pt y espaciado abierto sobre azul marino. */
     .badge-corporate-front .badge-website { top: auto; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; height: 4mm; padding: 0; border-radius: 0; background: transparent; }
@@ -3402,7 +3402,11 @@
         const x = alineacion === "center" ? area.x + area.width / 2 :
           alineacion === "right" ? area.x + area.width - paddingDerecho : area.x + paddingIzquierdo;
         const lineas = [];
-        if (estilo.whiteSpace === "nowrap") {
+        // Si en pantalla el texto ocupa una sola línea, en el PNG tampoco se parte:
+        // el espaciado entre letras puede hacer que el lienzo mida unas décimas de
+        // más y corte "NÚMERO ID:" en dos líneas, de las que solo cabría la primera.
+        const unaSolaLineaEnPantalla = area.height < interlineado * 1.5;
+        if (estilo.whiteSpace === "nowrap" || unaSolaLineaEnPantalla) {
           lineas.push(texto);
         } else {
           texto.split(/\r?\n/).forEach((parrafo) => {
